@@ -14,6 +14,12 @@ function str(value: unknown, path: string): string {
   return value.trim();
 }
 
+function email(value: unknown, path: string): string {
+  const v = str(value, path);
+  if (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) fail(path, "an email address, or empty");
+  return v;
+}
+
 function localized(value: unknown, path: string): Localized {
   if (typeof value !== "object" || value === null) fail(path, "an object with en and bn");
   const v = value as Record<string, unknown>;
@@ -55,7 +61,8 @@ function parse(data: unknown): Settings {
       registration: str(company.registration, "company.registration"),
     },
     contact: {
-      email: str(contact.email, "contact.email"),
+      email: email(contact.email, "contact.email"),
+      careersEmail: email(contact.careersEmail, "contact.careersEmail"),
       phone: str(contact.phone, "contact.phone"),
       address: localized(contact.address, "contact.address"),
       officeHours: localized(contact.officeHours, "contact.officeHours"),
@@ -76,3 +83,6 @@ export function whatsappLink(greeting: string): string | null {
 
 /** Social links that have a URL filled in. */
 export const activeSocialLinks = settings.social.filter((s) => s.url);
+
+/** Address for job applications: the careers email, else the main email, else none. */
+export const careersEmail = settings.contact.careersEmail || settings.contact.email;

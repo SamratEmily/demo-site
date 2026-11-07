@@ -31,6 +31,8 @@ export interface Settings {
   };
   contact: {
     email: string;
+    /** Where CVs go; falls back to `email` when empty. */
+    careersEmail: string;
     /** International format, e.g. +8801XXXXXXXXX */
     phone: string;
     address: Localized;
@@ -239,4 +241,49 @@ export interface CaseStudy {
   meta: CaseStudyMeta;
   /** MDX body: challenge, solution and results sections. */
   body: string;
+}
+
+/** Frontmatter of content/blog/<slug>.<locale>.mdx */
+export interface BlogPostMeta {
+  title: string;
+  /** One or two sentences for the index, meta description and social previews. */
+  summary: string;
+  /** Publication date, YYYY-MM-DD. */
+  date: string;
+  author: string;
+  /** Tag slugs defined in content/blog-tags.ts. */
+  tags: string[];
+  cover?: { src: string; width: number; height: number; alt: string };
+  /** Drafts appear in `npm run dev` only, never in the production build. */
+  draft: boolean;
+}
+
+export interface TocItem {
+  id: string;
+  title: string;
+  level: 2 | 3;
+}
+
+export interface BlogPost {
+  slug: string;
+  meta: BlogPostMeta;
+  body: string;
+  readingMinutes: number;
+  toc: TocItem[];
+}
+
+export type EmploymentType = "full-time" | "part-time" | "contract" | "internship";
+
+/** An open position on the Careers page. Remove it once it is filled. */
+export interface JobOpening {
+  slug: string;
+  title: Localized;
+  type: EmploymentType;
+  location: Localized;
+  summary: Localized;
+  responsibilities: Localized[];
+  requirements: Localized[];
+  niceToHave?: Localized[];
+  /** Last day to apply, YYYY-MM-DD. Optional. */
+  deadline?: string;
 }

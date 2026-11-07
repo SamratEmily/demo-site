@@ -43,3 +43,7 @@ export const serviceQuoteHref = (slug: string) => ({
 });
 
 export const caseStudyHref = (slug: string) => `/case-studies/${slug}` as const;
+
+export const blogHref = "/blog";
+export const blogPostHref = (slug: string) => `/blog/${slug}` as const;
+export const blogTagHref = (tag: string) => `/blog/tags/${tag}` as const;

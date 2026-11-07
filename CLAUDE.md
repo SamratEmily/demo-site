@@ -40,7 +40,8 @@ components/ui/          shadcn/ui primitives (don't edit unless necessary)
 components/sections/    page sections (Hero, Services, ProductGrid, ...)
 components/shared/      Header, Footer, LanguageSwitcher, ThemeToggle, ...
 content/                ALL site content: site.ts, products.ts, services.ts,
-                        team.ts, careers.ts, testimonials.ts, blog/, case-studies/,
+                        team.ts, careers.ts, testimonials.ts, values.ts, pages.ts,
+                        blog/ + blog-tags.ts, case-studies/ (<slug>.<locale>.mdx),
                         navigation.ts, settings.json (contact, WhatsApp, social;
                         validated at build time by lib/settings.ts)
 messages/               en.json, bn.json (UI strings only)

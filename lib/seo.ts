@@ -20,6 +20,8 @@ interface PageMetadataInput {
   /** Use the title as-is, without the " | Beacon Soft Ltd" suffix. */
   absoluteTitle?: boolean;
   image?: { url: string; width: number; height: number; alt: string };
+  /** Marks the page as an article in Open Graph (blog posts). */
+  article?: { publishedTime: string; authors: string[]; tags: string[] };
 }
 
 /** Title, description, canonical, hreflang alternates, Open Graph and Twitter. */
@@ -30,6 +32,7 @@ export function pageMetadata({
   description,
   absoluteTitle = false,
   image = defaultImage,
+  article,
 }: PageMetadataInput): Metadata {
   const languages = Object.fromEntries(routing.locales.map((l) => [l, pageUrl(l, path)]));
 
@@ -41,7 +44,7 @@ export function pageMetadata({
       languages: { ...languages, "x-default": pageUrl(routing.defaultLocale, path) },
     },
     openGraph: {
-      type: "website",
+      ...(article ? { type: "article" as const, ...article } : { type: "website" as const }),
       siteName: site.name,
       locale: ogLocale[locale],
       url: pageUrl(locale, path),

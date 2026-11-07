@@ -120,3 +120,32 @@ export const aboutPage: PageCopy & {
     bn: "আপনার কী দরকার আমাদের জানান। আমরা সেলস পিচ নয়, প্রশ্ন বা একটি পরিকল্পনা নিয়ে উত্তর দেব।",
   },
 };
+
+export const blogPage: PageCopy = {
+  title: { en: "Blog", bn: "ব্লগ" },
+  intro: {
+    en: "Practical notes on planning, building and running business software, from the team that builds it.",
+    bn: "ব্যবসার সফটওয়্যার পরিকল্পনা, তৈরি ও পরিচালনা নিয়ে কাজের কথা, যাঁরা তৈরি করেন তাঁদের কাছ থেকে।",
+  },
+  metaDescription: {
+    en: "Articles from Beacon Soft Ltd on planning, building and maintaining software for businesses in Bangladesh.",
+    bn: "বাংলাদেশের ব্যবসার জন্য সফটওয়্যার পরিকল্পনা, তৈরি ও রক্ষণাবেক্ষণ নিয়ে Beacon Soft Ltd-এর লেখা।",
+  },
+};
+
+export const careersPage: PageCopy & { valuesTitle: Localized; valuesIntro: Localized } = {
+  title: { en: "Careers", bn: "ক্যারিয়ার" },
+  intro: {
+    en: "We build software for businesses in Bangladesh and abroad. If you care about clear code, careful testing and explaining things simply, we'd like to hear from you.",
+    bn: "আমরা বাংলাদেশ ও বিদেশের ব্যবসার জন্য সফটওয়্যার তৈরি করি। পরিষ্কার কোড, যত্ন নিয়ে টেস্টিং আর সহজ করে বোঝানো যদি আপনার কাছে গুরুত্বপূর্ণ হয়, আমরা আপনার কথা শুনতে চাই।",
+  },
+  metaDescription: {
+    en: "Jobs at Beacon Soft Ltd: open positions for developers and other roles, and how to apply.",
+    bn: "Beacon Soft Ltd-এ চাকরি: ডেভেলপার ও অন্যান্য খালি পদ এবং আবেদনের নিয়ম।",
+  },
+  valuesTitle: { en: "How we work", bn: "আমরা যেভাবে কাজ করি" },
+  valuesIntro: {
+    en: "The principles behind every project, and what we expect from everyone on the team.",
+    bn: "প্রতিটি প্রজেক্টের পেছনের নীতি, আর টিমের সবার কাছে আমাদের প্রত্যাশা।",
+  },
+};

@@ -1,19 +1,16 @@
 import { evaluate } from "@mdx-js/mdx";
 import type { MDXComponents } from "mdx/types";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import * as runtime from "react/jsx-runtime";
+import { slugify } from "@/lib/utils";
 
 interface MdxContentProps {
   source: string;
 }
 
-function slugify(text: unknown): string | undefined {
-  if (typeof text !== "string") return undefined;
-  const slug = text
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-|-$/g, "");
-  return slug || undefined;
+/** Heading id from its plain text, matching the table of contents in lib/blog.ts. */
+function headingId(children: ReactNode): string | undefined {
+  return typeof children === "string" ? slugify(children) || undefined : undefined;
 }
 
 function MdxLink({ href = "", children, ...props }: ComponentProps<"a">) {
@@ -33,11 +30,15 @@ function MdxLink({ href = "", children, ...props }: ComponentProps<"a">) {
 /** Long-form text styles for MDX bodies; no client JavaScript. */
 const components: MDXComponents = {
   h2: ({ children }) => (
-    <h2 id={slugify(children)} className="mt-14 scroll-mt-24 text-h2 first:mt-0">
+    <h2 id={headingId(children)} className="mt-14 scroll-mt-24 text-h2 first:mt-0">
       {children}
     </h2>
   ),
-  h3: ({ children }) => <h3 className="mt-10 text-h3">{children}</h3>,
+  h3: ({ children }) => (
+    <h3 id={headingId(children)} className="mt-10 scroll-mt-24 text-h3">
+      {children}
+    </h3>
+  ),
   p: ({ children }) => <p className="mt-5">{children}</p>,
   ul: ({ children }) => (
     <ul className="mt-5 flex list-disc flex-col gap-2 pl-6 marker:text-primary">{children}</ul>
