@@ -1,0 +1,71 @@
+{
+  "common": {
+    "skipToContent": "মূল অংশে যান",
+    "homeLink": "Beacon Soft হোম",
+    "externalLink": "নতুন ট্যাবে খুলবে"
+  },
+  "nav": {
+    "label": "প্রধান",
+    "products": "প্রোডাক্ট",
+    "services": "সেবাসমূহ",
+    "caseStudies": "কেস স্টাডি",
+    "about": "আমাদের সম্পর্কে",
+    "blog": "ব্লগ",
+    "careers": "ক্যারিয়ার",
+    "contact": "যোগাযোগ",
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "ব্যবহারের শর্তাবলি"
+  },
+  "header": {
+    "getQuote": "কোটেশন নিন",
+    "openMenu": "মেনু খুলুন",
+    "closeMenu": "মেনু বন্ধ করুন",
+    "menuTitle": "মেনু",
+    "language": "ভাষা",
+    "theme": "থিম"
+  },
+  "theme": {
+    "toggle": "রঙের থিম বদলান",
+    "light": "লাইট",
+    "dark": "ডার্ক",
+    "system": "ডিভাইসের মতো"
+  },
+  "language": {
+    "label": "ভাষা বেছে নিন",
+    "en": "EN",
+    "bn": "বাং",
+    "enFull": "English",
+    "bnFull": "বাংলা"
+  },
+  "footer": {
+    "products": "প্রোডাক্ট",
+    "company": "প্রতিষ্ঠান",
+    "contact": "যোগাযোগ",
+    "legal": "আইনি তথ্য",
+    "email": "ইমেইল",
+    "phone": "ফোন",
+    "address": "ঠিকানা",
+    "officeHours": "অফিস সময়",
+    "social": "সোশ্যাল মিডিয়া",
+    "contactFallback": "যোগাযোগ পেজ থেকে আমাদের বার্তা পাঠান।",
+    "copyright": "© {year} Beacon Soft Ltd. সর্বস্বত্ব সংরক্ষিত।"
+  },
+  "social": {
+    "github": "GitHub-এ Beacon Soft",
+    "linkedin": "LinkedIn-এ Beacon Soft",
+    "facebook": "Facebook-এ Beacon Soft"
+  },
+  "whatsapp": {
+    "label": "WhatsApp-এ আমাদের সাথে কথা বলুন"
+  },
+  "home": {
+    "metaTitle": "Beacon Soft Ltd — বাংলাদেশের সফটওয়্যার ডেভেলপমেন্ট প্রতিষ্ঠান",
+    "metaDescription": "আমরা ব্যবসার জন্য কাস্টম ওয়েব অ্যাপ্লিকেশন, API, ই-কমার্স ও WordPress সমাধান তৈরি করি এবং সফটওয়্যার রক্ষণাবেক্ষণ করি।",
+    "setupNotice": "সাইটটি তৈরির কাজ চলছে। পেজগুলো যোগ করা হচ্ছে।"
+  },
+  "notFound": {
+    "title": "পেজটি পাওয়া যায়নি",
+    "body": "আপনি যে পেজটি খুঁজছেন সেটি নেই অথবা অন্য ঠিকানায় সরানো হয়েছে।",
+    "backHome": "হোম পেজে যান"
+  }
+}

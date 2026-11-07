@@ -1,0 +1,71 @@
+{
+  "common": {
+    "skipToContent": "Skip to main content",
+    "homeLink": "Beacon Soft home",
+    "externalLink": "opens in a new tab"
+  },
+  "nav": {
+    "label": "Main",
+    "products": "Products",
+    "services": "Services",
+    "caseStudies": "Case studies",
+    "about": "About",
+    "blog": "Blog",
+    "careers": "Careers",
+    "contact": "Contact",
+    "privacy": "Privacy policy",
+    "terms": "Terms of service"
+  },
+  "header": {
+    "getQuote": "Get a quote",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menuTitle": "Menu",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "theme": {
+    "toggle": "Change color theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "label": "Choose language",
+    "en": "EN",
+    "bn": "বাং",
+    "enFull": "English",
+    "bnFull": "বাংলা"
+  },
+  "footer": {
+    "products": "Products",
+    "company": "Company",
+    "contact": "Contact",
+    "legal": "Legal",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "officeHours": "Office hours",
+    "social": "Social media",
+    "contactFallback": "Send us a message through the contact page.",
+    "copyright": "© {year} Beacon Soft Ltd. All rights reserved."
+  },
+  "social": {
+    "github": "Beacon Soft on GitHub",
+    "linkedin": "Beacon Soft on LinkedIn",
+    "facebook": "Beacon Soft on Facebook"
+  },
+  "whatsapp": {
+    "label": "Chat with us on WhatsApp"
+  },
+  "home": {
+    "metaTitle": "Beacon Soft Ltd — Software development company in Bangladesh",
+    "metaDescription": "We build custom web applications, APIs, e-commerce and WordPress solutions, and maintain software for businesses.",
+    "setupNotice": "Site under construction. Pages are being added."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you are looking for does not exist or has moved.",
+    "backHome": "Go to the home page"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "contact": {
+    "email": "",
+    "phone": "",
+    "address": {
+      "en": "",
+      "bn": ""
+    },
+    "officeHours": {
+      "en": "",
+      "bn": ""
+    }
+  },
+  "whatsapp": {
+    "number": "",
+    "greeting": {
+      "en": "Hello Beacon Soft, I'd like to talk about a project.",
+      "bn": "হ্যালো Beacon Soft, একটি প্রজেক্ট নিয়ে কথা বলতে চাই।"
+    }
+  },
+  "social": [
+    { "platform": "github", "url": "" },
+    { "platform": "linkedin", "url": "" },
+    { "platform": "facebook", "url": "" }
+  ]
+}
