@@ -12,6 +12,10 @@ import {
   CalendarClock,
   FileCheck,
   FileText,
+  Gauge,
+  Handshake,
+  Layers,
+  Repeat,
   HandCoins,
   Languages,
   Package,
@@ -56,6 +60,10 @@ const icons: Record<ContentIconName, LucideIcon> = {
   printer: Printer,
   chart: ChartColumn,
   clipboard: ClipboardList,
+  layers: Layers,
+  gauge: Gauge,
+  repeat: Repeat,
+  handshake: Handshake,
 };
 
 interface ContentIconProps {

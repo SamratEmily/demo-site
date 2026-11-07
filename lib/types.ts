@@ -22,6 +22,13 @@ export interface SocialLink {
 
 /** Shape of content/settings.json. Empty strings mean "not set yet": hidden on the site. */
 export interface Settings {
+  company: {
+    legalName: string;
+    /** Year the company was founded, e.g. "2021". */
+    founded: string;
+    /** Company registration or trade licence number. */
+    registration: string;
+  };
   contact: {
     email: string;
     /** International format, e.g. +8801XXXXXXXXX */
@@ -64,13 +71,24 @@ export type ContentIconName =
   | "bell"
   | "printer"
   | "chart"
-  | "clipboard";
+  | "clipboard"
+  | "layers"
+  | "gauge"
+  | "repeat"
+  | "handshake";
 
 export interface Service {
   slug: string;
   icon: ContentIconName;
   title: Localized;
+  /** One sentence, used on the Home page. */
   summary: Localized;
+  /** A short paragraph, used on the Services page. */
+  description: Localized;
+  /** What the client gets. */
+  included: Localized[];
+  /** Typical technologies; names stay in English. */
+  technologies: string[];
 }
 
 export interface Feature {
@@ -182,4 +200,43 @@ export interface NavItem {
   /** Key in messages/*.json under "nav". */
   labelKey: "products" | "services" | "caseStudies" | "about" | "blog" | "careers" | "contact";
   href: `/${string}`;
+}
+
+/** A principle we work by (About page). */
+export interface CompanyValue {
+  icon: ContentIconName;
+  title: Localized;
+  description: Localized;
+}
+
+/** Only add real people who agreed to be listed. */
+export interface TeamMember {
+  name: Localized;
+  role: Localized;
+  /** Path under /public; square, at least 320×320. Optional. */
+  photo?: string;
+  linkedin?: string;
+}
+
+/** Frontmatter of content/case-studies/<slug>.<locale>.mdx */
+export interface CaseStudyMeta {
+  title: string;
+  /** One or two sentences for the index page and meta description. */
+  summary: string;
+  client: string;
+  industry: string;
+  /** Slug of a product in content/products, if the project used one. */
+  product?: string;
+  duration: string;
+  /** Measured outcomes; only add results you can back up. */
+  results: { value: string; label: string }[];
+  /** Client quote; leave out until you have written permission. */
+  quote?: { text: string; name: string; role: string };
+}
+
+export interface CaseStudy {
+  slug: string;
+  meta: CaseStudyMeta;
+  /** MDX body: challenge, solution and results sections. */
+  body: string;
 }

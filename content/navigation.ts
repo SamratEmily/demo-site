@@ -35,3 +35,11 @@ export const demoRequestHref = (slug: string) => ({
   pathname: "/contact" as const,
   query: { product: slug },
 });
+
+/** Contact page with the service preselected (read client-side on /contact). */
+export const serviceQuoteHref = (slug: string) => ({
+  pathname: "/contact" as const,
+  query: { service: slug },
+});
+
+export const caseStudyHref = (slug: string) => `/case-studies/${slug}` as const;

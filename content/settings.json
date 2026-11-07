@@ -1,4 +1,9 @@
 {
+  "company": {
+    "legalName": "Beacon Soft Ltd",
+    "founded": "",
+    "registration": ""
+  },
   "contact": {
     "email": "",
     "phone": "",
@@ -19,8 +24,17 @@
     }
   },
   "social": [
-    { "platform": "github", "url": "" },
-    { "platform": "linkedin", "url": "" },
-    { "platform": "facebook", "url": "" }
+    {
+      "platform": "github",
+      "url": ""
+    },
+    {
+      "platform": "linkedin",
+      "url": ""
+    },
+    {
+      "platform": "facebook",
+      "url": ""
+    }
   ]
 }

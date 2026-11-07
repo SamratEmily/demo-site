@@ -36,6 +36,7 @@ function social(value: unknown): SocialLink[] {
 
 function parse(data: unknown): Settings {
   const d = (data ?? {}) as Record<string, unknown>;
+  const company = (d.company ?? {}) as Record<string, unknown>;
   const contact = (d.contact ?? {}) as Record<string, unknown>;
   const whatsapp = (d.whatsapp ?? {}) as Record<string, unknown>;
 
@@ -44,7 +45,15 @@ function parse(data: unknown): Settings {
     fail("whatsapp.number", "an international number like +8801XXXXXXXXX, or empty");
   }
 
+  const founded = str(company.founded, "company.founded");
+  if (founded && !/^\d{4}$/.test(founded)) fail("company.founded", 'a year like "2021", or empty');
+
   return {
+    company: {
+      legalName: str(company.legalName, "company.legalName"),
+      founded,
+      registration: str(company.registration, "company.registration"),
+    },
     contact: {
       email: str(contact.email, "contact.email"),
       phone: str(contact.phone, "contact.phone"),

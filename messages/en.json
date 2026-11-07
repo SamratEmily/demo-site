@@ -101,5 +101,28 @@
     "screenLanguage": "Screen in {language}",
     "customTitle": "Need something none of these do?",
     "customBody": "We also build custom software around how your business works. Tell us what you need."
+  },
+  "services": {
+    "getQuote": "Get a quote for {service}",
+    "onThisPage": "Services on this page"
+  },
+  "caseStudies": {
+    "client": "Client",
+    "industry": "Industry",
+    "product": "Product",
+    "duration": "Duration",
+    "results": "Key results",
+    "quote": "What the client says",
+    "allCaseStudies": "Case studies",
+    "read": "Read the case study",
+    "ctaTitle": "Have a similar problem?",
+    "ctaBody": "Tell us how your business works today. We'll show you what we would build and what it would take."
+  },
+  "about": {
+    "legalName": "Registered name",
+    "founded": "Founded",
+    "registration": "Registration number",
+    "contactUs": "Contact us",
+    "linkedin": "{name} on LinkedIn"
   }
 }
