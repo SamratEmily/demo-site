@@ -22,12 +22,29 @@
 
   --container-content: 72rem;
   --container-narrow: 45rem;
+
+  /* The one "show" motion on the site: the hero beacon beam sweeps once onto
+     the product screenshot. Reduced-motion users get the final frame. */
+  --animate-beam-sweep: beam-sweep 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.15s both;
+  @keyframes beam-sweep {
+    from {
+      transform: rotate(-24deg);
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+    to {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+  }
 }
 
 /* ───────────────────────── Theme-aware color mapping ───────────────────── */
 @theme inline {
   --font-sans: var(--font-body);
-  --font-mono: var(--font-fira-code), ui-monospace, monospace;
+  --font-mono: var(--font-fira-code), var(--font-hind-siliguri), ui-monospace, monospace;
   --font-heading: var(--font-body);
 
   --color-background: var(--background);
@@ -41,9 +58,16 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-cyan: var(--brand-cyan);
   --color-brand-cyan-hover: var(--brand-cyan-hover);
+  --color-brand-midnight: var(--brand-midnight);
+  --color-brand-stripe: var(--brand-stripe);
+  --color-brand-amber: var(--brand-amber);
+  --color-brand-amber-light: var(--brand-amber-light);
+  --color-brand-sky: var(--brand-sky);
+  --color-wordmark-accent: var(--wordmark-accent);
   --color-primary-hover: var(--primary-hover);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-beam: var(--beam);
 
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -76,6 +100,14 @@
   --brand-blue: #1e3a8a;
   --brand-cyan: #06b6d4;
   --brand-cyan-hover: #22d3ee;
+  /* From the Beacon Soft lighthouse logo. */
+  --brand-midnight: #0b2a5b;
+  --brand-stripe: #2f6fd6;
+  --brand-amber: #ffb020;
+  --brand-amber-light: #ffcf6d;
+  --brand-sky: #7fb0ff;
+  /* "Soft" in the wordmark: stripe blue on light (4.7:1), sky blue on dark. */
+  --wordmark-accent: var(--brand-stripe);
 
   /* Inter for Latin; Bangla glyphs fall through to Hind Siliguri. */
   --font-body: var(--font-inter), var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
@@ -109,10 +141,14 @@
   --deep-foreground: #f1f5f9; /* 15.9:1 */
   --deep-muted-foreground: #a3b1c6; /* 8:1 */
   --deep-border: #1e293b;
+  --deep-muted: #1e293b;
 
   /* WhatsApp green with a navy glyph (white glyph would be 1.98:1). */
   --whatsapp: #25d366;
   --whatsapp-foreground: #0f172a; /* 9.6:1 */
+
+  /* Hero beam light, amber like the logo's lantern (decorative only). */
+  --beam: rgb(255 176 32 / 0.2);
 }
 
 /* Dark theme: navy canvas, cyan as the primary action color. */
@@ -140,6 +176,27 @@
 
   --deep: #0b1222;
   --deep-border: #1e293b;
+
+  --beam: rgb(255 176 32 / 0.16);
+  --wordmark-accent: var(--brand-sky);
+}
+
+/* Navy band in both themes (footer, product showcase). Remaps the tokens so
+   every component inside renders correctly without special variants. */
+@utility surface-deep {
+  --background: var(--deep);
+  --foreground: var(--deep-foreground);
+  --muted: var(--deep-muted);
+  --muted-foreground: var(--deep-muted-foreground);
+  --border: var(--deep-border);
+  --input: #64748b;
+  --primary: var(--brand-cyan);
+  --primary-hover: var(--brand-cyan-hover);
+  --primary-foreground: var(--brand-navy);
+  --ring: var(--brand-cyan-hover);
+  --wordmark-accent: var(--brand-sky);
+  background-color: var(--deep);
+  color: var(--deep-foreground);
 }
 
 @layer base {

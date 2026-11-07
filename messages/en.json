@@ -61,11 +61,45 @@
   "home": {
     "metaTitle": "Beacon Soft Ltd — Software development company in Bangladesh",
     "metaDescription": "We build custom web applications, APIs, e-commerce and WordPress solutions, and maintain software for businesses.",
-    "setupNotice": "Site under construction. Pages are being added."
+    "seeProducts": "See our products",
+    "seeServices": "See all services",
+    "playDemo": "Play the {name} demo ({seconds} seconds)",
+    "videoLabel": "{name} product demo",
+    "videoFallback": "Your browser can't play this video. Download the demo video instead.",
+    "visitProduct": "Visit {domain}",
+    "productFeatures": "See all {name} features",
+    "productsCta": "Compare all products",
+    "keyFeatures": "Key features",
+    "stepLabel": "Step {number}"
   },
   "notFound": {
     "title": "Page not found",
     "body": "The page you are looking for does not exist or has moved.",
     "backHome": "Go to the home page"
+  },
+  "product": {
+    "breadcrumb": "Breadcrumb",
+    "allProducts": "Products",
+    "statusLive": "Live",
+    "statusInDevelopment": "In development",
+    "requestDemo": "Request a demo",
+    "visit": "Visit {domain}",
+    "viewProduct": "View {name}",
+    "problem": "The problem it solves",
+    "howItWorks": "How it works",
+    "features": "Features",
+    "screenshots": "Screenshots",
+    "openFullSize": "Open full-size image",
+    "demoVideo": "Demo video",
+    "audience": "Who it's for",
+    "technologies": "Built with",
+    "results": "Results",
+    "faq": "Frequently asked questions",
+    "ctaTitle": "See how {name} fits your business",
+    "ctaBody": "Book a short demo. We'll walk you through it and answer your questions.",
+    "ctaBodyInDevelopment": "{name} is still being built. Tell us what you need and we'll keep you updated.",
+    "screenLanguage": "Screen in {language}",
+    "customTitle": "Need something none of these do?",
+    "customBody": "We also build custom software around how your business works. Tell us what you need."
   }
 }

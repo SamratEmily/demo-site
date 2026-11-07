@@ -1,23 +1,46 @@
 import { hasLocale } from "next-intl";
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
-import { site } from "@/content/site";
+import { ClosingCta } from "@/components/sections/ClosingCta";
+import { HomeHero } from "@/components/sections/HomeHero";
+import { ProcessSteps } from "@/components/sections/ProcessSteps";
+import { ProductList } from "@/components/sections/ProductList";
+import { ProductSpotlight } from "@/components/sections/ProductSpotlight";
+import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { TechStack } from "@/components/sections/TechStack";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { routing } from "@/i18n/routing";
 
-// Temporary placeholder home page for the project setup step.
+export async function generateMetadata({ params }: PageProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
+  const t = await getTranslations({ locale, namespace: "home" });
+  return pageMetadata({
+    locale,
+    path: "/",
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    absoluteTitle: true,
+  });
+}
+
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const t = await getTranslations("home");
 
   return (
-    <section className="mx-auto max-w-3xl px-4 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-        {site.tagline[locale]}
-      </h1>
-      <p className="mt-6 max-w-prose text-lg text-muted-foreground">{site.description[locale]}</p>
-      <p className="mt-10 font-mono text-sm text-muted-foreground">{t("setupNotice")}</p>
-    </section>
+    <>
+      <HomeHero />
+      <ServicesOverview />
+      <ProductSpotlight />
+      <ProductList />
+      <ProcessSteps />
+      <TechStack />
+      <Testimonials />
+      <ClosingCta />
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import type { NavItem } from "@/lib/types";
+import { products } from "./products";
 
 /** Top navigation. Labels live in messages/*.json under "nav". */
 export const mainNav: NavItem[] = [
@@ -17,14 +18,10 @@ export const companyNav: NavItem[] = [
   { labelKey: "contact", href: "/contact" },
 ];
 
-/** Footer product links. Replaced by content/products once that exists. */
-export const productNav = [
-  { name: "Gari Becho", href: "/products/gari-becho" },
-  { name: "Inventory Management System", href: "/products/inventory-management" },
-  { name: "IELTS Platform", href: "/products/ielts-platform" },
-  { name: "Laundry POS System", href: "/products/laundry-pos" },
-  { name: "Onushilon360", href: "/products/onushilon360" },
-] as const;
+export const productHref = (slug: string) => `/products/${slug}` as const;
+
+/** Footer product links, derived from content/products.ts. */
+export const productNav = products.map((p) => ({ name: p.name, href: productHref(p.slug) }));
 
 export const legalNav = [
   { labelKey: "privacy", href: "/privacy" },
@@ -32,3 +29,9 @@ export const legalNav = [
 ] as const;
 
 export const quoteHref = "/contact";
+
+/** Contact page with the product preselected (read client-side on /contact). */
+export const demoRequestHref = (slug: string) => ({
+  pathname: "/contact" as const,
+  query: { product: slug },
+});

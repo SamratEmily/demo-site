@@ -10,7 +10,7 @@ function fail(path: string, expected: string): never {
 }
 
 function str(value: unknown, path: string): string {
-  if (typeof value !== "string") fail(path, "a string (use \"\" if unknown)");
+  if (typeof value !== "string") fail(path, 'a string (use "" if unknown)');
   return value.trim();
 }
 
