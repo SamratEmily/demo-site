@@ -149,8 +149,11 @@ The live site updates about 2–3 minutes later.
   doesn't change afterwards.
 - **Delete:** open the entry and press **Delete**. Like other changes, the deletion goes
   live when published.
-- **Order:** products, services, team members, testimonials and job openings have an
-  **Order** number. Lower numbers appear first.
+- **Order:** products, services, testimonials and job openings have an **Order**
+  number. Lower numbers appear first.
+- **Team priority:** team members have a **Priority** number instead. Higher numbers
+  appear first (for example CEO 105, CTO 104, then 103, …). The Team list in the content
+  manager shows each priority and is sorted the same way as the About page.
 - **Blog drafts:** a blog post with **Draft** switched on never appears on the live
   site, even after publishing. Switch it off when the post is ready.
 
@@ -173,6 +176,9 @@ as a starting point for translation.
   items, in the same order, in both languages. Add the item in English first, then add
   its translation at the same position in Bangla.
 - Product names and technology names stay in English on Bangla pages.
+- **Exceptions, open positions and team members:** only English is required. Any Bangla
+  field or list you leave empty shows the English text on the Bangla page, so you can
+  publish first and translate later.
 - For blog posts and case studies, each language is saved as its own file. Both are
   required.
 

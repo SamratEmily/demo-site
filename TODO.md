@@ -15,12 +15,12 @@ are tracked here instead.
 These placeholders are in the files themselves. Those marked **visible** show on the
 live site as written, so fill them in or remove the page before launch.
 
-| File                                     | Placeholders                                                                                     | Visible? |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| `content/case-studies/gari-becho.en.mdx` | Client name, project duration, 3 result figures, 3 paragraphs (client details, rollout, results) | **Yes**  |
-| `content/case-studies/gari-becho.bn.mdx` | The same 8 placeholders in Bangla                                                                | **Yes**  |
-| `content/contact.ts`                     | Comment: confirm the budget ranges and currency in the contact form                              | No       |
-| `content/pages.ts`                       | Comment in `aboutPage`: add the founding year and how the company started                        | No       |
+| File                                     | Placeholders                                                              | Visible? |
+| ---------------------------------------- | ------------------------------------------------------------------------- | -------- |
+| `content/case-studies/gari-becho.en.mdx` | 3 result figures, 3 paragraphs (client details, rollout, results)         | **Yes**  |
+| `content/case-studies/gari-becho.bn.mdx` | The same 6 placeholders in Bangla                                         | **Yes**  |
+| `content/contact.ts`                     | Comment: confirm the budget ranges and currency in the contact form       | No       |
+| `content/pages.ts`                       | Comment in `aboutPage`: add the founding year and how the company started | No       |
 
 Run `npm run todos` to list them with line numbers.
 
@@ -46,7 +46,7 @@ Run `npm run todos` to list them with line numbers.
 | Blog posts                          | `content/blog/`                                | Only a sample post, marked `draft: true`, so the live blog is empty. Review it and set `draft: false` to publish, or delete it                                                                                                                                                                                                                                                   |
 | Company story details               | `content/pages.ts` (`aboutPage`)               | Add founding year and how the company started; check the story is accurate                                                                                                                                                                                                                                                                                                       |
 | Office map                          | `content/settings.json`                        | `contact.mapEmbedUrl`: Google Maps → Share → Embed a map → copy the `src` URL. Map is hidden until set                                                                                                                                                                                                                                                                           |
-| Gari Becho case study               | `content/case-studies/gari-becho.{en,bn}.mdx`  | Client name, duration, 3 result figures and 3 `[TODO]` paragraphs. **These placeholders are visible on the page**; fill in or remove the case study before launch. The body describes a client rollout: confirm it happened as written. No client quote until you have written permission.                                                                                       |
+| Gari Becho case study               | `content/case-studies/gari-becho.{en,bn}.mdx`  | 3 result figures and 3 `[TODO]` paragraphs (client and duration filled in: own SaaS product, 2 years). **These placeholders are visible on the page**; fill in or remove the case study before launch. The body describes a client rollout: confirm it happened as written. No client quote until you have written permission.                                                   |
 | Privacy policy and terms of service | not created yet                                | The site collects names, emails and phone numbers through the contact form, so a privacy policy is recommended. The text needs the company's (ideally a lawyer's) approval, so it wasn't written for you. The footer links were removed because the pages don't exist; add `app/[locale]/privacy` and `app/[locale]/terms` and put the links back in `SiteFooter.tsx` when ready |
 
 ### Found on garibecho.com (not yet used, needs confirmation)

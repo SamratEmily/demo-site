@@ -551,27 +551,31 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: name
-    summary: "{{name}}, {{role}}"
-    sortable_fields: [order, name]
+    summary: "{{order}} · {{name}}, {{role}}"
+    sortable_fields:
+      - field: order
+        label: Priority
+        default_sort: desc
+      - name
     editor: { preview: false }
     i18n: true
     fields:
       - name: order
-        label: Order
+        label: Priority
         widget: number
         value_type: int
         default: 100
-        hint: Position on the About page; lower numbers appear first.
+        hint: Higher numbers appear first on the About page, e.g. CEO 105, CTO 104. The list on the left is sorted the same way.
       - name: name
         label: Full name
         widget: string
         i18n: true
-        hint: Write the name as the person spells it in each language.
+        hint: Write the name as the person spells it. In Bangla, leave it empty to show the English spelling.
       - name: role
         label: Role
         widget: string
         i18n: true
-        hint: E.g. "Lead developer".
+        hint: E.g. "Lead developer". In Bangla, leave it empty to show the English role.
       - name: photo
         label: Photo
         widget: image
