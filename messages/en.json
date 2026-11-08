@@ -164,5 +164,49 @@
     "contactPage": "Send us a message",
     "howToApply": "How to apply",
     "howToApplyBody": "Email your CV to {email} with the job title in the subject line. We reply to every application."
+  },
+  "contact": {
+    "formTitle": "Send us a message",
+    "required": "Required",
+    "optional": "optional",
+    "name": "Your name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "phoneHint": "Include the country code if you're outside Bangladesh.",
+    "interest": "Interested in",
+    "interestPlaceholder": "Choose one",
+    "servicesGroup": "Services",
+    "productsGroup": "Products",
+    "budget": "Budget",
+    "budgetPlaceholder": "Choose a range",
+    "message": "Message",
+    "messageHint": "What do you want to build or fix? Mention any deadlines.",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "successTitle": "Message sent",
+    "successBody": "Thank you, {name}. We've received your message and will reply to {email}.",
+    "sendAnother": "Send another message",
+    "errors": {
+      "required": "Fill in this field.",
+      "tooLong": "Keep this under {max} characters.",
+      "tooShort": "Write at least {min} characters so we understand what you need.",
+      "invalidEmail": "Enter an email address like name@example.com.",
+      "invalidPhone": "Enter a phone number using digits, for example +8801XXXXXXXXX.",
+      "invalid": "Remove line breaks or unusual characters from this field."
+    },
+    "submitErrors": {
+      "invalid": "Some fields need attention. Fix the highlighted fields and send again.",
+      "verification": "We couldn't confirm you're a person. Complete the check above the button and send again.",
+      "turnstile": "Complete the check above the button, then send again.",
+      "server": "Your message wasn't sent because of a problem on our side. Try again in a few minutes.",
+      "serverEmail": "Your message wasn't sent because of a problem on our side. Try again in a few minutes, or email us at {email}.",
+      "network": "Your message wasn't sent because the connection failed. Check your internet connection and send again.",
+      "notConfigured": "The form can't send messages right now. Use the contact details on this page instead."
+    },
+    "detailsTitle": "Other ways to reach us",
+    "whatsapp": "WhatsApp",
+    "chatOnWhatsapp": "Chat on WhatsApp",
+    "mapTitle": "Map showing the Beacon Soft office"
   }
 }

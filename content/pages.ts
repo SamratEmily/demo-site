@@ -149,3 +149,15 @@ export const careersPage: PageCopy & { valuesTitle: Localized; valuesIntro: Loca
     bn: "প্রতিটি প্রজেক্টের পেছনের নীতি, আর টিমের সবার কাছে আমাদের প্রত্যাশা।",
   },
 };
+
+export const contactPage: PageCopy = {
+  title: { en: "Contact us", bn: "যোগাযোগ করুন" },
+  intro: {
+    en: "Tell us what you need: a new project, help with existing software, or a demo of one of our products. We'll reply by email with questions or a next step.",
+    bn: "আপনার কী দরকার জানান: নতুন প্রজেক্ট, চলমান সফটওয়্যারে সহায়তা, অথবা আমাদের কোনো প্রোডাক্টের ডেমো। আমরা ইমেইলে প্রশ্ন বা পরের ধাপ জানিয়ে উত্তর দেব।",
+  },
+  metaDescription: {
+    en: "Contact Beacon Soft Ltd about a software project, support for existing software, or a product demo.",
+    bn: "সফটওয়্যার প্রজেক্ট, চলমান সফটওয়্যারের সাপোর্ট বা প্রোডাক্ট ডেমোর জন্য Beacon Soft Ltd-এর সাথে যোগাযোগ করুন।",
+  },
+};

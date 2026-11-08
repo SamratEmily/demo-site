@@ -37,6 +37,8 @@ export interface Settings {
     phone: string;
     address: Localized;
     officeHours: Localized;
+    /** Google Maps embed URL (Share → Embed a map → src). Empty hides the map. */
+    mapEmbedUrl: string;
   };
   whatsapp: {
     /** International format, digits only or with +; empty hides the button. */

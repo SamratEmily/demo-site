@@ -51,6 +51,14 @@ function parse(data: unknown): Settings {
     fail("whatsapp.number", "an international number like +8801XXXXXXXXX, or empty");
   }
 
+  const mapEmbedUrl = str(contact.mapEmbedUrl, "contact.mapEmbedUrl");
+  if (mapEmbedUrl && !mapEmbedUrl.startsWith("https://www.google.com/maps/embed")) {
+    fail(
+      "contact.mapEmbedUrl",
+      "a Google Maps embed URL (https://www.google.com/maps/embed?…), or empty",
+    );
+  }
+
   const founded = str(company.founded, "company.founded");
   if (founded && !/^\d{4}$/.test(founded)) fail("company.founded", 'a year like "2021", or empty');
 
@@ -66,6 +74,7 @@ function parse(data: unknown): Settings {
       phone: str(contact.phone, "contact.phone"),
       address: localized(contact.address, "contact.address"),
       officeHours: localized(contact.officeHours, "contact.officeHours"),
+      mapEmbedUrl,
     },
     whatsapp: { number, greeting: localized(whatsapp.greeting, "whatsapp.greeting") },
     social: social(d.social),

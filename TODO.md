@@ -28,6 +28,7 @@ are tracked here instead.
 | Open positions                    | `content/careers.ts`                          | Empty, so Careers shows "Send us your CV". Add real openings only                                                                                                                                                                                                                          |
 | Blog posts                        | `content/blog/`                               | Only a sample post, marked `draft: true`, so the live blog is empty. Review it and set `draft: false` to publish, or delete it                                                                                                                                                             |
 | Company story details             | `content/pages.ts` (`aboutPage`)              | Add founding year and how the company started; check the story is accurate                                                                                                                                                                                                                 |
+| Office map                        | `content/settings.json`                       | `contact.mapEmbedUrl`: Google Maps → Share → Embed a map → copy the `src` URL. Map is hidden until set                                                                                                                                                                                     |
 | Gari Becho case study             | `content/case-studies/gari-becho.{en,bn}.mdx` | Client name, duration, 3 result figures and 3 `[TODO]` paragraphs. **These placeholders are visible on the page**; fill in or remove the case study before launch. The body describes a client rollout: confirm it happened as written. No client quote until you have written permission. |
 
 ### Found on garibecho.com (not yet used, needs confirmation)
@@ -38,18 +39,19 @@ The email there is spelled `beaconsoft**ld**`, not `beaconsoft**ltd**`; check wh
 
 ## Copy to review
 
-| What                      | File                                                           | Notes                                                                            |
-| ------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| All Bangla text           | `content/**/*.ts`, `messages/bn.json`, `content/settings.json` | First drafts, need a native-speaker review                                       |
-| Home page copy            | `content/home.ts`                                              | Headline, section intros, closing call to action                                 |
-| Products page copy        | `content/pages.ts`                                             | Intro and "In development" note                                                  |
-| Gari Becho page copy      | `content/products/gari-becho.ts`                               | Problem, audience and FAQ answers (from garibecho.com and the demo)              |
-| Service descriptions      | `content/services.ts`                                          | Confirm the six services, descriptions, "What's included" lists and technologies |
-| About page copy           | `content/pages.ts`, `content/values.ts`                        | Intro, story, mission and the five value descriptions                            |
-| Process step descriptions | `content/process.ts`                                           | Confirm promises (written scope, training, monitoring)                           |
-
-| Blog sample post | `content/blog/custom-or-ready-made.{en,bn}.mdx` | General advice, no facts or figures; check you agree with it |
-| Careers copy | `content/pages.ts` (`careersPage`), `messages/*.json` (`careers`) | Intro, and the promise "We reply to every application" |
+| What                      | File                                                              | Notes                                                                                     |
+| ------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| All Bangla text           | `content/**/*.ts`, `messages/bn.json`, `content/settings.json`    | First drafts, need a native-speaker review                                                |
+| Home page copy            | `content/home.ts`                                                 | Headline, section intros, closing call to action                                          |
+| Products page copy        | `content/pages.ts`                                                | Intro and "In development" note                                                           |
+| Gari Becho page copy      | `content/products/gari-becho.ts`                                  | Problem, audience and FAQ answers (from garibecho.com and the demo)                       |
+| Service descriptions      | `content/services.ts`                                             | Confirm the six services, descriptions, "What's included" lists and technologies          |
+| About page copy           | `content/pages.ts`, `content/values.ts`                           | Intro, story, mission and the five value descriptions                                     |
+| Process step descriptions | `content/process.ts`                                              | Confirm promises (written scope, training, monitoring)                                    |
+| Blog sample post          | `content/blog/custom-or-ready-made.{en,bn}.mdx`                   | General advice, no facts or figures; check you agree with it                              |
+| Careers copy              | `content/pages.ts` (`careersPage`), `messages/*.json` (`careers`) | Intro, and the promise "We reply to every application"                                    |
+| Contact page copy         | `content/pages.ts` (`contactPage`), `messages/*.json` (`contact`) | Intro and form labels                                                                     |
+| Budget ranges             | `content/contact.ts`                                              | `[TODO]`: confirm the ranges and that BDT (৳) is the right currency for overseas visitors |
 
 ## Media
 
@@ -61,12 +63,28 @@ The email there is spelled `beaconsoft**ld**`, not `beaconsoft**ltd**`; check wh
 | Blog cover             | `public/images/blog/custom-or-ready-made/cover.webp` | Generated brand illustration (lighthouse at night). Replace with a post-specific image if you like.                                                 |
 | Product OG images      | `public/og/`                                         | Only a default share image exists. Per-page images can be added in the SEO step.                                                                    |
 
+## Before launch: contact form setup
+
+The form does not work until these are set (see `.dev.vars.example` and `.env.example`):
+
+1. **Turnstile:** Cloudflare dashboard → Turnstile → add a widget for the production domain.
+   Set the site key as build variable `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (Pages → Settings →
+   Variables, "build" environment; it is baked into the page at build time) and the secret
+   as `TURNSTILE_SECRET`. Without the site key, the form shows "The form can't send
+   messages right now".
+2. **Resend:** create an API key → `RESEND_API_KEY` (secret). Verify your domain in Resend
+   and set `CONTACT_FROM_EMAIL` (e.g. `Beacon Soft website <website@yourdomain>`); until
+   then emails come from `onboarding@resend.dev`, which only delivers to the Resend
+   account owner.
+3. **Recipient:** `CONTACT_TO_EMAIL` (secret; comma-separate several addresses).
+4. Send a test message from the live site after deploying.
+
 ## Notes for later steps
 
-- **Security headers (`public/_headers`):** the CSP must allow `media-src https://garibecho.com`
-  for the demo video to play.
-- **Contact page:** must read `?product=<slug>` and `?service=<slug>` client-side and
-  preselect them (links already point to `/contact/?product=gari-becho` and
-  `/contact/?service=e-commerce` etc.).
+- **Security headers (`public/_headers`):** the CSP must allow
+  - `media-src https://garibecho.com` (Gari Becho demo video),
+  - `script-src` and `frame-src https://challenges.cloudflare.com` (Turnstile),
+  - `frame-src https://www.google.com` (map embed, if used),
+  - `connect-src 'self'` (form posts to `/api/contact`).
 - **Sitemap (SEO step):** list only published blog posts; `getPosts()` in `lib/blog.ts`
   already leaves out drafts in production builds.
