@@ -29,10 +29,10 @@ export function MainNav({ layout, onNavigate }: MainNavProps) {
                 onClick={onNavigate}
                 aria-current={isCurrent ? "page" : undefined}
                 className={cn(
-                  "flex min-h-11 items-center font-medium transition-colors",
+                  "flex min-h-11 min-w-11 items-center font-medium transition-colors",
                   "focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none",
                   layout === "bar"
-                    ? "rounded-lg px-3 text-sm text-muted-foreground hover:text-foreground"
+                    ? "justify-center rounded-lg px-3 text-sm text-muted-foreground hover:text-foreground"
                     : "min-h-12 border-b px-1 text-lg hover:text-primary",
                   isSection && "text-foreground",
                   isSection &&

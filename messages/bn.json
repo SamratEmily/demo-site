@@ -5,9 +5,9 @@
     "externalLink": "নতুন ট্যাবে খুলবে"
   },
   "nav": {
-    "label": "প্রধান",
+    "label": "প্রধান মেনু",
     "products": "প্রোডাক্ট",
-    "services": "সেবাসমূহ",
+    "services": "সার্ভিস",
     "caseStudies": "কেস স্টাডি",
     "about": "আমাদের সম্পর্কে",
     "blog": "ব্লগ",
@@ -28,7 +28,7 @@
     "toggle": "রঙের থিম বদলান",
     "light": "লাইট",
     "dark": "ডার্ক",
-    "system": "ডিভাইসের মতো"
+    "system": "ডিভাইস অনুযায়ী"
   },
   "language": {
     "label": "ভাষা বেছে নিন",
@@ -45,10 +45,10 @@
     "email": "ইমেইল",
     "phone": "ফোন",
     "address": "ঠিকানা",
-    "officeHours": "অফিস সময়",
+    "officeHours": "অফিস সময়সূচি",
     "social": "সোশ্যাল মিডিয়া",
-    "contactFallback": "যোগাযোগ পেজ থেকে আমাদের বার্তা পাঠান।",
-    "copyright": "© {year} Beacon Soft Ltd. সর্বস্বত্ব সংরক্ষিত।"
+    "contactFallback": "যোগাযোগ পেজ থেকে আমাদের মেসেজ পাঠান।",
+    "copyright": "© {year, number, ::group-off} Beacon Soft Ltd. সর্বস্বত্ব সংরক্ষিত।"
   },
   "social": {
     "github": "GitHub-এ Beacon Soft",
@@ -62,15 +62,15 @@
     "metaTitle": "Beacon Soft Ltd — বাংলাদেশের সফটওয়্যার ডেভেলপমেন্ট প্রতিষ্ঠান",
     "metaDescription": "আমরা ব্যবসার জন্য কাস্টম ওয়েব অ্যাপ্লিকেশন, API, ই-কমার্স ও WordPress সমাধান তৈরি করি এবং সফটওয়্যার রক্ষণাবেক্ষণ করি।",
     "seeProducts": "আমাদের প্রোডাক্ট দেখুন",
-    "seeServices": "সব সেবা দেখুন",
-    "playDemo": "{name} ডেমো চালান ({seconds} সেকেন্ড)",
+    "seeServices": "সব সার্ভিস দেখুন",
+    "playDemo": "{name} ডেমো চালান ({seconds, number} সেকেন্ড)",
     "videoLabel": "{name} প্রোডাক্ট ডেমো",
     "videoFallback": "আপনার ব্রাউজারে ভিডিওটি চলছে না। ডেমো ভিডিওটি ডাউনলোড করুন।",
-    "visitProduct": "{domain} দেখুন",
+    "visitProduct": "{domain}-এ যান",
     "productFeatures": "{name}-এর সব ফিচার দেখুন",
     "productsCta": "সব প্রোডাক্ট তুলনা করুন",
     "keyFeatures": "প্রধান ফিচার",
-    "stepLabel": "ধাপ {number}"
+    "stepLabel": "ধাপ {number, number}"
   },
   "notFound": {
     "title": "পেজটি পাওয়া যায়নি",
@@ -83,7 +83,7 @@
     "statusLive": "চালু আছে",
     "statusInDevelopment": "তৈরির কাজ চলছে",
     "requestDemo": "ডেমোর অনুরোধ করুন",
-    "visit": "{domain} দেখুন",
+    "visit": "{domain}-এ যান",
     "viewProduct": "{name} দেখুন",
     "problem": "যে সমস্যার সমাধান করে",
     "howItWorks": "যেভাবে কাজ করে",
@@ -94,7 +94,7 @@
     "audience": "কাদের জন্য",
     "technologies": "যে প্রযুক্তিতে তৈরি",
     "results": "ফলাফল",
-    "faq": "সাধারণ প্রশ্ন",
+    "faq": "সচরাচর জিজ্ঞাসিত প্রশ্ন",
     "ctaTitle": "{name} আপনার ব্যবসায় কীভাবে কাজে লাগবে দেখুন",
     "ctaBody": "একটি ছোট ডেমো বুক করুন। আমরা পুরোটা দেখিয়ে দেব এবং আপনার প্রশ্নের উত্তর দেব।",
     "ctaBodyInDevelopment": "{name} এখনো তৈরি হচ্ছে। আপনার প্রয়োজন জানান, আমরা আপনাকে আপডেট জানাব।",
@@ -103,7 +103,7 @@
     "customBody": "আপনার ব্যবসার ধরন অনুযায়ী আমরা কাস্টম সফটওয়্যারও তৈরি করি। কী দরকার আমাদের জানান।"
   },
   "services": {
-    "getQuote": "{service}-এর জন্য কোটেশন নিন",
+    "getQuote": "{service} সার্ভিসের জন্য কোটেশন নিন",
     "onThisPage": "এই পেজের সার্ভিসগুলো"
   },
   "caseStudies": {
@@ -189,8 +189,8 @@
     "sendAnother": "আরেকটি মেসেজ পাঠান",
     "errors": {
       "required": "এই ঘরটি পূরণ করুন।",
-      "tooLong": "{max} অক্ষরের মধ্যে লিখুন।",
-      "tooShort": "আপনার প্রয়োজন বুঝতে অন্তত {min} অক্ষর লিখুন।",
+      "tooLong": "{max, number} অক্ষরের মধ্যে লিখুন।",
+      "tooShort": "আপনার প্রয়োজন বুঝতে অন্তত {min, number} অক্ষর লিখুন।",
       "invalidEmail": "name@example.com-এর মতো একটি ইমেইল ঠিকানা লিখুন।",
       "invalidPhone": "সংখ্যা দিয়ে ফোন নম্বর লিখুন, যেমন +8801XXXXXXXXX।",
       "invalid": "এই ঘর থেকে লাইন ব্রেক বা অস্বাভাবিক চিহ্ন সরিয়ে দিন।"

@@ -44,7 +44,7 @@
 /* ───────────────────────── Theme-aware color mapping ───────────────────── */
 @theme inline {
   --font-sans: var(--font-body);
-  --font-mono: var(--font-fira-code), var(--font-hind-siliguri), ui-monospace, monospace;
+  --font-mono: var(--font-fira-code), ui-monospace, monospace;
   --font-heading: var(--font-body);
 
   --color-background: var(--background);
@@ -109,8 +109,8 @@
   /* "Soft" in the wordmark: stripe blue on light (4.7:1), sky blue on dark. */
   --wordmark-accent: var(--brand-stripe);
 
-  /* Inter for Latin; Bangla glyphs fall through to Hind Siliguri. */
-  --font-body: var(--font-inter), var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
+  /* Inter only; /bn adds Hind Siliguri below (html:lang(bn)). */
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --radius: 0.625rem;
 
@@ -224,6 +224,16 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+/* Bangla font, only on /bn pages: Inter keeps Latin text (product and
+   technology names), Bangla glyphs fall through to Hind Siliguri.
+   .font-bangla opts in a Bangla block on a page that isn't /bn (the 404). */
+html:lang(bn),
+.font-bangla {
+  --font-body: var(--font-inter), var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-fira-code), var(--font-hind-siliguri), ui-monospace, monospace;
+  font-family: var(--font-body);
 }
 
 /* Bangla typography. Unlayered so it beats Tailwind utilities: Bangla vowel

@@ -3,7 +3,7 @@ import type { ProcessStep } from "@/lib/types";
 /** Our delivery process. Order matters: rendered as a numbered sequence. */
 export const processSteps: ProcessStep[] = [
   {
-    title: { en: "Discover", bn: "জানা ও বোঝা" },
+    title: { en: "Discover", bn: "প্রয়োজন বোঝা" },
     description: {
       en: "We learn how your business works today, what slows it down and what the software must do.",
       bn: "আপনার ব্যবসা এখন কীভাবে চলে, কোথায় সমস্যা হয় এবং সফটওয়্যারটির কী করা দরকার, তা আমরা বুঝে নিই।",
@@ -31,7 +31,7 @@ export const processSteps: ProcessStep[] = [
     },
   },
   {
-    title: { en: "Deploy", bn: "ডিপ্লয়" },
+    title: { en: "Deploy", bn: "লাইভ করা" },
     description: {
       en: "We launch on reliable hosting with backups and monitoring, and train your team to use it.",
       bn: "ব্যাকআপ ও মনিটরিংসহ নির্ভরযোগ্য হোস্টিংয়ে চালু করি এবং আপনার টিমকে ব্যবহার শেখাই।",

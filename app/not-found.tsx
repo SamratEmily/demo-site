@@ -26,7 +26,11 @@ export default function NotFound() {
             {versions.map(({ locale, messages }, index) => {
               const Heading = index === 0 ? "h1" : "h2";
               return (
-                <section key={locale} lang={locale}>
+                <section
+                  key={locale}
+                  lang={locale}
+                  className={locale === "bn" ? "font-bangla leading-[1.75]" : undefined}
+                >
                   <p className="font-mono text-sm text-muted-foreground">404</p>
                   <Heading className="mt-2 text-3xl font-semibold tracking-tight">
                     {messages.notFound.title}

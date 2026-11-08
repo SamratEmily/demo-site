@@ -12,11 +12,15 @@ export const firaCode = Fira_Code({
   variable: "--font-fira-code",
 });
 
-// Bangla font: applied only on /bn via the :lang(bn) rule in globals.css.
+// Bangla font: used only on /bn (see html:lang(bn) in globals.css), so English
+// pages never download it. Not preloaded, because next/font would preload it on
+// every locale; /bn requests it as soon as the CSS is parsed. Two weights only:
+// 400 for text and 600 for headings (500 and 700 render with the nearest).
 export const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   display: "swap",
+  preload: false,
   variable: "--font-hind-siliguri",
 });
 

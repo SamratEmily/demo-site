@@ -93,7 +93,7 @@ export default async function ProductsPage({ params }: PageProps<"/[locale]/prod
                   <h3 className="mt-3 text-h2" lang="en">
                     <Link
                       href={productHref(product.slug)}
-                      className="hover:underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                      className="inline-flex min-h-11 items-center hover:underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
                     >
                       {product.name}
                     </Link>

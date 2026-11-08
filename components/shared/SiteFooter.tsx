@@ -9,7 +9,7 @@ import { Container } from "./Container";
 import { Logo } from "./Logo";
 
 const linkClass =
-  "inline-flex min-h-11 items-center rounded text-deep-muted-foreground hover:text-deep-foreground hover:underline underline-offset-4 focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none";
+  "inline-flex min-h-11 min-w-11 items-center rounded text-deep-muted-foreground hover:text-deep-foreground hover:underline underline-offset-4 focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none";
 
 interface FooterColumnProps {
   id: string;

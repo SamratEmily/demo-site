@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { ProcessStep } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 
 interface NumberedStepsProps {
   steps: ProcessStep[];
@@ -29,7 +29,7 @@ export function NumberedSteps({ steps, columns = 3, className }: NumberedStepsPr
             <span aria-hidden className="absolute -top-0.5 left-0 h-0.5 w-12 bg-primary" />
             <p className="font-mono text-sm font-medium text-primary">
               <span className="sr-only">{t("stepLabel", { number })}</span>
-              <span aria-hidden>{String(number).padStart(2, "0")}</span>
+              <span aria-hidden>{formatNumber(number, locale, { minimumIntegerDigits: 2 })}</span>
             </p>
             <h3 className="mt-2 text-h3">{step.title[locale]}</h3>
             <p className="mt-2 text-muted-foreground">{step.description[locale]}</p>
