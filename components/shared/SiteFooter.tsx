@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
-import { companyNav, legalNav, productHref } from "@/content/navigation";
+import { companyNav, productHref } from "@/content/navigation";
 import { site } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 import { products } from "@/lib/products";
@@ -130,18 +130,6 @@ export function SiteFooter() {
       <div className="border-t border-deep-border">
         <Container className="flex flex-col gap-4 py-6 text-sm text-deep-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>{t("footer.copyright", { year })}</p>
-
-          <nav aria-label={t("footer.legal")}>
-            <ul className="flex flex-wrap gap-x-6">
-              {legalNav.map(({ labelKey, href }) => (
-                <li key={href}>
-                  <Link href={href} className={linkClass}>
-                    {t(`nav.${labelKey}`)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
 
           {activeSocialLinks.length > 0 ? (
             <ul aria-label={t("footer.social")} className="-ml-3 flex md:ml-0">

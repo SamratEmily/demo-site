@@ -12,9 +12,7 @@
     "about": "About",
     "blog": "Blog",
     "careers": "Careers",
-    "contact": "Contact",
-    "privacy": "Privacy policy",
-    "terms": "Terms of service"
+    "contact": "Contact"
   },
   "header": {
     "getQuote": "Get a quote",
@@ -41,7 +39,6 @@
     "products": "Products",
     "company": "Company",
     "contact": "Contact",
-    "legal": "Legal",
     "email": "Email",
     "phone": "Phone",
     "address": "Address",

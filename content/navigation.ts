@@ -20,11 +20,6 @@ export const companyNav: NavItem[] = [
 
 export const productHref = (slug: string) => `/products/${slug}` as const;
 
-export const legalNav = [
-  { labelKey: "privacy", href: "/privacy" },
-  { labelKey: "terms", href: "/terms" },
-] as const;
-
 export const quoteHref = "/contact";
 
 /** Contact page with the product preselected (read client-side on /contact). */
