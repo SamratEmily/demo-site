@@ -16,7 +16,7 @@ import { StatusBadge } from "@/components/shared/StatusBadge";
 import { buttonVariants } from "@/components/ui/button";
 import { productHref, quoteHref } from "@/content/navigation";
 import { productsPage } from "@/content/pages";
-import { products } from "@/content/products";
+import { products } from "@/lib/products";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { pageMetadata } from "@/lib/seo";
@@ -80,6 +80,7 @@ export default async function ProductsPage({ params }: PageProps<"/[locale]/prod
                       height={product.screenshot.height}
                       alt={product.screenshot.alt[locale]}
                       preload
+                      fetchPriority="high"
                       loading="eager"
                       sizes="(min-width: 1024px) 620px, 100vw"
                       className="block h-auto w-full"
@@ -93,7 +94,7 @@ export default async function ProductsPage({ params }: PageProps<"/[locale]/prod
                   <h3 className="mt-3 text-h2" lang="en">
                     <Link
                       href={productHref(product.slug)}
-                      className="inline-flex min-h-11 items-center hover:underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                      className="inline-flex min-h-11 items-center hover:underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
                     >
                       {product.name}
                     </Link>

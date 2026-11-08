@@ -2,7 +2,7 @@ import { useLocale } from "next-intl";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { home } from "@/content/home";
-import { products } from "@/content/products";
+import { products } from "@/lib/products";
 import { ProductRows } from "./ProductRows";
 
 /** Home page: all products, linking to their pages. */

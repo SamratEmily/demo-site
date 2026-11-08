@@ -1,13 +1,13 @@
 import type { NavItem } from "@/lib/types";
-import { products } from "./products";
 
 /** Top navigation. Labels live in messages/*.json under "nav". */
 export const mainNav: NavItem[] = [
   { labelKey: "products", href: "/products" },
   { labelKey: "services", href: "/services" },
   { labelKey: "caseStudies", href: "/case-studies" },
-  { labelKey: "about", href: "/about" },
   { labelKey: "blog", href: "/blog" },
+  { labelKey: "careers", href: "/careers" },
+  { labelKey: "about", href: "/about" },
 ];
 
 /** Footer "Company" column. */
@@ -19,9 +19,6 @@ export const companyNav: NavItem[] = [
 ];
 
 export const productHref = (slug: string) => `/products/${slug}` as const;
-
-/** Footer product links, derived from content/products.ts. */
-export const productNav = products.map((p) => ({ name: p.name, href: productHref(p.slug) }));
 
 export const legalNav = [
   { labelKey: "privacy", href: "/privacy" },

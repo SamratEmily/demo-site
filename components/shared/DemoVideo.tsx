@@ -59,6 +59,7 @@ export function DemoVideo({
         alt={poster.alt}
         preload={preload}
         loading={preload ? "eager" : "lazy"}
+        fetchPriority={preload ? "high" : undefined}
         sizes="(min-width: 1024px) 640px, 100vw"
         className="block h-auto w-full"
       />

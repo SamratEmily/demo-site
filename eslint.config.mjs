@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local Cloudflare Pages runs (wrangler pages dev) write bundles here.
+    ".wrangler/**",
   ]),
 ]);
 

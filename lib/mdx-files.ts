@@ -37,22 +37,14 @@ export function readLocalizedMdx(folder: string): Map<string, Record<Locale, Mdx
   const complete = new Map<string, Record<Locale, MdxFile>>();
   for (const [slug, versions] of found) {
     for (const locale of routing.locales) {
-      if (!versions[locale]) throw new Error(`content/${folder}/${slug}.${locale}.mdx is missing.`);
+      if (!versions[locale]) {
+        throw new Error(
+          `content/${folder}/${slug}.${locale}.mdx is missing. Every entry needs both languages: ` +
+            `in the CMS, open the entry and fill in the ${locale.toUpperCase()} version.`,
+        );
+      }
     }
     complete.set(slug, versions as Record<Locale, MdxFile>);
   }
   return complete;
-}
-
-/** Field checks with error messages that name the file and field. */
-export function fieldReader(file: string) {
-  const fail = (field: string, expected: string): never => {
-    throw new Error(`content/${file}: "${field}" must be ${expected}.`);
-  };
-  const str = (data: Record<string, unknown>, key: string, prefix = ""): string => {
-    const value = data[key];
-    if (typeof value !== "string" || !value.trim()) fail(prefix + key, "a non-empty string");
-    return (value as string).trim();
-  };
-  return { fail, str };
 }

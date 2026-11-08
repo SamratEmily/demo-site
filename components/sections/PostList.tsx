@@ -46,7 +46,7 @@ export function PostList({ posts, headingLevel = "h2", compact = false }: PostLi
               <Heading className={cn("mt-2", compact ? "text-h3" : "text-h2")}>
                 <Link
                   href={blogPostHref(post.slug)}
-                  className="group-hover:underline after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-lg focus-visible:after:ring-3 focus-visible:after:ring-ring/60"
+                  className="group-hover:underline after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:rounded-lg focus-visible:after:ring-3 focus-visible:after:ring-ring"
                 >
                   {post.meta.title}
                 </Link>

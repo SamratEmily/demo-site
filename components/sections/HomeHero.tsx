@@ -6,7 +6,7 @@ import { Container } from "@/components/shared/Container";
 import { DemoVideo } from "@/components/shared/DemoVideo";
 import { home } from "@/content/home";
 import { quoteHref } from "@/content/navigation";
-import { spotlightProduct } from "@/content/products";
+import { spotlightProduct } from "@/lib/products";
 import { hostname } from "@/lib/utils";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 
@@ -72,6 +72,7 @@ export function HomeHero() {
                   height={shot.height}
                   alt={shot.alt[locale]}
                   preload
+                  fetchPriority="high"
                   loading="eager"
                   sizes="(min-width: 1024px) 640px, 100vw"
                   className="block h-auto w-full"

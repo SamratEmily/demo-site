@@ -1,52 +1,49 @@
-import { getProduct } from "@/content/products";
+import { z } from "zod";
 import { routing, type Locale } from "@/i18n/routing";
-import { fieldReader, readLocalizedMdx, type MdxFile } from "./mdx-files";
+import { list, optionalObject, parseContent, text } from "./content-schema";
+import { readLocalizedMdx, type MdxFile } from "./mdx-files";
+import { getProduct } from "./products";
 import type { CaseStudy, CaseStudyMeta } from "./types";
 
 /**
- * Case studies live in content/case-studies/<slug>.<locale>.mdx. Frontmatter
- * is checked at build time so a typo fails `npm run build`.
+ * Case studies live in content/case-studies/<slug>.<locale>.mdx, edited in
+ * the CMS. Frontmatter is checked at build time so a mistake fails
+ * `npm run build`. The linked product comes from the English file.
  */
-function parseMeta({ file, data }: MdxFile): CaseStudyMeta {
-  const { fail, str } = fieldReader(file);
+const product = z
+  .string()
+  .trim()
+  .nullish()
+  .transform((value) => value || undefined)
+  .refine((value) => value === undefined || getProduct(value) !== undefined, {
+    message: "must be the slug of a product in content/products",
+  });
 
-  const results = data.results ?? [];
-  if (!Array.isArray(results)) fail("results", "a list of { value, label }");
-  const product = data.product;
-  if (product !== undefined && (typeof product !== "string" || !getProduct(product))) {
-    fail("product", "the slug of a product in content/products");
-  }
-  const quote = data.quote as Record<string, unknown> | undefined;
+const translated = {
+  title: text(120),
+  summary: text(300),
+  client: text(120),
+  industry: text(80),
+  duration: text(80),
+  results: list(z.object({ value: text(40), label: text(160) })),
+  quote: optionalObject({ text: text(600), name: text(80), role: text(80) }),
+};
 
-  return {
-    title: str(data, "title"),
-    summary: str(data, "summary"),
-    client: str(data, "client"),
-    industry: str(data, "industry"),
-    product: product as string | undefined,
-    duration: str(data, "duration"),
-    results: (results as unknown[]).map((item, i) => {
-      const entry = (item ?? {}) as Record<string, unknown>;
-      return {
-        value: str(entry, "value", `results[${i}].`),
-        label: str(entry, "label", `results[${i}].`),
-      };
-    }),
-    quote: quote
-      ? {
-          text: str(quote, "text", "quote."),
-          name: str(quote, "name", "quote."),
-          role: str(quote, "role", "quote."),
-        }
-      : undefined,
-  };
+const english = z.object({ ...translated, product });
+const bangla = z.object(translated);
+
+function parseMeta(files: Record<Locale, MdxFile>): Record<Locale, CaseStudyMeta> {
+  const en = parseContent(english, files.en.data, files.en.file);
+  const bn = parseContent(bangla, files.bn.data, files.bn.file);
+  return { en, bn: { ...bn, product: en.product } };
 }
 
 const studies = new Map<string, Record<Locale, CaseStudy>>();
 for (const [slug, files] of readLocalizedMdx("case-studies")) {
+  const meta = parseMeta(files);
   const entry = {} as Record<Locale, CaseStudy>;
   for (const locale of routing.locales) {
-    entry[locale] = { slug, meta: parseMeta(files[locale]), body: files[locale].body };
+    entry[locale] = { slug, meta: meta[locale], body: files[locale].body };
   }
   studies.set(slug, entry);
 }

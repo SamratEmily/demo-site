@@ -34,7 +34,7 @@ function Shot({ image, portrait }: { image: GalleryImage; portrait: boolean }) {
         <span className="font-medium">{image.caption[locale]}</span>
         <a
           href={image.src}
-          className="inline-flex min-h-11 items-center text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+          className="inline-flex min-h-11 items-center text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
         >
           {t("openFullSize")}
         </a>

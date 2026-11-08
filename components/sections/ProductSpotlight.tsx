@@ -10,7 +10,7 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 import { buttonVariants } from "@/components/ui/button";
 import { home } from "@/content/home";
 import { productHref } from "@/content/navigation";
-import { spotlightProduct } from "@/content/products";
+import { spotlightProduct } from "@/lib/products";
 import { routing } from "@/i18n/routing";
 import { hostname } from "@/lib/utils";
 import { StatusBadge } from "@/components/shared/StatusBadge";

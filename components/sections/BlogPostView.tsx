@@ -6,12 +6,13 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { MdxContent } from "@/components/shared/MdxContent";
 import { Section } from "@/components/shared/Section";
 import { blogTags } from "@/content/blog-tags";
-import { blogTagHref, quoteHref } from "@/content/navigation";
+import { blogHref, blogPostHref, blogTagHref, quoteHref } from "@/content/navigation";
 import { site } from "@/content/site";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { relatedPosts } from "@/lib/blog";
 import { pageUrl } from "@/lib/seo";
+import { breadcrumbJsonLd, organizationRef } from "@/lib/structured-data";
 import type { BlogPost } from "@/lib/types";
 import { CtaPanel } from "./CtaPanel";
 import { PostList } from "./PostList";
@@ -22,30 +23,22 @@ interface BlogPostViewProps {
   post: BlogPost;
 }
 
-function postJsonLd(post: BlogPost, locale: Locale, blogLabel: string) {
-  const url = pageUrl(locale, `/blog/${post.slug}`);
+function postJsonLd(post: BlogPost, locale: Locale) {
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        headline: post.meta.title,
-        description: post.meta.summary,
-        datePublished: post.meta.date,
-        inLanguage: locale,
-        author: { "@type": "Organization", name: post.meta.author },
-        publisher: { "@type": "Organization", name: site.name, url: site.url },
-        mainEntityOfPage: url,
-        ...(post.meta.cover ? { image: `${site.url}${post.meta.cover.src}` } : {}),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: blogLabel, item: pageUrl(locale, "/blog") },
-          { "@type": "ListItem", position: 2, name: post.meta.title, item: url },
-        ],
-      },
-    ],
+    "@type": "Article",
+    headline: post.meta.title,
+    description: post.meta.summary,
+    datePublished: post.meta.date,
+    dateModified: post.meta.date,
+    inLanguage: locale,
+    author: { "@type": "Organization", name: post.meta.author, url: site.url },
+    publisher: organizationRef,
+    mainEntityOfPage: pageUrl(locale, blogPostHref(post.slug)),
+    ...(post.meta.tags.length > 0
+      ? { keywords: post.meta.tags.map((tag) => blogTags[tag][locale]) }
+      : {}),
+    ...(post.meta.cover ? { image: `${site.url}${post.meta.cover.src}` } : {}),
   };
 }
 
@@ -58,7 +51,13 @@ export function BlogPostView({ post }: BlogPostViewProps) {
 
   return (
     <>
-      <JsonLd data={postJsonLd(post, locale, t("nav.blog"))} />
+      <JsonLd data={postJsonLd(post, locale)} />
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: t("nav.blog"), path: blogHref },
+          { name: meta.title, path: blogPostHref(post.slug) },
+        ])}
+      />
       <article aria-labelledby="post-title">
         <header className="relative isolate overflow-hidden">
           <div
@@ -72,7 +71,7 @@ export function BlogPostView({ post }: BlogPostViewProps) {
                 <li key={tag}>
                   <Link
                     href={blogTagHref(tag)}
-                    className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                    className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {blogTags[tag][locale]}
                   </Link>
@@ -91,6 +90,7 @@ export function BlogPostView({ post }: BlogPostViewProps) {
                 height={meta.cover.height}
                 alt={meta.cover.alt}
                 preload
+                fetchPriority="high"
                 loading="eager"
                 sizes="(min-width: 1152px) 1088px, 100vw"
                 className="mt-10 aspect-video w-full rounded-2xl bg-surface-muted object-cover"

@@ -1,63 +1,76 @@
+import { z } from "zod";
 import { blogTags } from "@/content/blog-tags";
 import { routing, type Locale } from "@/i18n/routing";
-import { fieldReader, readLocalizedMdx, type MdxFile } from "./mdx-files";
+import { imageSizeOf } from "./content-files";
+import { imagePath, isoDate, list, optionalObject, parseContent, text } from "./content-schema";
+import { readLocalizedMdx, type MdxFile } from "./mdx-files";
 import type { BlogPost, BlogPostMeta, TocItem } from "./types";
 import { slugify } from "./utils";
 
 /**
- * Blog posts live in content/blog/<slug>.<locale>.mdx. Frontmatter is checked
- * at build time. Posts with `draft: true` are shown by `npm run dev` only and
- * are left out of `npm run build`, so they never reach production.
+ * Blog posts live in content/blog/<slug>.<locale>.mdx, edited in the CMS.
+ * Frontmatter is checked at build time. The date, tags, cover image and
+ * draft flag come from the English file; the Bangla file holds the
+ * translated title, summary, author, cover description and body.
+ * Posts with `draft: true` are shown by `npm run dev` only and are left out
+ * of `npm run build`, so they never reach production.
  */
 const includeDrafts = process.env.NODE_ENV !== "production";
 const wordsPerMinute = 200;
 
-function date(value: unknown, field: string, fail: (f: string, e: string) => never): string {
-  // YAML turns an unquoted 2026-01-31 into a Date.
-  const text = value instanceof Date ? value.toISOString().slice(0, 10) : value;
-  if (typeof text !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(text)) {
-    fail(field, "a date like 2026-01-31");
-  }
-  return text as string;
-}
+const tagSlugs = Object.keys(blogTags);
+const tag = z.string().refine((value) => tagSlugs.includes(value), {
+  message: `must be a tag from content/blog-tags.ts (${tagSlugs.join(", ")})`,
+});
+/** Empty alt marks a decorative cover. */
+const coverAlt = z
+  .string()
+  .trim()
+  .max(300)
+  .nullish()
+  .transform((value) => value ?? "");
 
-function parseMeta({ file, data }: MdxFile): BlogPostMeta {
-  const { fail, str } = fieldReader(file);
+const english = z.object({
+  title: text(120),
+  summary: text(300),
+  date: isoDate,
+  author: text(80),
+  tags: list(tag),
+  cover: optionalObject({ src: imagePath, alt: coverAlt }),
+  draft: z
+    .boolean("must be true or false")
+    .nullish()
+    .transform((value) => value === true),
+});
 
-  const tags = data.tags ?? [];
-  if (!Array.isArray(tags) || tags.some((tag) => typeof tag !== "string" || !blogTags[tag])) {
-    fail("tags", `a list of tags from content/blog-tags.ts (${Object.keys(blogTags).join(", ")})`);
-  }
-  if (data.draft !== undefined && typeof data.draft !== "boolean") fail("draft", "true or false");
+const bangla = z.object({
+  title: text(120),
+  summary: text(300),
+  author: text(80),
+  cover: optionalObject({ alt: coverAlt }),
+});
 
-  let cover: BlogPostMeta["cover"];
-  if (data.cover !== undefined) {
-    const c = (data.cover ?? {}) as Record<string, unknown>;
-    const width = c.width;
-    const height = c.height;
-    if (typeof width !== "number" || typeof height !== "number") {
-      fail("cover", "{ src, width, height, alt } with numeric width and height");
-    }
-    const src = str(c, "src", "cover.");
-    // Empty alt is allowed: it marks a decorative cover.
-    if (typeof c.alt !== "string") fail("cover.alt", 'a description, or "" for a decorative image');
-    if (!src.startsWith("/")) fail("cover.src", "a path under /public, starting with /");
-    cover = {
-      src,
-      width: width as number,
-      height: height as number,
-      alt: (c.alt as string).trim(),
-    };
-  }
+function parseMeta(files: Record<Locale, MdxFile>): Record<Locale, BlogPostMeta> {
+  const en = parseContent(english, files.en.data, files.en.file);
+  const bn = parseContent(bangla, files.bn.data, files.bn.file);
+  const cover = en.cover && { src: en.cover.src, ...imageSizeOf(en.cover.src, files.en.file) };
+  const shared = { date: en.date, tags: en.tags, draft: en.draft };
 
   return {
-    title: str(data, "title"),
-    summary: str(data, "summary"),
-    date: date(data.date, "date", fail),
-    author: str(data, "author"),
-    tags: tags as string[],
-    cover,
-    draft: data.draft === true,
+    en: {
+      ...shared,
+      title: en.title,
+      summary: en.summary,
+      author: en.author,
+      cover: cover && { ...cover, alt: en.cover?.alt ?? "" },
+    },
+    bn: {
+      ...shared,
+      title: bn.title,
+      summary: bn.summary,
+      author: bn.author,
+      cover: cover && { ...cover, alt: bn.cover?.alt ?? "" },
+    },
   };
 }
 
@@ -87,20 +100,19 @@ const posts = new Map<string, Record<Locale, BlogPost>>();
 for (const [slug, files] of readLocalizedMdx("blog")) {
   // /blog/tags/… is reserved for tag pages.
   if (slug === "tags") throw new Error('content/blog: "tags" cannot be used as a post slug.');
+  const meta = parseMeta(files);
+  if (meta.en.draft && !includeDrafts) continue;
   const entry = {} as Record<Locale, BlogPost>;
   for (const locale of routing.locales) {
     const { body } = files[locale];
     entry[locale] = {
       slug,
-      meta: parseMeta(files[locale]),
+      meta: meta[locale],
       body,
       readingMinutes: readingMinutes(body),
       toc: tableOfContents(body),
     };
   }
-  // A post is a draft if either language version is marked as one.
-  const draft = routing.locales.some((locale) => entry[locale].meta.draft);
-  if (draft && !includeDrafts) continue;
   posts.set(slug, entry);
 }
 

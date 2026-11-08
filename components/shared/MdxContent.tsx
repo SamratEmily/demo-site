@@ -20,14 +20,14 @@ function MdxLink({ href = "", children, ...props }: ComponentProps<"a">) {
       href={href}
       {...props}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="font-medium text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+      className="font-medium text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
     >
       {children}
     </a>
   );
 }
 
-/** Long-form text styles for MDX bodies; no client JavaScript. */
+/** Long-form text styles for post and case-study bodies; no client JavaScript. */
 const components: MDXComponents = {
   h2: ({ children }) => (
     <h2 id={headingId(children)} className="mt-14 scroll-mt-24 text-h2 first:mt-0">
@@ -52,9 +52,13 @@ const components: MDXComponents = {
   a: MdxLink,
 };
 
-/** Compiles MDX at build time and renders it as static HTML. */
+/**
+ * Compiles a body at build time and renders it as static HTML. Bodies are
+ * parsed as plain Markdown, not MDX: text from the CMS such as "<5 days" or
+ * "{price}" can't break the build, and no code in a post runs at build time.
+ */
 export async function MdxContent({ source }: MdxContentProps) {
-  const { default: Content } = await evaluate(source, { ...runtime });
+  const { default: Content } = await evaluate(source, { ...runtime, format: "md" });
   return (
     <div className="max-w-prose text-lead leading-relaxed">
       <Content components={components} />

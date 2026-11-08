@@ -22,6 +22,8 @@ export interface SocialLink {
 
 /** Shape of content/settings.json. Empty strings mean "not set yet": hidden on the site. */
 export interface Settings {
+  /** The live site's address; read through `site.url` in content/site.ts. */
+  site: { url: string };
   company: {
     legalName: string;
     /** Year the company was founded, e.g. "2021". */
@@ -49,37 +51,39 @@ export interface Settings {
 }
 
 /** Icon names available to content files. Mapped to lucide icons in components/shared/ContentIcon.tsx. */
-export type ContentIconName =
-  | "app-window"
-  | "plug"
-  | "shopping-cart"
-  | "panels-top-left"
-  | "wrench"
-  | "server"
-  | "package"
-  | "receipt"
-  | "calendar-clock"
-  | "hand-coins"
-  | "wallet"
-  | "file-check"
-  | "file-text"
-  | "users"
-  | "languages"
-  | "smartphone"
-  | "shield-check"
-  | "car"
-  | "boxes"
-  | "graduation-cap"
-  | "washing-machine"
-  | "school"
-  | "bell"
-  | "printer"
-  | "chart"
-  | "clipboard"
-  | "layers"
-  | "gauge"
-  | "repeat"
-  | "handshake";
+export const contentIcons = [
+  "app-window",
+  "plug",
+  "shopping-cart",
+  "panels-top-left",
+  "wrench",
+  "server",
+  "package",
+  "receipt",
+  "calendar-clock",
+  "hand-coins",
+  "wallet",
+  "file-check",
+  "file-text",
+  "users",
+  "languages",
+  "smartphone",
+  "shield-check",
+  "car",
+  "boxes",
+  "graduation-cap",
+  "washing-machine",
+  "school",
+  "bell",
+  "printer",
+  "chart",
+  "clipboard",
+  "layers",
+  "gauge",
+  "repeat",
+  "handshake",
+] as const;
+export type ContentIconName = (typeof contentIcons)[number];
 
 export interface Service {
   slug: string;
@@ -136,7 +140,8 @@ export interface ProductResult {
   label: Localized;
 }
 
-export type ProductStatus = "live" | "in-development";
+export const productStatuses = ["live", "in-development"] as const;
+export type ProductStatus = (typeof productStatuses)[number];
 
 /**
  * One product page. Optional sections are hidden on the page when empty,
@@ -274,7 +279,8 @@ export interface BlogPost {
   toc: TocItem[];
 }
 
-export type EmploymentType = "full-time" | "part-time" | "contract" | "internship";
+export const employmentTypes = ["full-time", "part-time", "contract", "internship"] as const;
+export type EmploymentType = (typeof employmentTypes)[number];
 
 /** An open position on the Careers page. Remove it once it is filled. */
 export interface JobOpening {

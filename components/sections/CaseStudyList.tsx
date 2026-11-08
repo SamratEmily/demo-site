@@ -21,7 +21,7 @@ export function CaseStudyList({ studies }: CaseStudyListProps) {
             <h2 className="max-w-3xl text-h2">
               <Link
                 href={caseStudyHref(slug)}
-                className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:ring-3 focus-visible:after:ring-ring/60"
+                className="after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:ring-3 focus-visible:after:ring-ring"
               >
                 {meta.title}
               </Link>

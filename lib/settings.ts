@@ -1,83 +1,85 @@
+import { z } from "zod";
 import raw from "@/content/settings.json";
-import { socialPlatforms, type Localized, type Settings, type SocialLink } from "./types";
+import { blankable, parseContent, patterns } from "./content-schema";
+import { socialPlatforms, type Settings } from "./types";
 
 /**
- * Loads content/settings.json and checks its shape at build time, so a typo
- * in the JSON fails `npm run build` instead of breaking the live site.
+ * Loads content/settings.json (edited in the CMS as "Site settings") and
+ * checks it at build time, so a mistake fails `npm run build` instead of
+ * breaking the live site. Empty values mean "not set yet" and are hidden.
+ * "en" holds every field; "bn" holds the Bangla address, hours and greeting.
  */
-function fail(path: string, expected: string): never {
-  throw new Error(`content/settings.json: "${path}" must be ${expected}.`);
-}
+const mapEmbed = {
+  regex: /^https:\/\/www\.google\.com\/maps\/embed\?\S+$/,
+  message: "must be a Google Maps embed link (https://www.google.com/maps/embed?…)",
+};
 
-function str(value: unknown, path: string): string {
-  if (typeof value !== "string") fail(path, 'a string (use "" if unknown)');
-  return value.trim();
-}
+const english = z.object({
+  site: z.object({
+    url: z
+      .string("must be text")
+      .trim()
+      .regex(
+        /^https:\/\/[a-z0-9.-]+(?::\d+)?\/?$/i,
+        "must be the site's address, like https://example.com (no path)",
+      ),
+  }),
+  company: z.object({
+    legalName: z.string().trim().min(1, "can't be empty").max(120),
+    founded: blankable(4, { regex: /^\d{4}$/, message: 'must be a year like "2021"' }),
+    registration: blankable(80),
+  }),
+  contact: z.object({
+    email: blankable(254, patterns.email),
+    careersEmail: blankable(254, patterns.email),
+    phone: blankable(16, patterns.phone),
+    address: blankable(300),
+    officeHours: blankable(200),
+    mapEmbedUrl: blankable(2000, mapEmbed),
+  }),
+  whatsapp: z.object({
+    number: blankable(16, patterns.phone),
+    greeting: blankable(200),
+  }),
+  social: z
+    .array(
+      z.object({
+        platform: z.enum(socialPlatforms, `must be one of: ${socialPlatforms.join(", ")}`),
+        url: blankable(300, patterns.https),
+      }),
+      "must be a list",
+    )
+    .nullish()
+    .transform((value) => value ?? []),
+});
 
-function email(value: unknown, path: string): string {
-  const v = str(value, path);
-  if (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) fail(path, "an email address, or empty");
-  return v;
-}
+const bangla = z.object({
+  contact: z
+    .object({ address: blankable(300), officeHours: blankable(200) })
+    .nullish()
+    .transform((value) => value ?? { address: "", officeHours: "" }),
+  whatsapp: z
+    .object({ greeting: blankable(200) })
+    .nullish()
+    .transform((value) => value ?? { greeting: "" }),
+});
 
-function localized(value: unknown, path: string): Localized {
-  if (typeof value !== "object" || value === null) fail(path, "an object with en and bn");
-  const v = value as Record<string, unknown>;
-  return { en: str(v.en, `${path}.en`), bn: str(v.bn, `${path}.bn`) };
-}
-
-function social(value: unknown): SocialLink[] {
-  if (!Array.isArray(value)) fail("social", "a list");
-  return value.map((item: unknown, i) => {
-    const v = (item ?? {}) as Record<string, unknown>;
-    const platform = str(v.platform, `social[${i}].platform`);
-    if (!socialPlatforms.includes(platform as SocialLink["platform"])) {
-      fail(`social[${i}].platform`, `one of: ${socialPlatforms.join(", ")}`);
-    }
-    const url = str(v.url, `social[${i}].url`);
-    if (url && !url.startsWith("https://")) fail(`social[${i}].url`, "an https:// URL or empty");
-    return { platform: platform as SocialLink["platform"], url };
-  });
-}
-
-function parse(data: unknown): Settings {
-  const d = (data ?? {}) as Record<string, unknown>;
-  const company = (d.company ?? {}) as Record<string, unknown>;
-  const contact = (d.contact ?? {}) as Record<string, unknown>;
-  const whatsapp = (d.whatsapp ?? {}) as Record<string, unknown>;
-
-  const number = str(whatsapp.number, "whatsapp.number");
-  if (number && !/^\+?\d{8,15}$/.test(number.replace(/[\s-]/g, ""))) {
-    fail("whatsapp.number", "an international number like +8801XXXXXXXXX, or empty");
-  }
-
-  const mapEmbedUrl = str(contact.mapEmbedUrl, "contact.mapEmbedUrl");
-  if (mapEmbedUrl && !mapEmbedUrl.startsWith("https://www.google.com/maps/embed")) {
-    fail(
-      "contact.mapEmbedUrl",
-      "a Google Maps embed URL (https://www.google.com/maps/embed?…), or empty",
-    );
-  }
-
-  const founded = str(company.founded, "company.founded");
-  if (founded && !/^\d{4}$/.test(founded)) fail("company.founded", 'a year like "2021", or empty');
-
+function parse(data: { en: unknown; bn?: unknown }): Settings {
+  const en = parseContent(english, data.en, "settings.json (English)");
+  const bn = parseContent(bangla, data.bn ?? {}, "settings.json (Bangla)");
   return {
-    company: {
-      legalName: str(company.legalName, "company.legalName"),
-      founded,
-      registration: str(company.registration, "company.registration"),
-    },
+    site: en.site,
+    company: en.company,
     contact: {
-      email: email(contact.email, "contact.email"),
-      careersEmail: email(contact.careersEmail, "contact.careersEmail"),
-      phone: str(contact.phone, "contact.phone"),
-      address: localized(contact.address, "contact.address"),
-      officeHours: localized(contact.officeHours, "contact.officeHours"),
-      mapEmbedUrl,
+      ...en.contact,
+      address: { en: en.contact.address, bn: bn.contact.address },
+      officeHours: { en: en.contact.officeHours, bn: bn.contact.officeHours },
     },
-    whatsapp: { number, greeting: localized(whatsapp.greeting, "whatsapp.greeting") },
-    social: social(d.social),
+    whatsapp: {
+      number: en.whatsapp.number,
+      greeting: { en: en.whatsapp.greeting, bn: bn.whatsapp.greeting },
+    },
+    social: en.social,
   };
 }
 

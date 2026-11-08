@@ -14,7 +14,7 @@ export function ProductFaq({ items }: ProductFaqProps) {
     <div className="border-b">
       {items.map((item) => (
         <details key={item.question.en} className="group border-t">
-          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 font-semibold focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 font-semibold focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none [&::-webkit-details-marker]:hidden">
             {item.question[locale]}
             <ChevronDown
               className="size-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"

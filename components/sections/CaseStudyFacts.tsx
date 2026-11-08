@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { getProduct } from "@/content/products";
+import { getProduct } from "@/lib/products";
 import { productHref } from "@/content/navigation";
 import { Link } from "@/i18n/navigation";
 import type { CaseStudyMeta } from "@/lib/types";
@@ -27,7 +27,7 @@ export function CaseStudyFacts({ meta, linkProduct = true, className }: CaseStud
             <Link
               href={productHref(product.slug)}
               lang="en"
-              className="text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+              className="text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
             >
               {product.name}
             </Link>

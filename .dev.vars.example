@@ -23,3 +23,9 @@ TURNSTILE_SECRET=1x0000000000000000000000000000000AA
 # you have verified in Resend. Leave empty to use Resend's test sender
 # (onboarding@resend.dev), which only delivers to your own Resend account email.
 CONTACT_FROM_EMAIL=
+
+# Content manager login (functions/api/auth.ts, callback.ts). Not needed locally:
+# use `npm run cms:local` instead (docs/ADMIN.md). In production, set
+# GITHUB_CLIENT_ID (text) and GITHUB_CLIENT_SECRET (secret) in Cloudflare.
+# GITHUB_CLIENT_ID=
+# GITHUB_CLIENT_SECRET=

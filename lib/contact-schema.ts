@@ -1,9 +1,11 @@
 import { z } from "zod";
 // Relative imports only: functions/api/contact.ts bundles this file with
 // Wrangler, which doesn't know the "@/" path alias.
-import { budgetRanges, otherInterest } from "../content/contact";
-import { products } from "../content/products";
-import { services } from "../content/services";
+import { budgetRanges } from "../content/contact";
+
+// No compiled (eval-based) validators: the site's Content-Security-Policy
+// blocks eval, and without this zod probes for it and logs a CSP violation.
+z.config({ jitless: true });
 
 /**
  * The contact form's rules, shared by the browser (react-hook-form) and the
@@ -20,17 +22,16 @@ export const contactLimits = {
   message: 5000,
 } as const;
 
-export const interestValues: [string, ...string[]] = [
-  otherInterest.value,
-  ...services.map((s) => s.slug),
-  ...products.map((p) => p.slug),
-];
-
 const budgetValues = budgetRanges.map((b) => b.value) as [string, ...string[]];
 
 const singleLine = /^[^\r\n]*$/;
 const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phone = /^\+?[0-9][0-9\s()-]{5,28}$/;
+/**
+ * A service or product slug, or "other". The form only offers real options;
+ * the Pages Function can't read content/ at runtime, so it checks the format.
+ */
+const interestSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const contactSchema = z.object({
   name: z
@@ -52,7 +53,7 @@ export const contactSchema = z.object({
     .max(contactLimits.phone, "tooLong")
     .regex(phone, "invalidPhone"),
   company: z.string().trim().max(contactLimits.company, "tooLong").regex(singleLine, "invalid"),
-  interest: z.enum(interestValues, "required"),
+  interest: z.string().trim().min(1, "required").max(80, "invalid").regex(interestSlug, "invalid"),
   budget: z.union([z.enum(budgetValues), z.literal("")], "invalid"),
   message: z
     .string()

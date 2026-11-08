@@ -19,7 +19,7 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label={t("common.homeLink")}
-          className="-ml-1 inline-flex min-h-11 items-center rounded-lg px-1 focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+          className="-ml-1 inline-flex min-h-11 items-center rounded-lg px-1 focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
         >
           <Logo />
         </Link>

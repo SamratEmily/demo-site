@@ -11,7 +11,7 @@ import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { quoteHref } from "@/content/navigation";
 import { aboutPage } from "@/content/pages";
-import { team } from "@/content/team";
+import { team } from "@/lib/team";
 import { values } from "@/content/values";
 import { routing } from "@/i18n/routing";
 import { pageMetadata } from "@/lib/seo";

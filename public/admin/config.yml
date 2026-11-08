@@ -1,0 +1,910 @@
+# Decap CMS configuration for /admin. How to log in, edit and publish:
+# docs/ADMIN.md. Every field here must match the zod schemas in lib/, which
+# check all content at build time (lib/settings.ts, lib/products.ts,
+# lib/services.ts, lib/team.ts, lib/testimonials.ts, lib/careers.ts,
+# lib/blog.ts, lib/case-studies.ts). Never add fields for API keys,
+# passwords or other secrets: everything here is committed to the repository.
+
+backend:
+  name: github
+  repo: Beacon-Soft-Ltd/beacon-softltd-website
+  branch: main
+  # Must be the same as site.url in content/site.ts: the login popup runs
+  # on this domain (functions/api/auth.ts and functions/api/callback.ts).
+  base_url: https://beaconsoft.com.bd
+  auth_endpoint: api/auth
+  # Links "View preview" to the Cloudflare Pages preview of each draft.
+  preview_context: Cloudflare Pages
+  commit_messages:
+    create: 'chore(content): add {{collection}} "{{slug}}"'
+    update: 'chore(content): update {{collection}} "{{slug}}"'
+    delete: 'chore(content): delete {{collection}} "{{slug}}"'
+    uploadMedia: 'chore(content): upload "{{path}}"'
+    deleteMedia: 'chore(content): delete "{{path}}"'
+
+# Drafts → In review → Ready → Publish. Each draft is a pull request on
+# GitHub; publishing merges it into main, which deploys the site.
+publish_mode: editorial_workflow
+
+# Lets developers edit local files with `npx decap-server` (docs/ADMIN.md).
+# Only used on localhost; ignored on the live site.
+local_backend: true
+
+site_url: https://beaconsoft.com.bd
+display_url: https://beaconsoft.com.bd
+logo_url: /icon.svg
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# English URL slugs, e.g. "Gari Becho" → gari-becho.
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# English and Bangla. Use "Writing in EN/BN" at the top of the editor to
+# switch languages. Fields that stay the same in both languages (names,
+# links, icons, images, dates) are edited in English only.
+i18n:
+  structure: single_file
+  locales: [en, bn]
+  default_locale: en
+
+collections:
+  # ───────────────────────────── Site settings ─────────────────────────────
+  - name: settings
+    label: Site settings
+    description: Contact details, WhatsApp button and social links. An empty field is hidden on the site.
+    editor: { preview: false }
+    format: json
+    i18n: true
+    delete: false
+    files:
+      - name: settings
+        label: Contact details and links
+        file: content/settings.json
+        i18n: true
+        fields:
+          - name: site
+            label: Website
+            widget: object
+            hint: Used for search engines and links shared on social media.
+            fields:
+              - name: url
+                label: Website address
+                widget: string
+                pattern:
+                  [
+                    '^https://[a-zA-Z0-9.-]+(:\d+)?/?$',
+                    "Enter the address only, like https://beaconsoft.com.bd, with no page path",
+                  ]
+                hint: The live address, e.g. https://beaconsoft.com.bd. Changing it needs a developer too, or the site won't build and the content manager login stops working (docs/ADMIN.md, "Check the site address").
+          - name: company
+            label: Company
+            widget: object
+            hint: Shown on the About page.
+            fields:
+              - name: legalName
+                label: Legal name
+                widget: string
+                hint: The registered company name, e.g. Beacon Soft Ltd.
+              - name: founded
+                label: Year founded
+                widget: string
+                required: false
+                pattern: ['^(\d{4})?$', "Enter a four-digit year, e.g. 2021, or leave empty"]
+                hint: Four digits, e.g. 2021. Leave empty to hide it.
+              - name: registration
+                label: Registration or trade licence number
+                widget: string
+                required: false
+                hint: Leave empty to hide it.
+          - name: contact
+            label: Contact
+            widget: object
+            i18n: true
+            hint: Shown on the Contact page and in the footer. In Bangla, only the address and office hours need translating.
+            fields:
+              - name: email
+                label: Email
+                widget: string
+                required: false
+                pattern:
+                  ['^([^\s@]+@[^\s@]+\.[^\s@]+)?$', "Enter an email address like name@example.com"]
+                hint: Main contact address, shown on the Contact page and in the footer.
+              - name: careersEmail
+                label: Careers email
+                widget: string
+                required: false
+                pattern:
+                  ['^([^\s@]+@[^\s@]+\.[^\s@]+)?$', "Enter an email address like jobs@example.com"]
+                hint: Where people send their CV. Leave empty to use the main email.
+              - name: phone
+                label: Phone
+                widget: string
+                required: false
+                pattern:
+                  [
+                    '^(\+[1-9]\d{7,14})?$',
+                    "Use international format with no spaces or dashes, e.g. +8801XXXXXXXXX",
+                  ]
+                hint: International format, no spaces, e.g. +8801XXXXXXXXX.
+              - name: address
+                label: Office address
+                widget: text
+                required: false
+                i18n: true
+                hint: Write it in each language. Leave empty to hide it.
+              - name: officeHours
+                label: Office hours
+                widget: string
+                required: false
+                i18n: true
+                hint: E.g. "Sunday to Thursday, 10am to 6pm". Write it in each language.
+              - name: mapEmbedUrl
+                label: Google Maps embed link
+                widget: string
+                required: false
+                pattern:
+                  [
+                    '^(https://www\.google\.com/maps/embed\?\S+)?$',
+                    "Paste only the link from the embed code (it starts with https://www.google.com/maps/embed?)",
+                  ]
+                hint: In Google Maps, open Share → Embed a map, copy the code and paste only the link inside src="…". Leave empty to hide the map.
+          - name: whatsapp
+            label: WhatsApp button
+            widget: object
+            i18n: true
+            hint: The floating chat button on every page.
+            fields:
+              - name: number
+                label: WhatsApp number
+                widget: string
+                required: false
+                pattern:
+                  [
+                    '^(\+[1-9]\d{7,14})?$',
+                    "Use international format with no spaces or dashes, e.g. +8801XXXXXXXXX",
+                  ]
+                hint: International format, no spaces, e.g. +8801XXXXXXXXX. The floating WhatsApp button appears once this is set.
+              - name: greeting
+                label: Pre-filled message
+                widget: string
+                required: false
+                i18n: true
+                hint: The message a visitor's WhatsApp starts with. Write it in each language.
+          - name: social
+            label: Social links
+            widget: list
+            hint: Icons appear in the footer once a link is filled in.
+            summary: "{{fields.platform}}"
+            fields:
+              - name: platform
+                label: Platform
+                widget: select
+                options:
+                  - { label: GitHub, value: github }
+                  - { label: LinkedIn, value: linkedin }
+                  - { label: Facebook, value: facebook }
+                hint: Each platform once.
+              - name: url
+                label: Link
+                widget: string
+                required: false
+                pattern: ['^(https://\S+)?$', "Enter the full address, starting with https://"]
+                hint: The full address of your page, starting with https://. Leave empty to hide the icon.
+
+  # ──────────────────────────────── Products ────────────────────────────────
+  - name: products
+    label: Products
+    label_singular: Product
+    description: Each product has its own page under /products. Fill in both English and Bangla.
+    folder: content/products
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} ({{status}})"
+    sortable_fields: [order, name]
+    editor: { preview: false }
+    i18n: true
+    fields:
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Position on the site; lower numbers appear first (Gari Becho is 10). The first live product is featured on the Home page.
+      - name: name
+        label: Product name
+        widget: string
+        pattern: ["^.{1,80}$", "Use 80 characters or fewer"]
+        hint: Stays in English on Bangla pages. The page address is made from it when the product is created, e.g. "Gari Becho" → /products/gari-becho.
+      - name: status
+        label: Status
+        widget: select
+        default: in-development
+        options:
+          - { label: Live, value: live }
+          - { label: In development, value: in-development }
+        hint: Only live products show the website link and the demo request button.
+      - name: icon
+        label: Icon
+        widget: select
+        options: &icons
+          - app-window
+          - plug
+          - shopping-cart
+          - panels-top-left
+          - wrench
+          - server
+          - package
+          - receipt
+          - calendar-clock
+          - hand-coins
+          - wallet
+          - file-check
+          - file-text
+          - users
+          - languages
+          - smartphone
+          - shield-check
+          - car
+          - boxes
+          - graduation-cap
+          - washing-machine
+          - school
+          - bell
+          - printer
+          - chart
+          - clipboard
+          - layers
+          - gauge
+          - repeat
+          - handshake
+        hint: Shown when there is no screenshot, and in product lists.
+      - name: url
+        label: Product website
+        widget: string
+        required: false
+        pattern: ['^(https://\S+)?$', "Enter the full address, starting with https://"]
+        hint: E.g. https://garibecho.com. Shown for live products only. Leave empty if there is none.
+      - name: category
+        label: Category
+        widget: string
+        i18n: true
+        hint: A few words, e.g. "Vehicle shop management".
+      - name: summary
+        label: Summary
+        widget: text
+        i18n: true
+        hint: One or two sentences on what the product does, for lists and search results. Up to 400 characters.
+      - name: problem
+        label: The problem it solves
+        widget: text
+        required: false
+        i18n: true
+        hint: A short paragraph in plain words. Leave empty to hide this section.
+      - name: howItWorks
+        label: How it works
+        label_singular: step
+        widget: list
+        required: false
+        i18n: true
+        summary: "{{fields.title}}"
+        hint: The main steps, in order. Bangla must have the same steps in the same order.
+        fields:
+          - name: title
+            label: Step
+            widget: string
+            i18n: true
+            hint: 'One or two words, e.g. "Sell".'
+          - name: description
+            label: What happens
+            widget: text
+            i18n: true
+            hint: "One or two sentences."
+      - name: features
+        label: Features
+        label_singular: feature
+        widget: list
+        min: 1
+        i18n: true
+        summary: "{{fields.title}}"
+        hint: What the product does, one feature per item. Bangla must have the same features in the same order.
+        fields:
+          - name: icon
+            label: Icon
+            widget: select
+            options: *icons
+            hint: "Pick the closest match."
+          - name: title
+            label: Feature
+            widget: string
+            i18n: true
+            hint: 'A short name, e.g. "Daily PDF reports".'
+          - name: description
+            label: Description
+            widget: text
+            i18n: true
+            hint: "One sentence."
+      - name: screenshot
+        label: Main screenshot
+        widget: object
+        required: false
+        i18n: true
+        hint: The large image at the top of the product page. Use WebP under 200 KB, about 1440 px wide. Leave empty to show the icon instead.
+        fields:
+          - name: src
+            label: Image
+            widget: image
+            required: false
+            i18n: true
+            hint: In Bangla, upload the screenshot with the Bangla interface (same size as the English one), or leave empty to use the English image.
+          - name: alt
+            label: Image description
+            widget: text
+            required: false
+            i18n: true
+            hint: Describe what the screenshot shows, for people who can't see it. Required when there is an image.
+      - name: gallery
+        label: Screenshot gallery
+        label_singular: screenshot
+        widget: list
+        required: false
+        i18n: true
+        summary: "{{fields.caption}}"
+        hint: More screenshots. Images are added in English; in Bangla, translate the captions and descriptions in the same order.
+        fields:
+          - name: src
+            label: Image
+            widget: image
+            hint: "WebP under 200 KB."
+          - name: uiLang
+            label: Language shown in the screenshot
+            widget: select
+            default: en
+            options:
+              - { label: English, value: en }
+              - { label: Bangla, value: bn }
+            hint: The language of the app's interface in the image.
+          - name: caption
+            label: Caption
+            widget: string
+            i18n: true
+            hint: "A few words shown under the image."
+          - name: alt
+            label: Image description
+            widget: text
+            i18n: true
+            hint: "What the screenshot shows, for people who can't see it."
+      - name: video
+        label: Demo video
+        widget: object
+        required: false
+        i18n: true
+        hint: Loaded only when the visitor presses play. Leave empty if there is no video.
+        fields:
+          - name: src
+            label: Video link
+            widget: string
+            required: false
+            pattern:
+              [
+                '^(https://\S+\.(mp4|webm))?$',
+                "Enter a full https:// link to an .mp4 or .webm file",
+              ]
+            hint: Full link to an .mp4 or .webm file.
+          - name: durationSeconds
+            label: Length in seconds
+            widget: number
+            value_type: int
+            min: 1
+            required: false
+            hint: E.g. 45.
+          - name: description
+            label: What the video shows
+            widget: string
+            required: false
+            i18n: true
+            hint: One sentence.
+      - name: audience
+        label: Who it's for
+        label_singular: group
+        widget: list
+        required: false
+        i18n: true
+        field:
+          name: group
+          label: Group
+          widget: string
+          i18n: true
+          hint: 'E.g. "Shops that sell on installments".'
+        hint: One type of customer per item. Bangla must have the same number of items.
+      - name: technologies
+        label: Built with
+        label_singular: technology
+        widget: list
+        required: false
+        field:
+          name: technology
+          label: Technology
+          widget: string
+          hint: "E.g. Laravel."
+        hint: Technology names, in English. Leave empty to hide this section.
+      - name: results
+        label: Results
+        label_singular: result
+        widget: list
+        required: false
+        i18n: true
+        summary: "{{fields.value}} {{fields.label}}"
+        hint: Only add figures you can back up. Leave empty to hide this section.
+        fields:
+          - name: value
+            label: Figure
+            widget: string
+            i18n: true
+            hint: 'E.g. "3 hours".'
+          - name: label
+            label: What it measures
+            widget: string
+            i18n: true
+            hint: 'E.g. "saved each week".'
+      - name: faq
+        label: Questions and answers
+        label_singular: question
+        widget: list
+        required: false
+        i18n: true
+        summary: "{{fields.question}}"
+        hint: Questions customers actually ask. Bangla must have the same questions in the same order.
+        fields:
+          - name: question
+            label: Question
+            widget: string
+            i18n: true
+            hint: "As a customer would ask it."
+          - name: answer
+            label: Answer
+            widget: text
+            i18n: true
+            hint: "A short, direct answer."
+
+  # ──────────────────────────────── Services ────────────────────────────────
+  - name: services
+    label: Services
+    label_singular: Service
+    description: Shown on the Services page and the Home page. Fill in both English and Bangla.
+    folder: content/services
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    sortable_fields: [order, title]
+    editor: { preview: false }
+    i18n: true
+    fields:
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Position on the site; lower numbers appear first.
+      - name: icon
+        label: Icon
+        widget: select
+        options: *icons
+        hint: Pick the closest match.
+      - name: title
+        label: Service name
+        widget: string
+        i18n: true
+        hint: In sentence case, e.g. "Custom web applications". The English name becomes the page anchor.
+      - name: summary
+        label: One-line summary
+        widget: text
+        i18n: true
+        hint: One sentence for the Home page. Up to 200 characters.
+      - name: description
+        label: Description
+        widget: text
+        i18n: true
+        hint: A short paragraph on what you do and for whom.
+      - name: included
+        label: What's included
+        label_singular: item
+        widget: list
+        required: false
+        i18n: true
+        field:
+          name: item
+          label: Item
+          widget: string
+          i18n: true
+          hint: "One thing the client gets."
+        hint: Bangla must have the same number of items, in the same order.
+      - name: technologies
+        label: Typical technologies
+        label_singular: technology
+        widget: list
+        required: false
+        field:
+          name: technology
+          label: Technology
+          widget: string
+          hint: "E.g. Laravel."
+        hint: Technology names, in English.
+
+  # ────────────────────────────────── Team ──────────────────────────────────
+  - name: team
+    label: Team
+    label_singular: Team member
+    description: Only real people who agreed to appear on the site. "Our team" on the About page is hidden while this is empty.
+    folder: content/team
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}}, {{role}}"
+    sortable_fields: [order, name]
+    editor: { preview: false }
+    i18n: true
+    fields:
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Position on the About page; lower numbers appear first.
+      - name: name
+        label: Full name
+        widget: string
+        i18n: true
+        hint: Write the name as the person spells it in each language.
+      - name: role
+        label: Role
+        widget: string
+        i18n: true
+        hint: E.g. "Lead developer".
+      - name: photo
+        label: Photo
+        widget: image
+        required: false
+        hint: Square, at least 320 × 320 px, WebP under 200 KB. Optional.
+      - name: linkedin
+        label: LinkedIn profile
+        widget: string
+        required: false
+        pattern:
+          [
+            '^(https://([a-z]{2,3}\.)?linkedin\.com/\S+)?$',
+            "Enter a LinkedIn address like https://www.linkedin.com/in/name",
+          ]
+        hint: E.g. https://www.linkedin.com/in/name. Optional.
+
+  # ────────────────────────────── Testimonials ──────────────────────────────
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    description: Real quotes only, with the client's written permission to publish. The Home page section is hidden while this is empty.
+    folder: content/testimonials
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}}, {{company}}"
+    sortable_fields: [order, name]
+    editor: { preview: false }
+    i18n: true
+    fields:
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Lower numbers appear first.
+      - name: quote
+        label: Quote
+        widget: text
+        i18n: true
+        hint: The client's words, without quotation marks. In Bangla, a faithful translation the client has approved.
+      - name: name
+        label: Client's name
+        widget: string
+        hint: As the client wants it shown.
+      - name: role
+        label: Client's role
+        widget: string
+        i18n: true
+        hint: E.g. "Owner".
+      - name: company
+        label: Company
+        widget: string
+        hint: The client's business name.
+
+  # ──────────────────────────────── Careers ─────────────────────────────────
+  - name: careers
+    label: Careers
+    label_singular: Open position
+    description: While there are no positions, the Careers page shows "Send us your CV". Delete a position once it is filled.
+    folder: content/careers
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} ({{type}})"
+    sortable_fields: [order, title, deadline]
+    editor: { preview: false }
+    i18n: true
+    fields:
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        default: 100
+        hint: Lower numbers appear first.
+      - name: title
+        label: Job title
+        widget: string
+        i18n: true
+        hint: E.g. "Laravel developer".
+      - name: type
+        label: Employment type
+        widget: select
+        default: full-time
+        options:
+          - { label: Full-time, value: full-time }
+          - { label: Part-time, value: part-time }
+          - { label: Contract, value: contract }
+          - { label: Internship, value: internship }
+        hint: Choose one.
+      - name: location
+        label: Location
+        widget: string
+        i18n: true
+        hint: E.g. "Dhaka office" or "Remote".
+      - name: summary
+        label: About the role
+        widget: text
+        i18n: true
+        hint: Two or three sentences.
+      - name: responsibilities
+        label: Responsibilities
+        label_singular: responsibility
+        widget: list
+        min: 1
+        i18n: true
+        field:
+          name: item
+          label: Responsibility
+          widget: string
+          i18n: true
+          hint: "One task per item."
+        hint: Bangla must have the same number of items.
+      - name: requirements
+        label: Requirements
+        label_singular: requirement
+        widget: list
+        min: 1
+        i18n: true
+        field:
+          name: item
+          label: Requirement
+          widget: string
+          i18n: true
+          hint: "One requirement per item."
+        hint: Bangla must have the same number of items.
+      - name: niceToHave
+        label: Nice to have
+        widget: list
+        required: false
+        i18n: true
+        field:
+          name: item
+          label: Item
+          widget: string
+          i18n: true
+          hint: "Optional extras."
+        hint: Optional. Bangla must have the same number of items.
+      - name: deadline
+        label: Apply by
+        widget: datetime
+        required: false
+        format: YYYY-MM-DD
+        time_format: false
+        picker_utc: true
+        hint: Last day to apply. Optional.
+
+  # ─────────────────────────────── Blog posts ───────────────────────────────
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    description: Each post needs an English and a Bangla version. Switch language with "Writing in" at the top of the editor.
+    folder: content/blog
+    format: frontmatter
+    extension: mdx
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} ({{date}})"
+    sortable_fields: [date, title]
+    preview_path: en/blog/{{slug}}/
+    i18n:
+      structure: multiple_files
+    fields:
+      - name: title
+        label: Title
+        widget: string
+        i18n: true
+        hint: In sentence case. The English title becomes the address, e.g. /blog/how-to-choose-software/.
+      - name: summary
+        label: Summary
+        widget: text
+        i18n: true
+        hint: One or two sentences, shown in the post list and in search results. Up to 300 characters.
+      - name: date
+        label: Publication date
+        widget: datetime
+        format: YYYY-MM-DD
+        time_format: false
+        picker_utc: true
+        default: "{{now}}"
+        hint: Posts are listed newest first.
+      - name: author
+        label: Author
+        widget: string
+        i18n: true
+        default: Beacon Soft team
+        hint: E.g. "Beacon Soft team". The Bangla version starts with the English text; change it to "Beacon Soft টিম".
+      - name: tags
+        label: Tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: Software planning, value: software-planning }
+          - { label: Small business, value: small-business }
+          - { label: Custom software, value: custom-software }
+        hint: New tags are added by a developer in content/blog-tags.ts.
+      - name: cover
+        label: Cover image
+        widget: object
+        required: false
+        i18n: true
+        hint: Shown at the top of the post and when it is shared. 1200 × 675 px WebP under 200 KB works best.
+        fields:
+          - name: src
+            label: Image
+            widget: image
+            required: false
+            hint: Leave empty for no cover.
+          - name: alt
+            label: Image description
+            widget: string
+            required: false
+            i18n: true
+            hint: Describe what the image shows. Leave empty only if it is purely decorative.
+      - name: draft
+        label: Draft
+        widget: boolean
+        default: false
+        hint: A draft post is never published on the live site, even after you press Publish. Turn it off when the post is ready.
+      - name: body
+        label: Post
+        widget: markdown
+        i18n: true
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list]
+        editor_components: []
+        modes: [rich_text, raw]
+        hint: Use "Heading 2" for sections; they make the table of contents. Images inside the text aren't supported yet; use the cover image.
+
+  # ────────────────────────────── Case studies ──────────────────────────────
+  - name: case-studies
+    label: Case studies
+    label_singular: Case study
+    description: Each case study needs an English and a Bangla version. Only publish facts the client has agreed to.
+    folder: content/case-studies
+    format: frontmatter
+    extension: mdx
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}}"
+    preview_path: en/case-studies/{{slug}}/
+    i18n:
+      structure: multiple_files
+    fields:
+      - name: title
+        label: Title
+        widget: string
+        i18n: true
+        hint: What changed for the client, in sentence case. The English title becomes the address.
+      - name: summary
+        label: Summary
+        widget: text
+        i18n: true
+        hint: One or two sentences for the list page and search results. Up to 300 characters.
+      - name: client
+        label: Client
+        widget: string
+        i18n: true
+        hint: The client's name, or a description such as "A vehicle shop in Dhaka" if they prefer not to be named.
+      - name: industry
+        label: Industry
+        widget: string
+        i18n: true
+        hint: E.g. "Vehicle sales".
+      - name: product
+        label: Product used
+        widget: relation
+        collection: products
+        value_field: "{{slug}}"
+        search_fields: [name]
+        display_fields: [name]
+        required: false
+        hint: Links the case study to a product page. Leave empty for custom projects.
+      - name: duration
+        label: Project duration
+        widget: string
+        i18n: true
+        hint: E.g. "3 months".
+      - name: results
+        label: Results
+        label_singular: result
+        widget: list
+        required: false
+        i18n: true
+        summary: "{{fields.value}} {{fields.label}}"
+        hint: Measured outcomes only, with figures you can back up.
+        fields:
+          - name: value
+            label: Figure
+            widget: string
+            i18n: true
+            hint: 'E.g. "2 days".'
+          - name: label
+            label: What it measures
+            widget: string
+            i18n: true
+            hint: 'E.g. "to close the month".'
+      - name: quote
+        label: Client quote
+        widget: object
+        required: false
+        i18n: true
+        hint: Only with the client's written permission. Leave empty to hide it.
+        fields:
+          - name: text
+            label: Quote
+            widget: text
+            required: false
+            i18n: true
+            hint: "The client's words."
+          - name: name
+            label: Name
+            widget: string
+            required: false
+            i18n: true
+            hint: "Who said it."
+          - name: role
+            label: Role
+            widget: string
+            required: false
+            i18n: true
+            hint: 'E.g. "Owner".'
+      - name: body
+        label: Story
+        widget: markdown
+        i18n: true
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list]
+        editor_components: []
+        modes: [rich_text, raw]
+        hint: 'Use three "Heading 2" sections: The challenge, The solution, The results.'

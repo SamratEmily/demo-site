@@ -1,0 +1,55 @@
+{
+  "en": {
+    "order": 30,
+    "name": "IELTS Platform",
+    "status": "in-development",
+    "icon": "graduation-cap",
+    "category": "Online IELTS preparation",
+    "summary": "Lets students practise IELTS reading, listening, writing and speaking online, and lets teachers manage tests and follow each student's progress.",
+    "problem": "IELTS coaching centres often run mock tests on paper, which takes hours to mark and makes it hard to see where each student needs more practice.",
+    "features": [
+      {
+        "icon": "clipboard",
+        "title": "Practice tests",
+        "description": "Reading, listening, writing and speaking practice in the real test format."
+      },
+      {
+        "icon": "chart",
+        "title": "Progress tracking",
+        "description": "Scores and progress for each student, by module."
+      },
+      {
+        "icon": "users",
+        "title": "Teacher tools",
+        "description": "Create tests, review answers and give feedback in one place."
+      }
+    ],
+    "audience": [
+      "IELTS coaching centres",
+      "Students preparing for IELTS on their own"
+    ]
+  },
+  "bn": {
+    "category": "অনলাইন IELTS প্রস্তুতি",
+    "summary": "শিক্ষার্থীরা অনলাইনে IELTS রিডিং, লিসেনিং, রাইটিং ও স্পিকিং অনুশীলন করতে পারে, আর শিক্ষকরা টেস্ট পরিচালনা ও প্রত্যেকের অগ্রগতি দেখতে পারেন।",
+    "problem": "অনেক IELTS কোচিং সেন্টার কাগজে মক টেস্ট নেয়, যা খাতা দেখতে ঘণ্টার পর ঘণ্টা লাগে এবং কোন শিক্ষার্থীর কোথায় বেশি অনুশীলন দরকার তা বোঝা কঠিন হয়।",
+    "features": [
+      {
+        "title": "অনুশীলন টেস্ট",
+        "description": "আসল পরীক্ষার ফরম্যাটে রিডিং, লিসেনিং, রাইটিং ও স্পিকিং অনুশীলন।"
+      },
+      {
+        "title": "অগ্রগতি ট্র্যাকিং",
+        "description": "প্রতিটি মডিউলে প্রত্যেক শিক্ষার্থীর স্কোর ও অগ্রগতি।"
+      },
+      {
+        "title": "শিক্ষকের টুল",
+        "description": "এক জায়গায় টেস্ট তৈরি, উত্তর যাচাই ও মতামত দেওয়া।"
+      }
+    ],
+    "audience": [
+      "IELTS কোচিং সেন্টার",
+      "যে শিক্ষার্থীরা নিজে IELTS প্রস্তুতি নিচ্ছেন"
+    ]
+  }
+}

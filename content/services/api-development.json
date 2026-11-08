@@ -1,0 +1,36 @@
+{
+  "en": {
+    "order": 20,
+    "icon": "plug",
+    "title": "APIs and integrations",
+    "summary": "Documented APIs for your web and mobile apps, and connections to payment, SMS and other services you rely on.",
+    "description": "We build the backend that your website, mobile app or partners talk to, and connect your software to the services you already use, such as payment gateways, SMS providers and accounting tools. Every API comes with documentation your developers can follow.",
+    "included": [
+      "REST API design and development",
+      "Login, access tokens and rate limits",
+      "Integration with payment gateways, SMS and email services",
+      "API documentation and example requests",
+      "Automated tests for the main endpoints"
+    ],
+    "technologies": [
+      "Laravel",
+      "NestJS",
+      "Node.js",
+      "PostgreSQL",
+      "MySQL",
+      "Redis"
+    ]
+  },
+  "bn": {
+    "title": "API ও ইন্টিগ্রেশন",
+    "summary": "আপনার ওয়েব ও মোবাইল অ্যাপের জন্য ডকুমেন্টেড API, আর পেমেন্ট, SMS ও অন্যান্য সার্ভিসের সাথে সংযোগ।",
+    "description": "আপনার ওয়েবসাইট, মোবাইল অ্যাপ বা পার্টনাররা যে ব্যাকএন্ডের সাথে যোগাযোগ করে, আমরা তা তৈরি করি এবং পেমেন্ট গেটওয়ে, SMS প্রোভাইডার ও অ্যাকাউন্টিং টুলের মতো আপনার ব্যবহৃত সার্ভিসের সাথে আপনার সফটওয়্যার যুক্ত করি। প্রতিটি API-এর সাথে থাকে এমন ডকুমেন্টেশন, যা আপনার ডেভেলপাররা সহজে অনুসরণ করতে পারেন।",
+    "included": [
+      "REST API ডিজাইন ও ডেভেলপমেন্ট",
+      "লগইন, অ্যাক্সেস টোকেন ও রেট লিমিট",
+      "পেমেন্ট গেটওয়ে, SMS ও ইমেইল সার্ভিসের সাথে ইন্টিগ্রেশন",
+      "API ডকুমেন্টেশন ও উদাহরণসহ রিকোয়েস্ট",
+      "প্রধান এন্ডপয়েন্টগুলোর অটোমেটেড টেস্ট"
+    ]
+  }
+}

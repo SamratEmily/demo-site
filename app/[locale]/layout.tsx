@@ -6,10 +6,12 @@ import { SiteFooter } from "@/components/shared/SiteFooter";
 import { SiteHeader } from "@/components/shared/SiteHeader";
 import { SkipLink } from "@/components/shared/SkipLink";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { site } from "@/content/site";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
+import { organizationJsonLd } from "@/lib/structured-data";
 import "../globals.css";
 
 export const dynamicParams = false;
@@ -48,6 +50,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             <SiteFooter />
             <WhatsAppButton />
           </ThemeProvider>
+          <JsonLd data={organizationJsonLd(locale)} />
         </NextIntlClientProvider>
       </body>
     </html>

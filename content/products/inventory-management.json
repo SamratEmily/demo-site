@@ -1,0 +1,55 @@
+{
+  "en": {
+    "order": 20,
+    "name": "Inventory Management System",
+    "status": "in-development",
+    "icon": "boxes",
+    "category": "Inventory and stock control",
+    "summary": "Tracks products, stock levels, purchases and sales across one or more locations, with low-stock alerts and stock reports.",
+    "problem": "When stock is counted by hand or in spreadsheets, popular items run out without warning, slow items take up space, and nobody is sure what the warehouse really holds.",
+    "features": [
+      {
+        "icon": "package",
+        "title": "Products and stock levels",
+        "description": "See current stock for every product and location in one list."
+      },
+      {
+        "icon": "bell",
+        "title": "Low-stock alerts",
+        "description": "Get notified before an item runs out, so you can reorder in time."
+      },
+      {
+        "icon": "chart",
+        "title": "Stock reports",
+        "description": "Reports on stock value, movement and slow-moving items."
+      }
+    ],
+    "audience": [
+      "Retail shops and wholesalers",
+      "Businesses with a warehouse or several outlets"
+    ]
+  },
+  "bn": {
+    "category": "ইনভেন্টরি ও স্টক নিয়ন্ত্রণ",
+    "summary": "এক বা একাধিক জায়গায় প্রোডাক্ট, স্টক, ক্রয় ও বিক্রয়ের হিসাব রাখে, স্টক কমে গেলে জানায় এবং স্টক রিপোর্ট দেয়।",
+    "problem": "হাতে গুনে বা স্প্রেডশিটে স্টকের হিসাব রাখলে জনপ্রিয় পণ্য হঠাৎ শেষ হয়ে যায়, কম চলা পণ্য জায়গা দখল করে থাকে, আর গুদামে আসলে কী আছে কেউ নিশ্চিত জানে না।",
+    "features": [
+      {
+        "title": "প্রোডাক্ট ও স্টকের পরিমাণ",
+        "description": "প্রতিটি প্রোডাক্ট ও জায়গার বর্তমান স্টক এক তালিকায় দেখুন।"
+      },
+      {
+        "title": "স্টক কমার সতর্কতা",
+        "description": "পণ্য শেষ হওয়ার আগেই জানুন, যাতে সময়মতো আবার অর্ডার দিতে পারেন।"
+      },
+      {
+        "title": "স্টক রিপোর্ট",
+        "description": "স্টকের মূল্য, আসা-যাওয়া ও কম চলা পণ্যের রিপোর্ট।"
+      }
+    ],
+    "audience": [
+      "খুচরা দোকান ও পাইকারি বিক্রেতা",
+      "যাঁদের গুদাম বা একাধিক আউটলেট আছে"
+    ]
+  }
+}

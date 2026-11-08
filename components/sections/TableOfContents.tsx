@@ -23,7 +23,7 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
             <a
               href={`#${item.id}`}
               className={cn(
-                "-ml-px flex min-h-11 items-center border-l-2 border-transparent py-1 pr-2 text-sm text-muted-foreground hover:border-primary hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none",
+                "-ml-px flex min-h-11 items-center border-l-2 border-transparent py-1 pr-2 text-sm text-muted-foreground hover:border-primary hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none",
                 item.level === 2 ? "pl-4" : "pl-8",
               )}
             >

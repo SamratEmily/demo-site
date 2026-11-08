@@ -2,7 +2,7 @@ import { useLocale } from "next-intl";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { home } from "@/content/home";
-import { testimonials } from "@/content/testimonials";
+import { testimonials } from "@/lib/testimonials";
 
 /** Renders nothing until content/testimonials.ts has real entries. */
 export function Testimonials() {

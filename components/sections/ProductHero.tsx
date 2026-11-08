@@ -72,6 +72,7 @@ export function ProductHero({ product }: ProductHeroProps) {
                 height={shot.height}
                 alt={shot.alt[locale]}
                 preload
+                fetchPriority="high"
                 loading="eager"
                 sizes="(min-width: 1024px) 600px, 100vw"
                 className="block h-auto w-full"

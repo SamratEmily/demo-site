@@ -1,11 +1,11 @@
-# Beacon Soft Ltd — Website Engineering Rules
+# Beacon Soft Ltd. — Website Engineering Rules
 
 These rules apply to every task in this repository. Read them before writing code.
 If a request conflicts with these rules, say so and ask before proceeding.
 
 ## 1. Project context
 
-- Official company website for Beacon Soft Ltd, a software company in Bangladesh.
+- Official company website for Beacon Soft Ltd., a software company in Bangladesh.
 - Audience: business owners and decision-makers (often non-technical) in Bangladesh
   and abroad who want to hire us or use our products.
 - Primary job of the site: build trust and get people to contact us or request a demo.
@@ -39,16 +39,24 @@ app/[locale]/...        pages (thin: compose components, fetch content)
 components/ui/          shadcn/ui primitives (don't edit unless necessary)
 components/sections/    page sections (Hero, Services, ProductGrid, ...)
 components/shared/      Header, Footer, LanguageSwitcher, ThemeToggle, ...
-content/                ALL site content: site.ts, products.ts, services.ts,
-                        team.ts, careers.ts, testimonials.ts, values.ts, pages.ts,
-                        blog/ + blog-tags.ts, case-studies/ (<slug>.<locale>.mdx),
-                        navigation.ts, settings.json (contact, WhatsApp, social;
-                        validated at build time by lib/settings.ts)
+content/                ALL site content. Edited in the CMS (/admin), stored as
+                        { en: {...}, bn: {...} } JSON or <slug>.<locale>.mdx:
+                        settings.json, products/, services/, team/,
+                        testimonials/, careers/ (<slug>.json), blog/,
+                        case-studies/. Code-only: site.ts, home.ts, pages.ts,
+                        values.ts, process.ts, blog-tags.ts, navigation.ts
 messages/               en.json, bn.json (UI strings only)
-lib/                    utilities, types, schemas, seo helpers
-functions/api/          Cloudflare Pages Functions (contact form)
-public/                 images, icons, og images, fonts if self-hosted
+lib/                    utilities, types, seo helpers; content loaders with zod
+                        schemas (products.ts, services.ts, settings.ts, ...)
+                        that validate CMS content at build time
+functions/api/          Cloudflare Pages Functions (contact form, CMS login)
+public/                 images, icons, og images; admin/ (Decap CMS config),
+                        uploads/ (CMS media)
+docs/                   ADMIN.md (how to set up and use the CMS)
 ```
+
+CMS-managed content changes need both the loader schema in `lib/` and
+`public/admin/config.yml` updated together (see docs/ADMIN.md).
 
 ## 5. TypeScript and code style
 
@@ -136,12 +144,16 @@ public/                 images, icons, og images, fonts if self-hosted
 - JSON-LD: Organization (all pages), SoftwareApplication (product pages),
   Article (blog), BreadcrumbList where useful.
 - Clean, readable slugs in English.
-- Site URL comes from one config value (`content/site.ts`), never hardcoded.
+- Site URL comes from one value, `site.url` in `content/settings.json` (read via
+  `site.url` from `content/site.ts`), never hardcoded. `next.config.ts` checks it
+  matches `public/admin/config.yml`.
 
 ## 12. Security
 
 - No secrets in the repo or in client code. Secrets only as Cloudflare
-  environment variables: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `TURNSTILE_SECRET`.
+  environment variables: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `TURNSTILE_SECRET`,
+  `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (CMS login).
+- The CMS config (`public/admin/config.yml`) must never have fields for secrets.
 - Contact function: validate input with zod on the server side too, verify
   Turnstile token, limit field lengths, escape content in emails, return
   generic error messages to the client.

@@ -12,7 +12,7 @@ interface DetailRow {
 }
 
 const linkClass =
-  "inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none break-all";
+  "inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none break-all";
 const iconClass = "mt-0.5 size-5 shrink-0 text-primary";
 
 /** Contact details from content/settings.json. Returns null when none are set. */

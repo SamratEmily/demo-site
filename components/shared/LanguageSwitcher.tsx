@@ -45,7 +45,7 @@ function SwitcherLinks({ labels = "short", className, query }: SwitcherLinksProp
             aria-label={labels === "short" ? t(fullLabelKey[locale]) : undefined}
             className={cn(
               "inline-flex min-h-11 min-w-11 flex-1 items-center justify-center rounded-lg px-3 text-sm font-medium transition-colors",
-              "focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none",
+              "focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none",
               isCurrent
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground",

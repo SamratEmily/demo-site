@@ -41,8 +41,8 @@ export const servicesPage: PageCopy & {
     bn: "আমরা ব্যবসার জন্য ওয়েব সফটওয়্যার ডিজাইন, তৈরি ও রক্ষণাবেক্ষণ করি। প্রতিটি সার্ভিসে কী থাকে তা এখানে দেওয়া আছে, যাতে কথা বলার আগেই আপনি জানেন কী আশা করবেন।",
   },
   metaDescription: {
-    en: "Custom web applications, APIs and integrations, e-commerce, WordPress, maintenance and hosting setup by Beacon Soft Ltd in Bangladesh.",
-    bn: "Beacon Soft Ltd-এর সার্ভিস: কাস্টম ওয়েব অ্যাপ্লিকেশন, API ও ইন্টিগ্রেশন, ই-কমার্স, WordPress, রক্ষণাবেক্ষণ ও হোস্টিং সেটআপ।",
+    en: "Custom web applications, APIs and integrations, e-commerce, WordPress, maintenance and hosting setup by Beacon Soft Ltd. in Bangladesh.",
+    bn: "Beacon Soft Ltd.-এর সার্ভিস: কাস্টম ওয়েব অ্যাপ্লিকেশন, API ও ইন্টিগ্রেশন, ই-কমার্স, WordPress, রক্ষণাবেক্ষণ ও হোস্টিং সেটআপ।",
   },
   includedTitle: { en: "What's included", bn: "যা থাকছে" },
   technologiesTitle: { en: "Typical technologies", bn: "সাধারণত যে প্রযুক্তি ব্যবহার করি" },
@@ -60,8 +60,8 @@ export const caseStudiesPage: PageCopy & { emptyNote: Localized } = {
     bn: "বাস্তব ব্যবসায় আমাদের সফটওয়্যার কীভাবে ব্যবহার হচ্ছে: তাদের সমস্যা কী ছিল, আমরা কী তৈরি করেছি এবং কী বদলেছে।",
   },
   metaDescription: {
-    en: "Case studies from Beacon Soft Ltd: the challenge, our solution and the results for businesses using our software.",
-    bn: "Beacon Soft Ltd-এর কেস স্টাডি: আমাদের সফটওয়্যার ব্যবহারকারী ব্যবসার চ্যালেঞ্জ, আমাদের সমাধান ও ফলাফল।",
+    en: "Case studies from Beacon Soft Ltd.: the challenge, our solution and the results for businesses using our software.",
+    bn: "Beacon Soft Ltd.-এর কেস স্টাডি: আমাদের সফটওয়্যার ব্যবহারকারী ব্যবসার চ্যালেঞ্জ, আমাদের সমাধান ও ফলাফল।",
   },
   emptyNote: {
     en: "We are writing up our first case studies. In the meantime, ask us for references.",
@@ -87,8 +87,8 @@ export const aboutPage: PageCopy & {
     bn: "আমরা বাংলাদেশের একটি সফটওয়্যার কোম্পানি। আমরা নিজেদের প্রোডাক্ট এবং ব্যবসার জন্য কাস্টম সফটওয়্যার তৈরি করি, আর লঞ্চের পরেও সাপোর্ট দিয়ে যাই।",
   },
   metaDescription: {
-    en: "About Beacon Soft Ltd: our story, mission, the values we work by and company details.",
-    bn: "Beacon Soft Ltd সম্পর্কে: আমাদের গল্প, লক্ষ্য, কাজের মূল্যবোধ ও কোম্পানির তথ্য।",
+    en: "About Beacon Soft Ltd.: our story, mission, the values we work by and company details.",
+    bn: "Beacon Soft Ltd. সম্পর্কে: আমাদের গল্প, লক্ষ্য, কাজের মূল্যবোধ ও কোম্পানির তথ্য।",
   },
   storyTitle: { en: "Our story", bn: "আমাদের গল্প" },
   // [TODO: add the founding year and how the company started]
@@ -128,8 +128,8 @@ export const blogPage: PageCopy = {
     bn: "ব্যবসার সফটওয়্যার পরিকল্পনা, তৈরি ও পরিচালনা নিয়ে কাজের কথা, যাঁরা তৈরি করেন তাঁদের কাছ থেকে।",
   },
   metaDescription: {
-    en: "Articles from Beacon Soft Ltd on planning, building and maintaining software for businesses in Bangladesh.",
-    bn: "বাংলাদেশের ব্যবসার জন্য সফটওয়্যার পরিকল্পনা, তৈরি ও রক্ষণাবেক্ষণ নিয়ে Beacon Soft Ltd-এর লেখা।",
+    en: "Articles from Beacon Soft Ltd. on planning, building and maintaining software for businesses in Bangladesh.",
+    bn: "বাংলাদেশের ব্যবসার জন্য সফটওয়্যার পরিকল্পনা, তৈরি ও রক্ষণাবেক্ষণ নিয়ে Beacon Soft Ltd.-এর লেখা।",
   },
 };
 
@@ -140,8 +140,8 @@ export const careersPage: PageCopy & { valuesTitle: Localized; valuesIntro: Loca
     bn: "আমরা বাংলাদেশ ও বিদেশের ব্যবসার জন্য সফটওয়্যার তৈরি করি। পরিষ্কার কোড, যত্ন নিয়ে টেস্টিং আর সহজ করে বোঝানো যদি আপনার কাছে গুরুত্বপূর্ণ হয়, আমরা আপনার কথা শুনতে চাই।",
   },
   metaDescription: {
-    en: "Jobs at Beacon Soft Ltd: open positions for developers and other roles, and how to apply.",
-    bn: "Beacon Soft Ltd-এ চাকরি: ডেভেলপার ও অন্যান্য খালি পদ এবং আবেদনের নিয়ম।",
+    en: "Jobs at Beacon Soft Ltd.: open positions for developers and other roles, and how to apply.",
+    bn: "Beacon Soft Ltd.-এ চাকরি: ডেভেলপার ও অন্যান্য খালি পদ এবং আবেদনের নিয়ম।",
   },
   valuesTitle: { en: "How we work", bn: "আমরা যেভাবে কাজ করি" },
   valuesIntro: {
@@ -157,7 +157,7 @@ export const contactPage: PageCopy = {
     bn: "আপনার কী দরকার জানান: নতুন প্রজেক্ট, চলমান সফটওয়্যারে সহায়তা, অথবা আমাদের কোনো প্রোডাক্টের ডেমো। আমরা ইমেইলে প্রশ্ন বা পরের ধাপ জানিয়ে উত্তর দেব।",
   },
   metaDescription: {
-    en: "Contact Beacon Soft Ltd about a software project, support for existing software, or a product demo.",
-    bn: "সফটওয়্যার প্রজেক্ট, চলমান সফটওয়্যারের সাপোর্ট বা প্রোডাক্ট ডেমোর জন্য Beacon Soft Ltd-এর সাথে যোগাযোগ করুন।",
+    en: "Contact Beacon Soft Ltd. about a software project, support for existing software, or a product demo.",
+    bn: "সফটওয়্যার প্রজেক্ট, চলমান সফটওয়্যারের সাপোর্ট বা প্রোডাক্ট ডেমোর জন্য Beacon Soft Ltd.-এর সাথে যোগাযোগ করুন।",
   },
 };

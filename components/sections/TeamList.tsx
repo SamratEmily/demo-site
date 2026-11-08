@@ -36,7 +36,7 @@ export function TeamList({ members }: TeamListProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("linkedin", { name })}
-                className="mt-2 inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                className="mt-2 inline-flex size-11 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
               >
                 <BrandIcon name="linkedin" className="size-5" />
               </a>

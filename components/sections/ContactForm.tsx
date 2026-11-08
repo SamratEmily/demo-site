@@ -18,7 +18,6 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   contactLimits,
   contactSchema,
-  interestValues,
   type ContactData,
   type ContactErrorCode,
   type ContactInput,
@@ -95,8 +94,9 @@ export function ContactForm({
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const wanted = params.get("product") ?? params.get("service");
-    if (wanted && interestValues.includes(wanted)) setValue("interest", wanted);
-  }, [setValue]);
+    const offered = [...interestGroups.flatMap((g) => g.options), ...interestExtra];
+    if (wanted && offered.some((o) => o.value === wanted)) setValue("interest", wanted);
+  }, [setValue, interestGroups, interestExtra]);
 
   useEffect(() => {
     if (status.kind === "success") successHeading.current?.focus();

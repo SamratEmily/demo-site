@@ -15,11 +15,13 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { NumberedSteps } from "@/components/shared/NumberedSteps";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { demoRequestHref } from "@/content/navigation";
-import { getProduct, products } from "@/content/products";
+import { demoRequestHref, productHref } from "@/content/navigation";
+import { getProduct, products } from "@/lib/products";
 import { site } from "@/content/site";
 import { routing, type Locale } from "@/i18n/routing";
+import { productOgImage } from "@/lib/og-images";
 import { pageMetadata, pageUrl } from "@/lib/seo";
+import { breadcrumbJsonLd, organizationRef } from "@/lib/structured-data";
 import type { Product } from "@/lib/types";
 import { hostname } from "@/lib/utils";
 
@@ -41,40 +43,27 @@ export async function generateMetadata({
     path: `/products/${slug}`,
     title: `${product.name}: ${product.category[locale]}`,
     description: product.summary[locale],
+    image: productOgImage(product, locale),
   });
 }
 
-function productJsonLd(product: Product, locale: Locale, productsLabel: string) {
-  const url = pageUrl(locale, `/products/${product.slug}`);
+function productJsonLd(product: Product, locale: Locale) {
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        name: product.name,
-        description: product.summary[locale],
-        applicationCategory: "BusinessApplication",
-        operatingSystem: "Web",
-        url: product.status === "live" && product.url ? product.url : url,
-        inLanguage: ["en", "bn"],
-        publisher: { "@type": "Organization", name: site.name, url: site.url },
-        ...(product.screenshot
-          ? { screenshot: `${site.url}${product.screenshot.src[locale]}` }
-          : {}),
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: productsLabel,
-            item: pageUrl(locale, "/products"),
-          },
-          { "@type": "ListItem", position: 2, name: product.name, item: url },
-        ],
-      },
-    ],
+    "@type": "SoftwareApplication",
+    name: product.name,
+    description: product.summary[locale],
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: product.category[locale],
+    operatingSystem: "Web browser",
+    url: pageUrl(locale, productHref(product.slug)),
+    ...(product.status === "live" && product.url ? { sameAs: product.url } : {}),
+    inLanguage: ["en", "bn"],
+    publisher: organizationRef,
+    ...(product.screenshot ? { screenshot: `${site.url}${product.screenshot.src[locale]}` } : {}),
+    ...(product.features.length > 0
+      ? { featureList: product.features.map((f) => f.title[locale]) }
+      : {}),
   };
 }
 
@@ -222,7 +211,13 @@ export default async function ProductPage({ params }: PageProps<"/[locale]/produ
 
   return (
     <>
-      <JsonLd data={productJsonLd(product, locale, t("product.allProducts"))} />
+      <JsonLd data={productJsonLd(product, locale)} />
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: t("product.allProducts"), path: "/products" },
+          { name: product.name, path: productHref(product.slug) },
+        ])}
+      />
       <ProductHero product={product} />
       {sections.map((section) => {
         const tone = section.deep ? "deep" : alternate++ % 2 === 0 ? "muted" : "default";

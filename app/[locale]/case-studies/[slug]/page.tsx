@@ -10,11 +10,13 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { Container } from "@/components/shared/Container";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { MdxContent } from "@/components/shared/MdxContent";
-import { demoRequestHref, quoteHref } from "@/content/navigation";
-import { routing, type Locale } from "@/i18n/routing";
+import { caseStudyHref, demoRequestHref, quoteHref } from "@/content/navigation";
+import { routing } from "@/i18n/routing";
 import { caseStudySlugs, getCaseStudy } from "@/lib/case-studies";
-import { pageMetadata, pageUrl } from "@/lib/seo";
-import type { CaseStudy } from "@/lib/types";
+import { productOgImage } from "@/lib/og-images";
+import { getProduct } from "@/lib/products";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const dynamicParams = false;
 
@@ -34,28 +36,8 @@ export async function generateMetadata({
     path: `/case-studies/${slug}`,
     title: study.meta.title,
     description: study.meta.summary,
+    image: productOgImage(study.meta.product ? getProduct(study.meta.product) : undefined, locale),
   });
-}
-
-function breadcrumbJsonLd(study: CaseStudy, locale: Locale, indexLabel: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: indexLabel,
-        item: pageUrl(locale, "/case-studies"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: study.meta.title,
-        item: pageUrl(locale, `/case-studies/${study.slug}`),
-      },
-    ],
-  };
 }
 
 export default async function CaseStudyPage({
@@ -71,7 +53,12 @@ export default async function CaseStudyPage({
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd(study, locale, t("caseStudies.allCaseStudies"))} />
+      <JsonLd
+        data={breadcrumbJsonLd(locale, [
+          { name: t("caseStudies.allCaseStudies"), path: "/case-studies" },
+          { name: meta.title, path: caseStudyHref(slug) },
+        ])}
+      />
       <section aria-labelledby="case-study-title" className="relative isolate overflow-hidden">
         <div
           aria-hidden

@@ -19,7 +19,7 @@ export function ProductRows({ products }: ProductRowsProps) {
         <li key={product.slug} className="border-t">
           <Link
             href={productHref(product.slug)}
-            className="group grid gap-2 py-6 transition-colors hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none sm:-mx-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_auto] sm:items-center sm:gap-8 sm:px-4"
+            className="group grid gap-2 py-6 transition-colors hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none sm:-mx-4 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_auto] sm:items-center sm:gap-8 sm:px-4"
           >
             <span className="flex flex-col gap-1">
               <span className="flex flex-wrap items-center gap-3">

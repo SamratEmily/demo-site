@@ -1,0 +1,39 @@
+{
+  "en": {
+    "order": 10,
+    "icon": "app-window",
+    "title": "Custom web applications",
+    "summary": "Dashboards, portals and internal tools built around how your team already works.",
+    "description": "When spreadsheets and off-the-shelf software no longer fit, we build a web application around your actual workflow: who enters what, who approves it and which reports you need at the end of the day. It runs in the browser, so your team can use it from the office, from home or on a phone.",
+    "included": [
+      "Workshops to map your process and agree on a written scope",
+      "Screen designs you review before development starts",
+      "User roles and permissions, so each person sees only what they need",
+      "Reports and exports to Excel or PDF",
+      "Bangla and English interface where you need it",
+      "Training for your team and handover documents"
+    ],
+    "technologies": [
+      "Laravel",
+      "NestJS",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "MySQL",
+      "PostgreSQL"
+    ]
+  },
+  "bn": {
+    "title": "কাস্টম ওয়েব অ্যাপ্লিকেশন",
+    "summary": "আপনার টিম যেভাবে কাজ করে, সেভাবেই তৈরি ড্যাশবোর্ড, পোর্টাল ও অভ্যন্তরীণ টুল।",
+    "description": "যখন স্প্রেডশিট বা রেডিমেড সফটওয়্যার আর কাজে লাগে না, তখন আমরা আপনার আসল কাজের ধারা অনুযায়ী ওয়েব অ্যাপ্লিকেশন তৈরি করি: কে কী তথ্য দেবেন, কে অনুমোদন করবেন, আর দিনের শেষে কোন রিপোর্ট দরকার। এটি ব্রাউজারে চলে, তাই আপনার টিম অফিস, বাসা বা ফোন থেকেও ব্যবহার করতে পারে।",
+    "included": [
+      "আপনার কাজের ধারা বুঝতে আলোচনা এবং লিখিত স্কোপ চূড়ান্ত করা",
+      "ডেভেলপমেন্ট শুরুর আগে আপনার দেখে নেওয়ার জন্য স্ক্রিন ডিজাইন",
+      "ইউজার রোল ও পারমিশন, যাতে প্রত্যেকে শুধু তাঁর প্রয়োজনীয় অংশ দেখেন",
+      "রিপোর্ট এবং Excel বা PDF-এ এক্সপোর্ট",
+      "প্রয়োজনে বাংলা ও ইংরেজি ইন্টারফেস",
+      "আপনার টিমের প্রশিক্ষণ ও হস্তান্তরের ডকুমেন্ট"
+    ]
+  }
+}

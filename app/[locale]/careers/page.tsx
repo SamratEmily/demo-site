@@ -8,7 +8,7 @@ import { SendCv } from "@/components/sections/SendCv";
 import { ValuesList } from "@/components/sections/ValuesList";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { openings } from "@/content/careers";
+import { openings } from "@/lib/careers";
 import { careersPage } from "@/content/pages";
 import { values } from "@/content/values";
 import { routing } from "@/i18n/routing";

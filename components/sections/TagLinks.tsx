@@ -11,7 +11,7 @@ interface TagLinksProps {
 }
 
 const pill =
-  "inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-medium transition-colors hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none";
+  "inline-flex min-h-11 items-center rounded-full border px-4 text-sm font-medium transition-colors hover:bg-surface-muted focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none";
 const activePill = "border-primary bg-primary text-primary-foreground hover:bg-primary";
 
 /** "All posts" plus one link per tag; the current one is highlighted. */

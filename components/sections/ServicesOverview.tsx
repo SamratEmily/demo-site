@@ -4,7 +4,7 @@ import { ContentIcon } from "@/components/shared/ContentIcon";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { home } from "@/content/home";
-import { services } from "@/content/services";
+import { services } from "@/lib/services";
 
 export function ServicesOverview() {
   const t = useTranslations("home");

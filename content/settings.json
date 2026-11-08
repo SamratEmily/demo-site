@@ -1,42 +1,47 @@
 {
-  "company": {
-    "legalName": "Beacon Soft Ltd",
-    "founded": "",
-    "registration": ""
-  },
-  "contact": {
-    "email": "",
-    "careersEmail": "",
-    "phone": "",
-    "address": {
-      "en": "",
-      "bn": ""
+  "en": {
+    "site": {
+      "url": "https://beaconsoft.com.bd"
     },
-    "officeHours": {
-      "en": "",
-      "bn": ""
+    "company": {
+      "legalName": "Beacon Soft Ltd.",
+      "founded": "",
+      "registration": ""
     },
-    "mapEmbedUrl": ""
+    "contact": {
+      "email": "",
+      "careersEmail": "",
+      "phone": "",
+      "address": "",
+      "officeHours": "",
+      "mapEmbedUrl": ""
+    },
+    "whatsapp": {
+      "number": "",
+      "greeting": "Hello Beacon Soft, I'd like to talk about a project."
+    },
+    "social": [
+      {
+        "platform": "github",
+        "url": ""
+      },
+      {
+        "platform": "linkedin",
+        "url": ""
+      },
+      {
+        "platform": "facebook",
+        "url": ""
+      }
+    ]
   },
-  "whatsapp": {
-    "number": "",
-    "greeting": {
-      "en": "Hello Beacon Soft, I'd like to talk about a project.",
-      "bn": "হ্যালো Beacon Soft, একটি প্রজেক্ট নিয়ে কথা বলতে চাই।"
+  "bn": {
+    "contact": {
+      "address": "",
+      "officeHours": ""
+    },
+    "whatsapp": {
+      "greeting": "হ্যালো Beacon Soft, একটি প্রজেক্ট নিয়ে কথা বলতে চাই।"
     }
-  },
-  "social": [
-    {
-      "platform": "github",
-      "url": ""
-    },
-    {
-      "platform": "linkedin",
-      "url": ""
-    },
-    {
-      "platform": "facebook",
-      "url": ""
-    }
-  ]
+  }
 }

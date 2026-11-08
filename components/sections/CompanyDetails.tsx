@@ -15,7 +15,7 @@ interface DetailRow {
 }
 
 const linkClass =
-  "text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none";
+  "text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none";
 
 /** Company facts from content/settings.json. Empty values, and an empty section, are left out. */
 export function CompanyDetails({ title }: CompanyDetailsProps) {

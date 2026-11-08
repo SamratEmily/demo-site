@@ -3,3 +3,8 @@ out
 node_modules
 package-lock.json
 next-env.d.ts
+
+# Written by the CMS (/admin); validated by zod at build time instead.
+content/settings.json
+content/*/*.json
+content/*/*.mdx

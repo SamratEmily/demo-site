@@ -1,15 +1,16 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
-import { companyNav, legalNav, productNav } from "@/content/navigation";
+import { companyNav, legalNav, productHref } from "@/content/navigation";
 import { site } from "@/content/site";
 import { Link } from "@/i18n/navigation";
+import { products } from "@/lib/products";
 import { activeSocialLinks, settings } from "@/lib/settings";
 import { BrandIcon } from "./BrandIcon";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
 
 const linkClass =
-  "inline-flex min-h-11 min-w-11 items-center rounded text-deep-muted-foreground hover:text-deep-foreground hover:underline underline-offset-4 focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none";
+  "inline-flex min-h-11 min-w-11 items-center rounded text-deep-muted-foreground hover:text-deep-foreground hover:underline underline-offset-4 focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none";
 
 interface FooterColumnProps {
   id: string;
@@ -96,9 +97,9 @@ export function SiteFooter() {
         </div>
 
         <FooterColumn id="footer-products" title={t("footer.products")}>
-          {productNav.map(({ name, href }) => (
-            <li key={href}>
-              <Link href={href} className={linkClass} lang="en">
+          {products.map(({ slug, name }) => (
+            <li key={slug}>
+              <Link href={productHref(slug)} className={linkClass} lang="en">
                 {name}
               </Link>
             </li>
@@ -151,7 +152,7 @@ export function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${t(`social.${platform}`)} (${t("common.externalLink")})`}
-                    className="inline-flex size-11 items-center justify-center rounded-lg hover:text-deep-foreground focus-visible:ring-3 focus-visible:ring-ring/60 focus-visible:outline-none"
+                    className="inline-flex size-11 items-center justify-center rounded-lg hover:text-deep-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     <BrandIcon name={platform} className="size-5" />
                   </a>
