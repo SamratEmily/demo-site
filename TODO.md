@@ -15,11 +15,12 @@ are tracked here instead.
 These placeholders are in the files themselves. Those marked **visible** show on the
 live site as written, so fill them in or remove the page before launch.
 
-| File                                  | Placeholders                                                              | Visible? |
-| ------------------------------------- | ------------------------------------------------------------------------- | -------- |
-| `content/case-studies/gari-becho.mdx` | 3 result figures, 3 paragraphs (client details, rollout, results)         | **Yes**  |
-| `content/contact.ts`                  | Comment: confirm the budget ranges and currency in the contact form       | No       |
-| `content/pages.ts`                    | Comment in `aboutPage`: add the founding year and how the company started | No       |
+| File                                   | Placeholders                                                              | Visible? |
+| -------------------------------------- | ------------------------------------------------------------------------- | -------- |
+| `content/case-studies/gari-becho.mdx`  | 3 result figures, 3 paragraphs (client details, rollout, results)         | **Yes**  |
+| `content/products/crm-real-state.json` | 1 feature (title, description) [CMS: Products]                            | **Yes**  |
+| `content/contact.ts`                   | Comment: confirm the budget ranges and currency in the contact form       | No       |
+| `content/pages.ts`                     | Comment in `aboutPage`: add the founding year and how the company started | No       |
 
 Run `npm run todos` to list them with line numbers.
 

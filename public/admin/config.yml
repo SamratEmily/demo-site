@@ -625,7 +625,6 @@ collections:
           label: Responsibility
           widget: string
           hint: "One task per item."
-        hint:
       - name: requirements
         label: Requirements
         label_singular: requirement
@@ -636,7 +635,6 @@ collections:
           label: Requirement
           widget: string
           hint: "One requirement per item."
-        hint:
       - name: niceToHave
         label: Nice to have
         widget: list

@@ -1,0 +1,15 @@
+{
+  "order": 100,
+  "status": "in-development",
+  "name": "CRM - Real State",
+  "icon": "handshake",
+  "category": "Customer Relationship Management",
+  "summary": "It makes easy to have relationship with real state clients",
+  "features": [
+    {
+      "icon": "handshake",
+      "title": "[TODO: feature name]",
+      "description": "[TODO: what this feature does for the user]"
+    }
+  ]
+}
