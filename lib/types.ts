@@ -171,12 +171,6 @@ export interface Product {
   faq?: FaqItem[];
 }
 
-export interface TechGroup {
-  area: Localized;
-  /** Technology names stay in English. */
-  items: string[];
-}
-
 /** Only add testimonials you have written permission to publish. */
 export interface Testimonial {
   quote: Localized;
@@ -200,7 +194,8 @@ export interface HomeContent {
   spotlight: SectionCopy & { languagesNote: Localized };
   products: SectionCopy;
   process: SectionCopy;
-  technologies: SectionCopy;
+  aiDevelopment: SectionCopy & { points: CompanyValue[] };
+  team: SectionCopy;
   testimonials: SectionCopy;
   cta: SectionCopy;
 }

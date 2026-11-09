@@ -103,7 +103,7 @@ No marketing text lives in components. It's in three places:
    - `blog/` and `case-studies/`: one Markdown file per language, `<slug>.en.mdx` and
      `<slug>.bn.mdx`.
 2. **`content/*.ts`, changed in code only:** `site.ts`, `home.ts`, `pages.ts`,
-   `values.ts`, `process.ts`, `contact.ts`, `tech-stack.ts`, `blog-tags.ts` and
+   `values.ts`, `process.ts`, `contact.ts`, `blog-tags.ts` and
    `navigation.ts`. Text there uses `{ en: "…", bn: "…" }`.
 3. **`messages/en.json` and `messages/bn.json`:** short interface labels such as buttons,
    navigation and form errors.

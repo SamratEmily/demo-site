@@ -67,7 +67,8 @@
     "productFeatures": "See all {name} features",
     "productsCta": "Compare all products",
     "keyFeatures": "Key features",
-    "stepLabel": "Step {number}"
+    "stepLabel": "Step {number}",
+    "moreAboutUs": "More about us"
   },
   "notFound": {
     "title": "Page not found",

@@ -67,7 +67,8 @@
     "productFeatures": "{name}-এর সব ফিচার দেখুন",
     "productsCta": "সব প্রোডাক্ট তুলনা করুন",
     "keyFeatures": "প্রধান ফিচার",
-    "stepLabel": "ধাপ {number, number}"
+    "stepLabel": "ধাপ {number, number}",
+    "moreAboutUs": "আমাদের সম্পর্কে আরও জানুন"
   },
   "notFound": {
     "title": "পেজটি পাওয়া যায়নি",
