@@ -17,7 +17,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Beacon Soft",
     description: site.description.en,
     lang: routing.defaultLocale,
-    start_url: `/${routing.defaultLocale}/`,
+    start_url: "/",
     scope: "/",
     display: "browser",
     background_color: logoNavy,

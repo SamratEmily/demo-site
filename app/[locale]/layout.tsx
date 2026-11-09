@@ -9,15 +9,16 @@ import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { site } from "@/content/site";
-import { routing } from "@/i18n/routing";
+import { prefixedLocales, routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { organizationJsonLd } from "@/lib/structured-data";
 import "../globals.css";
 
 export const dynamicParams = false;
 
+// Only /bn here; English pages are built at the root by app/(default)/.
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return prefixedLocales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {

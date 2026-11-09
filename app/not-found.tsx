@@ -37,7 +37,7 @@ export default function NotFound() {
                   </Heading>
                   <p className="mt-3 text-muted-foreground">{messages.notFound.body}</p>
                   <a
-                    href={`/${locale}/`}
+                    href={locale === "en" ? "/" : `/${locale}/`}
                     className="mt-6 inline-flex min-h-11 items-center rounded-lg bg-primary px-4 font-medium text-primary-foreground hover:bg-primary/90 focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
                   >
                     {messages.notFound.backHome}

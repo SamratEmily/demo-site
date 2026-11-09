@@ -11,7 +11,7 @@ import { Container } from "@/components/shared/Container";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { MdxContent } from "@/components/shared/MdxContent";
 import { caseStudyHref, demoRequestHref, quoteHref } from "@/content/navigation";
-import { routing } from "@/i18n/routing";
+import { prefixedLocales, routing } from "@/i18n/routing";
 import { caseStudySlugs, getCaseStudy } from "@/lib/case-studies";
 import { productOgImage } from "@/lib/og-images";
 import { getProduct } from "@/lib/products";
@@ -21,7 +21,7 @@ import { breadcrumbJsonLd } from "@/lib/structured-data";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) => caseStudySlugs.map((slug) => ({ locale, slug })));
+  return prefixedLocales.flatMap((locale) => caseStudySlugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({

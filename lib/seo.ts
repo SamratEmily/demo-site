@@ -19,10 +19,14 @@ export const defaultOgImage: OgImage = {
   alt: site.name,
 };
 
-/** Absolute URL of a page, e.g. ("bn", "/products") → https://…/bn/products/ */
+/**
+ * Absolute URL of a page. English has no prefix, other locales do:
+ * ("en", "/products") → https://…/products/, ("bn", "/products") → https://…/bn/products/
+ */
 export function pageUrl(locale: Locale, path: string): string {
   const clean = path === "/" ? "" : path.replace(/\/$/, "");
-  return `${site.url}/${locale}${clean}/`;
+  const prefix = locale === routing.defaultLocale ? "" : `/${locale}`;
+  return `${site.url}${prefix}${clean}/`;
 }
 
 interface PageMetadataInput {

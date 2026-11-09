@@ -17,7 +17,10 @@ If a request conflicts with these rules, say so and ask before proceeding.
 ## 2. Tech stack (do not add alternatives without asking)
 
 - Next.js (App Router), TypeScript (strict), Tailwind CSS, shadcn/ui, lucide-react.
-- next-intl for English (`/en`, default) and Bangla (`/bn`).
+- next-intl for English (default, at the root: `/`, `/about`) and Bangla (`/bn`, `/bn/about`).
+  English pages are built by the thin wrappers in `app/(default)/`, which reuse the
+  `app/[locale]/` pages; `app/[locale]/` itself only builds `/bn`. Old `/en/...` URLs
+  redirect to the root (`public/_redirects`).
 - next-themes for light/dark mode.
 - react-hook-form + zod for forms.
 - MDX for blog posts and case studies.
@@ -175,14 +178,14 @@ CMS-managed content changes need both the loader schema in `lib/` and
 3. Implement only what the task asks.
 4. Run `npm run lint` and `npm run build`; fix every error and warning.
 5. Check the result at mobile and desktop widths, in light and dark mode,
-   in `/en` and `/bn`.
+   in English (`/`) and Bangla (`/bn`).
 6. Report: what changed, files touched, any new TODO placeholders, anything
    you were unsure about.
 
 ## 15. Definition of done
 
 - [ ] Build and lint pass with zero errors and warnings
-- [ ] Works in `/en` and `/bn`, light and dark, mobile and desktop
+- [ ] Works in English (`/`) and Bangla (`/bn`), light and dark, mobile and desktop
 - [ ] No hardcoded text in components; no invented facts
 - [ ] Accessible: keyboard, focus, contrast, alt text, headings
 - [ ] Metadata present for any new page

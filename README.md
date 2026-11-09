@@ -1,6 +1,6 @@
 # Beacon Soft Ltd. website
 
-The company website for Beacon Soft Ltd., in English (`/en`) and Bangla (`/bn`).
+The company website for Beacon Soft Ltd., in English (at the root: `/`, `/about`, …) and Bangla (`/bn`, `/bn/about`, …).
 It is a static site: Next.js builds every page to plain HTML in `out/`, and
 Cloudflare Pages serves it. The only server code is three small Cloudflare Pages
 Functions: the contact form and the content manager login.
@@ -62,9 +62,11 @@ Before every commit: `npm run lint`, `npm run typecheck`, `npm run format:check`
 
 ```
 app/
-  [locale]/            Pages for /en and /bn: home, products, services,
-                       case-studies, about, blog, careers, contact
-  layout.tsx, page.tsx Root layout and the "/" fallback (redirects to /en/)
+  [locale]/            The pages: home, products, services, case-studies,
+                       about, blog, careers, contact. Builds /bn only.
+  (default)/           English at the root (/, /about, …): thin wrappers that
+                       reuse the [locale] pages with the locale set to "en"
+  layout.tsx           Pass-through root layout (<html> is set per language)
   sitemap.ts, robots.ts, manifest.ts   Generated at build time
   not-found.tsx        404 page
 components/
@@ -81,13 +83,20 @@ functions/api/         Cloudflare Pages Functions
   auth.ts, callback.ts Content manager login with GitHub
 public/
   _headers             Security headers (CSP etc.) and caching
-  _redirects           "/" → "/en/"
+  _redirects           Old /en/... links → the same page without /en
   admin/               Content manager (index.html, config.yml)
   images/, og/, icons/, brand/   Images, social share images, app icons
   uploads/             Images uploaded in the content manager
 docs/ADMIN.md          Content manager guide and one-time setup
 brand/                 Original brand files (not published)
 ```
+
+### Adding a page
+
+A page needs two files: the page itself in `app/[locale]/<name>/page.tsx` (it serves
+`/bn/<name>/`), and a wrapper in `app/(default)/<name>/page.tsx` that serves the English
+version at `/<name>/`. Copy an existing wrapper such as `app/(default)/about/page.tsx`.
+Add the page to `app/sitemap.ts` too.
 
 ## How content works
 
@@ -206,7 +215,7 @@ gets a preview address.
 1. Runs `npm run build`. This checks all content, generates every page in both
    languages, the sitemap, `robots.txt` and the manifest, and writes them to `out/`.
 2. Publishes `out/` with its `_headers` (security headers, caching) and `_redirects`
-   (`/` → `/en/`).
+   (old `/en/...` links → the same page without `/en`).
 3. Deploys `functions/api/*` as Pages Functions at `/api/contact`, `/api/auth` and
    `/api/callback`.
 

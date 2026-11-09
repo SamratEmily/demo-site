@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CheckList } from "@/components/shared/CheckList";
 import { buttonVariants } from "@/components/ui/button";
 import type { EmploymentType, JobOpening } from "@/lib/types";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
 interface JobOpeningDetailProps {
   opening: JobOpening;
@@ -36,7 +36,7 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
     <section
       id={opening.slug}
       aria-labelledby={titleId}
-      className="grid scroll-mt-24 gap-8 border-t py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16"
+      className="grid scroll-mt-24 grid-cols-[minmax(0,1fr)] gap-8 border-t py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16"
     >
       <div>
         <h3 id={titleId} className="text-h2">
@@ -64,10 +64,12 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
         {email ? (
           <a
             href={`mailto:${email}?subject=${subject}`}
-            className={buttonVariants({
-              size: "lg",
-              className: "mt-8 h-auto min-h-12 py-2 text-left whitespace-normal",
-            })}
+            // cn() so whitespace-normal replaces the button's whitespace-nowrap:
+            // the label includes the job title and must wrap on phones.
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "mt-8 h-auto min-h-12 py-2 text-left whitespace-normal",
+            )}
           >
             <Mail className="size-5" aria-hidden />
             {t("apply", { title })}

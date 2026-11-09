@@ -6,7 +6,7 @@ import { BlogListing } from "@/components/sections/BlogListing";
 import { BlogPostView } from "@/components/sections/BlogPostView";
 import { blogTags } from "@/content/blog-tags";
 import { blogPage } from "@/content/pages";
-import { routing } from "@/i18n/routing";
+import { prefixedLocales, routing } from "@/i18n/routing";
 import { blogPaths, getPosts, resolveBlogPath, usedTags } from "@/lib/blog";
 import { pageMetadata } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ import { pageMetadata } from "@/lib/seo";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) => blogPaths().map((path) => ({ locale, path })));
+  return prefixedLocales.flatMap((locale) => blogPaths().map((path) => ({ locale, path })));
 }
 
 export async function generateMetadata({

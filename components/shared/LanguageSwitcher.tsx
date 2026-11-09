@@ -1,9 +1,10 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import NextLink from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { Link, usePathname } from "@/i18n/navigation";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
@@ -35,10 +36,12 @@ function SwitcherLinks({ labels = "short", className, query }: SwitcherLinksProp
         const isCurrent = locale === current;
         const label = labels === "short" ? t(locale) : t(fullLabelKey[locale]);
         return (
-          <Link
+          <NextLink
             key={locale}
-            href={{ pathname, query }}
-            locale={locale}
+            // getPathname, not next-intl's Link with `locale`: that adds /en
+            // for English so a middleware can store the choice, and a static
+            // site has none. English is served without a prefix.
+            href={getPathname({ href: { pathname, query }, locale })}
             lang={locale}
             hrefLang={locale}
             aria-current={isCurrent ? "true" : undefined}
@@ -52,7 +55,7 @@ function SwitcherLinks({ labels = "short", className, query }: SwitcherLinksProp
             )}
           >
             {label}
-          </Link>
+          </NextLink>
         );
       })}
     </div>
