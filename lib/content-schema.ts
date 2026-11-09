@@ -105,7 +105,7 @@ export const order = z
 
 export const icon = z.enum(contentIcons, `must be one of: ${contentIcons.join(", ")}`);
 
-/** Parses one language of a content file, or fails the build with every problem listed. */
+/** Parses a content file, or fails the build with every problem listed. */
 export function parseContent<T extends z.ZodType>(
   schema: T,
   data: unknown,
@@ -118,40 +118,6 @@ export function parseContent<T extends z.ZodType>(
     return `  - "${field.join("").replace(/^\./, "") || "(file)"}" ${issue.message}`;
   });
   throw new Error(`content/${file} has problems:\n${problems.join("\n")}`);
-}
-
-/** Pairs English and Bangla list items; both languages must have the same number. */
-export function pairLists<E, B, R>(
-  en: E[],
-  bn: B[],
-  file: string,
-  field: string,
-  combine: (en: E, bn: B) => R,
-): R[] {
-  if (en.length !== bn.length) {
-    throw new Error(
-      `content/${file}: "${field}" has ${en.length} item(s) in English but ${bn.length} in Bangla. ` +
-        "Add or remove items so both languages have the same list, in the same order.",
-    );
-  }
-  return en.map((item, i) => combine(item, bn[i]));
-}
-
-/** An optional translated field: if English is set, Bangla must be too. */
-export function pairOptional(
-  en: string | undefined,
-  bn: string | undefined,
-  file: string,
-  field: string,
-): { en: string; bn: string } | undefined {
-  if (!en && !bn) return undefined;
-  if (!en || !bn) {
-    throw new Error(
-      `content/${file}: "${field}" is filled in ${en ? "English" : "Bangla"} only. ` +
-        "Fill it in both languages, or clear both.",
-    );
-  }
-  return { en, bn };
 }
 
 /** Sorts by the "order" field, then by `key` so equal orders stay stable. */

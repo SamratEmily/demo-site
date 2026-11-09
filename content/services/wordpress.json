@@ -1,34 +1,20 @@
 {
-  "en": {
-    "order": 40,
-    "icon": "panels-top-left",
-    "title": "WordPress and WooCommerce",
-    "summary": "Websites your team can update without a developer, custom themes and plugins, and WooCommerce stores.",
-    "description": "For company websites, news sites and smaller stores, WordPress lets your team publish pages and posts on their own. We build custom themes that load quickly, write plugins when you need something WordPress can't do, and keep the number of third-party plugins low so the site stays secure.",
-    "included": [
-      "Custom theme built from your design",
-      "Custom plugins for features WordPress doesn't have",
-      "WooCommerce store setup",
-      "Bangla and English content",
-      "Training so your team can update the site"
-    ],
-    "technologies": [
-      "WordPress",
-      "WooCommerce",
-      "MySQL",
-      "Nginx"
-    ]
-  },
-  "bn": {
-    "title": "WordPress ও WooCommerce",
-    "summary": "ডেভেলপার ছাড়াই আপনার টিম আপডেট করতে পারবে এমন ওয়েবসাইট, কাস্টম থিম ও প্লাগইন, এবং WooCommerce স্টোর।",
-    "description": "কোম্পানির ওয়েবসাইট, নিউজ সাইট বা ছোট অনলাইন স্টোরের জন্য WordPress ব্যবহার করলে আপনার টিম নিজেরাই পেজ ও পোস্ট প্রকাশ করতে পারে। আমরা দ্রুত লোড হয় এমন কাস্টম থিম তৈরি করি, WordPress-এ যা নেই তার জন্য প্লাগইন লিখি, এবং বাইরের প্লাগইন কম রাখি যাতে সাইট নিরাপদ থাকে।",
-    "included": [
-      "আপনার ডিজাইন অনুযায়ী কাস্টম থিম",
-      "WordPress-এ নেই এমন ফিচারের জন্য কাস্টম প্লাগইন",
-      "WooCommerce স্টোর সেটআপ",
-      "বাংলা ও ইংরেজি কনটেন্ট",
-      "আপনার টিম যাতে সাইট আপডেট করতে পারে সেজন্য প্রশিক্ষণ"
-    ]
-  }
+  "order": 40,
+  "icon": "panels-top-left",
+  "title": "WordPress and WooCommerce",
+  "summary": "Websites your team can update without a developer, custom themes and plugins, and WooCommerce stores.",
+  "description": "For company websites, news sites and smaller stores, WordPress lets your team publish pages and posts on their own. We build custom themes that load quickly, write plugins when you need something WordPress can't do, and keep the number of third-party plugins low so the site stays secure.",
+  "included": [
+    "Custom theme built from your design",
+    "Custom plugins for features WordPress doesn't have",
+    "WooCommerce store setup",
+    "Bangla and English content",
+    "Training so your team can update the site"
+  ],
+  "technologies": [
+    "WordPress",
+    "WooCommerce",
+    "MySQL",
+    "Nginx"
+  ]
 }

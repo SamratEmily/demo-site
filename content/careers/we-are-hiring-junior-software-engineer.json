@@ -1,13 +1,10 @@
 {
-  "en": {
-    "order": 100,
-    "type": "full-time",
-    "title": "We are hiring Junior Software Engineer",
-    "location": "Pallabi, Dhaka",
-    "responsibilities": [
-      "Manage clients "
-    ],
-    "summary": "Need to support our Customer"
-  },
-  "bn": {}
+  "order": 100,
+  "type": "full-time",
+  "title": "We are hiring Junior Software Engineer",
+  "location": "Pallabi, Dhaka",
+  "responsibilities": [
+    "Manage clients "
+  ],
+  "summary": "Need to support our Customer"
 }

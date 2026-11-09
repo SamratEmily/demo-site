@@ -10,16 +10,12 @@ export interface JsonEntry {
   slug: string;
   /** Path under content/, for error messages. */
   file: string;
-  en: unknown;
-  bn: unknown;
+  data: unknown;
 }
 
 const slugFile = /^([a-z0-9]+(?:-[a-z0-9]+)*)\.json$/;
 
-/**
- * Reads content/<folder>/<slug>.json. The CMS stores both languages in one
- * file: { "en": { ...fields }, "bn": { ...translated fields } }.
- */
+/** Reads content/<folder>/<slug>.json (one entry per file, as the CMS saves it). */
 export function readJsonEntries(folder: string): JsonEntry[] {
   const directory = path.join(process.cwd(), "content", folder);
   if (!fs.existsSync(directory)) return [];
@@ -36,23 +32,18 @@ export function readJsonEntries(folder: string): JsonEntry[] {
           `content/${file}: file names must be lowercase English letters, numbers and dashes.`,
         );
       }
-      return { slug: match[1], file, ...readLocales(file) };
+      return { slug: match[1], file, data: readJson(file) };
     });
 }
 
-/** Reads a single CMS-managed JSON file with { en, bn } at the top. */
-export function readLocales(file: string): { en: unknown; bn: unknown } {
+/** Reads a single CMS-managed JSON file. */
+export function readJson(file: string): unknown {
   const text = fs.readFileSync(path.join(process.cwd(), "content", file), "utf8");
-  let data: unknown;
   try {
-    data = JSON.parse(text);
+    return JSON.parse(text);
   } catch {
     throw new Error(`content/${file} is not valid JSON.`);
   }
-  if (typeof data !== "object" || data === null || !("en" in data)) {
-    throw new Error(`content/${file} must have an "en" section (and a "bn" section).`);
-  }
-  return { en: data.en, bn: "bn" in data ? data.bn : {} };
 }
 
 export interface ImageSize {

@@ -67,7 +67,6 @@ export type ContactData = z.output<typeof contactSchema>;
 
 /** What the form POSTs to /api/contact. */
 export const contactRequestSchema = contactSchema.extend({
-  locale: z.enum(["en", "bn"]),
   turnstileToken: z.string().min(1).max(2048),
   /** Hidden honeypot field; people leave it empty, bots often fill it. */
   website: z.string().max(200).optional(),

@@ -1,35 +1,21 @@
 {
-  "en": {
-    "order": 50,
-    "icon": "wrench",
-    "title": "Maintenance and support",
-    "summary": "Bug fixes, security updates, speed improvements and new features for software you already use, including software we didn't build.",
-    "description": "Software needs care after launch. We fix bugs, apply security updates, make slow pages faster and add features as your business changes. If another team built your software, we start by reviewing the code and telling you plainly what state it is in.",
-    "included": [
-      "Code review and a written report for software we didn't build",
-      "Bug fixes and security updates",
-      "Speed improvements",
-      "Small new features and changes",
-      "Regular backups and uptime checks"
-    ],
-    "technologies": [
-      "Laravel",
-      "WordPress",
-      "React",
-      "Node.js",
-      "MySQL"
-    ]
-  },
-  "bn": {
-    "title": "রক্ষণাবেক্ষণ ও সাপোর্ট",
-    "summary": "আপনার চলমান সফটওয়্যারের বাগ ঠিক করা, সিকিউরিটি আপডেট, গতি বাড়ানো ও নতুন ফিচার যোগ, অন্য কারও তৈরি সফটওয়্যারও।",
-    "description": "লঞ্চের পরেও সফটওয়্যারের যত্ন দরকার। আমরা বাগ ঠিক করি, সিকিউরিটি আপডেট দিই, ধীর পেজ দ্রুত করি এবং আপনার ব্যবসার প্রয়োজনে নতুন ফিচার যোগ করি। আপনার সফটওয়্যার অন্য কোনো টিম তৈরি করে থাকলে, আমরা প্রথমে কোড রিভিউ করি এবং এর অবস্থা আপনাকে সোজাসুজি জানাই।",
-    "included": [
-      "অন্যের তৈরি সফটওয়্যারের কোড রিভিউ ও লিখিত রিপোর্ট",
-      "বাগ ঠিক করা ও সিকিউরিটি আপডেট",
-      "গতি বাড়ানো",
-      "ছোট নতুন ফিচার ও পরিবর্তন",
-      "নিয়মিত ব্যাকআপ ও সাইট চালু আছে কি না তা পরীক্ষা"
-    ]
-  }
+  "order": 50,
+  "icon": "wrench",
+  "title": "Maintenance and support",
+  "summary": "Bug fixes, security updates, speed improvements and new features for software you already use, including software we didn't build.",
+  "description": "Software needs care after launch. We fix bugs, apply security updates, make slow pages faster and add features as your business changes. If another team built your software, we start by reviewing the code and telling you plainly what state it is in.",
+  "included": [
+    "Code review and a written report for software we didn't build",
+    "Bug fixes and security updates",
+    "Speed improvements",
+    "Small new features and changes",
+    "Regular backups and uptime checks"
+  ],
+  "technologies": [
+    "Laravel",
+    "WordPress",
+    "React",
+    "Node.js",
+    "MySQL"
+  ]
 }

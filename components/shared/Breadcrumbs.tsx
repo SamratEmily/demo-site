@@ -1,12 +1,11 @@
 import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 
 interface Crumb {
   label: string;
   /** Omit for the current page. */
   href?: `/${string}`;
-  lang?: string;
 }
 
 interface BreadcrumbsProps {
@@ -30,7 +29,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
                 {item.label}
               </Link>
             ) : (
-              <span aria-current="page" lang={item.lang} className="text-foreground">
+              <span aria-current="page" className="text-foreground">
                 {item.label}
               </span>
             )}

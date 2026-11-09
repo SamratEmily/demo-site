@@ -1,18 +1,14 @@
 import { z } from "zod";
 import { blogTags } from "@/content/blog-tags";
-import { routing, type Locale } from "@/i18n/routing";
 import { imageSizeOf } from "./content-files";
 import { imagePath, isoDate, list, optionalObject, parseContent, text } from "./content-schema";
-import { readLocalizedMdx, type MdxFile } from "./mdx-files";
+import { readMdx, type MdxFile } from "./mdx-files";
 import type { BlogPost, BlogPostMeta, TocItem } from "./types";
 import { slugify } from "./utils";
 
 /**
- * Blog posts live in content/blog/<slug>.<locale>.mdx, edited in the CMS.
- * Frontmatter is checked at build time. The date, tags, cover image and
- * draft flag come from the English file; the Bangla file holds the
- * translated title, summary, author, cover description and body.
- * Posts with `draft: true` are shown by `npm run dev` only and are left out
+ * Blog posts live in content/blog/<slug>.mdx, edited in the CMS.
+ * Frontmatter is checked at build time. Posts with `draft: true` are shown by `npm run dev` only and are left out
  * of `npm run build`, so they never reach production.
  */
 const includeDrafts = process.env.NODE_ENV !== "production";
@@ -30,7 +26,7 @@ const coverAlt = z
   .nullish()
   .transform((value) => value ?? "");
 
-const english = z.object({
+const schema = z.object({
   title: text(120),
   summary: text(300),
   date: isoDate,
@@ -43,34 +39,11 @@ const english = z.object({
     .transform((value) => value === true),
 });
 
-const bangla = z.object({
-  title: text(120),
-  summary: text(300),
-  author: text(80),
-  cover: optionalObject({ alt: coverAlt }),
-});
-
-function parseMeta(files: Record<Locale, MdxFile>): Record<Locale, BlogPostMeta> {
-  const en = parseContent(english, files.en.data, files.en.file);
-  const bn = parseContent(bangla, files.bn.data, files.bn.file);
-  const cover = en.cover && { src: en.cover.src, ...imageSizeOf(en.cover.src, files.en.file) };
-  const shared = { date: en.date, tags: en.tags, draft: en.draft };
-
+function parseMeta({ file, data }: MdxFile): BlogPostMeta {
+  const { cover, ...meta } = parseContent(schema, data, file);
   return {
-    en: {
-      ...shared,
-      title: en.title,
-      summary: en.summary,
-      author: en.author,
-      cover: cover && { ...cover, alt: en.cover?.alt ?? "" },
-    },
-    bn: {
-      ...shared,
-      title: bn.title,
-      summary: bn.summary,
-      author: bn.author,
-      cover: cover && { ...cover, alt: bn.cover?.alt ?? "" },
-    },
+    ...meta,
+    cover: cover && { src: cover.src, ...imageSizeOf(cover.src, file), alt: cover.alt },
   };
 }
 
@@ -96,48 +69,41 @@ function tableOfContents(body: string): TocItem[] {
     }));
 }
 
-const posts = new Map<string, Record<Locale, BlogPost>>();
-for (const [slug, files] of readLocalizedMdx("blog")) {
+const posts = new Map<string, BlogPost>();
+for (const [slug, mdx] of readMdx("blog")) {
   // /blog/tags/… is reserved for tag pages.
   if (slug === "tags") throw new Error('content/blog: "tags" cannot be used as a post slug.');
-  const meta = parseMeta(files);
-  if (meta.en.draft && !includeDrafts) continue;
-  const entry = {} as Record<Locale, BlogPost>;
-  for (const locale of routing.locales) {
-    const { body } = files[locale];
-    entry[locale] = {
-      slug,
-      meta: meta[locale],
-      body,
-      readingMinutes: readingMinutes(body),
-      toc: tableOfContents(body),
-    };
-  }
-  posts.set(slug, entry);
+  const meta = parseMeta(mdx);
+  if (meta.draft && !includeDrafts) continue;
+  posts.set(slug, {
+    slug,
+    meta,
+    body: mdx.body,
+    readingMinutes: readingMinutes(mdx.body),
+    toc: tableOfContents(mdx.body),
+  });
 }
 
 /** Published posts (plus drafts in development), newest first. */
-export function getPosts(locale: Locale): BlogPost[] {
-  return [...posts.values()]
-    .map((entry) => entry[locale])
-    .sort((a, b) => b.meta.date.localeCompare(a.meta.date));
+export function getPosts(): BlogPost[] {
+  return [...posts.values()].sort((a, b) => b.meta.date.localeCompare(a.meta.date));
 }
 
-export function getPost(slug: string, locale: Locale): BlogPost | undefined {
-  return posts.get(slug)?.[locale];
+export function getPost(slug: string): BlogPost | undefined {
+  return posts.get(slug);
 }
 
 export const postSlugs = [...posts.keys()];
 
 /** Tags used by at least one visible post, in the order of content/blog-tags.ts. */
 export function usedTags(): string[] {
-  const used = new Set(getPosts(routing.defaultLocale).flatMap((post) => post.meta.tags));
+  const used = new Set(getPosts().flatMap((post) => post.meta.tags));
   return Object.keys(blogTags).filter((tag) => used.has(tag));
 }
 
 /** Up to `limit` other posts, ranked by shared tags, then by date. */
-export function relatedPosts(post: BlogPost, locale: Locale, limit = 3): BlogPost[] {
-  return getPosts(locale)
+export function relatedPosts(post: BlogPost, limit = 3): BlogPost[] {
+  return getPosts()
     .filter((other) => other.slug !== post.slug)
     .map((other) => ({
       other,
@@ -161,12 +127,12 @@ export function blogPaths(): string[][] {
   return [[], ...postSlugs.map((slug) => [slug]), ...usedTags().map((tag) => ["tags", tag])];
 }
 
-export function resolveBlogPath(path: string[] | undefined, locale: Locale): BlogRoute | null {
+export function resolveBlogPath(path: string[] | undefined): BlogRoute | null {
   const [first, second, ...rest] = path ?? [];
   if (rest.length > 0) return null;
   if (first === undefined) return { kind: "index" };
   if (first === "tags")
     return second && usedTags().includes(second) ? { kind: "tag", tag: second } : null;
-  const post = second === undefined ? getPost(first, locale) : undefined;
+  const post = second === undefined ? getPost(first) : undefined;
   return post ? { kind: "post", post } : null;
 }

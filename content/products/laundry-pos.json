@@ -1,55 +1,30 @@
 {
-  "en": {
-    "order": 40,
-    "name": "Laundry POS System",
-    "status": "in-development",
-    "icon": "washing-machine",
-    "category": "Point of sale for laundries",
-    "summary": "Takes laundry orders at the counter, prints receipts and tags, tracks each order until delivery and records payments.",
-    "problem": "Handwritten slips get lost, clothes get mixed up, and it's hard to tell which orders are ready, which are late and who still has to pay.",
-    "features": [
-      {
-        "icon": "printer",
-        "title": "Orders, receipts and tags",
-        "description": "Take an order in a few taps and print a receipt and item tags."
-      },
-      {
-        "icon": "clipboard",
-        "title": "Order status",
-        "description": "Follow each order from received to washed, ready and delivered."
-      },
-      {
-        "icon": "wallet",
-        "title": "Payments and dues",
-        "description": "Record payments and see which customers still owe money."
-      }
-    ],
-    "audience": [
-      "Laundry and dry-cleaning shops",
-      "Businesses with more than one collection point"
-    ]
-  },
-  "bn": {
-    "category": "লন্ড্রির জন্য POS",
-    "summary": "কাউন্টারে লন্ড্রি অর্ডার নেয়, রসিদ ও ট্যাগ প্রিন্ট করে, ডেলিভারি পর্যন্ত প্রতিটি অর্ডার ট্র্যাক করে এবং পেমেন্টের হিসাব রাখে।",
-    "problem": "হাতে লেখা স্লিপ হারিয়ে যায়, কাপড় মিশে যায়, আর কোন অর্ডার তৈরি, কোনটা দেরি হচ্ছে, কে এখনো টাকা দেননি তা বোঝা কঠিন হয়।",
-    "features": [
-      {
-        "title": "অর্ডার, রসিদ ও ট্যাগ",
-        "description": "কয়েক ট্যাপে অর্ডার নিন এবং রসিদ ও কাপড়ের ট্যাগ প্রিন্ট করুন।"
-      },
-      {
-        "title": "অর্ডারের অবস্থা",
-        "description": "গ্রহণ থেকে ধোয়া, তৈরি ও ডেলিভারি পর্যন্ত প্রতিটি অর্ডার দেখুন।"
-      },
-      {
-        "title": "পেমেন্ট ও বকেয়া",
-        "description": "পেমেন্ট লিখে রাখুন এবং কোন কাস্টমারের টাকা বাকি তা দেখুন।"
-      }
-    ],
-    "audience": [
-      "লন্ড্রি ও ড্রাই-ক্লিনিং দোকান",
-      "যাঁদের একাধিক কালেকশন পয়েন্ট আছে"
-    ]
-  }
+  "order": 40,
+  "name": "Laundry POS System",
+  "status": "in-development",
+  "icon": "washing-machine",
+  "category": "Point of sale for laundries",
+  "summary": "Takes laundry orders at the counter, prints receipts and tags, tracks each order until delivery and records payments.",
+  "problem": "Handwritten slips get lost, clothes get mixed up, and it's hard to tell which orders are ready, which are late and who still has to pay.",
+  "features": [
+    {
+      "icon": "printer",
+      "title": "Orders, receipts and tags",
+      "description": "Take an order in a few taps and print a receipt and item tags."
+    },
+    {
+      "icon": "clipboard",
+      "title": "Order status",
+      "description": "Follow each order from received to washed, ready and delivered."
+    },
+    {
+      "icon": "wallet",
+      "title": "Payments and dues",
+      "description": "Record payments and see which customers still owe money."
+    }
+  ],
+  "audience": [
+    "Laundry and dry-cleaning shops",
+    "Businesses with more than one collection point"
+  ]
 }

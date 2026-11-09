@@ -6,7 +6,6 @@ import {
   caseStudyHref,
   productHref,
 } from "@/content/navigation";
-import { routing } from "@/i18n/routing";
 import { getPosts, usedTags } from "@/lib/blog";
 import { caseStudySlugs } from "@/lib/case-studies";
 import { products } from "@/lib/products";
@@ -15,22 +14,16 @@ import { pageUrl } from "@/lib/seo";
 export const dynamic = "force-static";
 
 /**
- * /sitemap.xml, generated at build time: every public page in both
- * languages, with hreflang alternates. Draft posts are left out (getPosts
- * skips them in production) and /admin is never listed.
+ * /sitemap.xml, generated at build time: every public page. Draft posts are
+ * left out (getPosts skips them in production) and /admin is never listed.
  */
 function entries(path: string, lastModified?: string): MetadataRoute.Sitemap {
-  const languages = Object.fromEntries(routing.locales.map((l) => [l, pageUrl(l, path)]));
-  return routing.locales.map((locale) => ({
-    url: pageUrl(locale, path),
-    ...(lastModified ? { lastModified } : {}),
-    alternates: { languages },
-  }));
+  return [{ url: pageUrl(path), ...(lastModified ? { lastModified } : {}) }];
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["/", "/products", "/services", "/case-studies", "/about", "/careers", "/contact"];
-  const posts = getPosts(routing.defaultLocale);
+  const posts = getPosts();
 
   return [
     ...pages.flatMap((path) => entries(path)),

@@ -16,7 +16,6 @@ declare global {
 
 interface TurnstileProps {
   siteKey: string;
-  locale: string;
   /** Called with a token when the check passes, and with null when it expires or fails. */
   onToken: (token: string | null) => void;
   /** Change this number to get a fresh token (tokens work only once). */
@@ -44,7 +43,7 @@ function loadTurnstile(): Promise<TurnstileApi> {
 }
 
 /** Cloudflare Turnstile check. Usually invisible to people; shows a checkbox only when unsure. */
-export function Turnstile({ siteKey, locale, onToken, resetKey }: TurnstileProps) {
+export function Turnstile({ siteKey, onToken, resetKey }: TurnstileProps) {
   const container = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | null>(null);
   const onTokenRef = useRef(onToken);
@@ -61,7 +60,7 @@ export function Turnstile({ siteKey, locale, onToken, resetKey }: TurnstileProps
         const dark = document.documentElement.classList.contains("dark");
         widgetId.current = api.render(container.current, {
           sitekey: siteKey,
-          language: locale,
+          language: "en",
           theme: dark ? "dark" : "light",
           size: "flexible",
           callback: (token: string) => onTokenRef.current(token),
@@ -76,7 +75,7 @@ export function Turnstile({ siteKey, locale, onToken, resetKey }: TurnstileProps
       if (widgetId.current) window.turnstile?.remove(widgetId.current);
       widgetId.current = null;
     };
-  }, [siteKey, locale]);
+  }, [siteKey]);
 
   useEffect(() => {
     if (resetKey === 0 || !widgetId.current) return;

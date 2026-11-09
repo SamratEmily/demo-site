@@ -77,7 +77,6 @@ function emailContent(data: ContactRequest) {
     ["Company", data.company || "—"],
     ["Interested in", data.interest],
     ["Budget", data.budget || "—"],
-    ["Site language", data.locale === "bn" ? "Bangla" : "English"],
   ];
   const text = `${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n\nMessage:\n${data.message}\n`;
   const html = `<table cellpadding="6" style="border-collapse:collapse;font-family:sans-serif;font-size:14px">${rows

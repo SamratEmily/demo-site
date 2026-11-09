@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { caseStudyHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import type { CaseStudy } from "@/lib/types";
 import { CaseStudyFacts } from "./CaseStudyFacts";
 

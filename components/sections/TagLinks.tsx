@@ -1,7 +1,7 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { blogTags } from "@/content/blog-tags";
 import { blogHref, blogTagHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 interface TagLinksProps {
@@ -17,7 +17,6 @@ const activePill = "border-primary bg-primary text-primary-foreground hover:bg-p
 /** "All posts" plus one link per tag; the current one is highlighted. */
 export function TagLinks({ tags, active }: TagLinksProps) {
   const t = useTranslations("blog");
-  const locale = useLocale();
   if (tags.length === 0) return null;
 
   return (
@@ -39,7 +38,7 @@ export function TagLinks({ tags, active }: TagLinksProps) {
               aria-current={active === tag ? "page" : undefined}
               className={cn(pill, active === tag && activePill)}
             >
-              {blogTags[tag][locale]}
+              {blogTags[tag]}
             </Link>
           </li>
         ))}

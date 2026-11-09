@@ -19,7 +19,6 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "menuTitle": "Menu",
-    "language": "Language",
     "theme": "Theme"
   },
   "theme": {
@@ -27,13 +26,6 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
-  },
-  "language": {
-    "label": "Choose language",
-    "en": "EN",
-    "bn": "বাং",
-    "enFull": "English",
-    "bnFull": "বাংলা"
   },
   "footer": {
     "products": "Products",

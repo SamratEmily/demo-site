@@ -8,7 +8,7 @@ interface TechListProps {
 /** Technology names as small code-style tags. Names stay in English. */
 export function TechList({ items, className }: TechListProps) {
   return (
-    <ul className={cn("flex flex-wrap gap-2", className)} lang="en">
+    <ul className={cn("flex flex-wrap gap-2", className)}>
       {items.map((item) => (
         <li
           key={item}

@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { mainNav } from "@/content/navigation";
-import { Link, usePathname } from "@/i18n/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface MainNavProps {

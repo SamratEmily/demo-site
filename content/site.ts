@@ -5,7 +5,7 @@ import settings from "./settings.json";
 
 /**
  * The live site's address, from content/settings.json (CMS: Site settings →
- * Website address). Every absolute URL (canonical, hreflang, Open Graph,
+ * Website address). Every absolute URL (canonical, Open Graph,
  * sitemap, JSON-LD, CMS login) is built from it. It must match the URLs in
  * public/admin/config.yml; next.config.ts checks that at build time.
  */
@@ -21,13 +21,8 @@ function siteOrigin(value: unknown): string {
 
 export const site: SiteConfig = {
   name: "Beacon Soft Ltd.",
-  url: siteOrigin(settings.en.site.url),
-  tagline: {
-    en: "Building reliable software that lights the way.",
-    bn: "নির্ভরযোগ্য সফটওয়্যার, যা পথ দেখায়।",
-  },
-  description: {
-    en: "We build custom web applications, APIs, e-commerce and WordPress solutions, and maintain software for businesses.",
-    bn: "আমরা ব্যবসার জন্য কাস্টম ওয়েব অ্যাপ্লিকেশন, API, ই-কমার্স ও WordPress সমাধান তৈরি করি এবং সফটওয়্যার রক্ষণাবেক্ষণ করি।",
-  },
+  url: siteOrigin(settings.site.url),
+  tagline: "Building reliable software that lights the way.",
+  description:
+    "We build custom web applications, APIs, e-commerce and WordPress solutions, and maintain software for businesses.",
 };

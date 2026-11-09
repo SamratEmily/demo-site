@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CheckList } from "@/components/shared/CheckList";
 import { ContentIcon } from "@/components/shared/ContentIcon";
@@ -14,9 +14,8 @@ interface ServiceDetailProps {
 /** One service: what it is on the left, what you get on the right. */
 export function ServiceDetail({ service }: ServiceDetailProps) {
   const t = useTranslations("services");
-  const locale = useLocale();
   const titleId = `${service.slug}-title`;
-  const title = service.title[locale];
+  const title = service.title;
 
   return (
     <section
@@ -29,7 +28,7 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
         <h2 id={titleId} className="mt-5 text-h2">
           {title}
         </h2>
-        <p className="mt-5 max-w-xl text-lead">{service.description[locale]}</p>
+        <p className="mt-5 max-w-xl text-lead">{service.description}</p>
         <ButtonLink
           href={serviceQuoteHref(service.slug)}
           variant="outline"
@@ -41,12 +40,12 @@ export function ServiceDetail({ service }: ServiceDetailProps) {
 
       <div className="flex flex-col gap-10 lg:pt-14">
         <div>
-          <h3 className="text-h3">{servicesPage.includedTitle[locale]}</h3>
-          <CheckList className="mt-5" items={service.included.map((item) => item[locale])} />
+          <h3 className="text-h3">{servicesPage.includedTitle}</h3>
+          <CheckList className="mt-5" items={service.included.map((item) => item)} />
         </div>
         {service.technologies.length > 0 ? (
           <div>
-            <h3 className="text-h3">{servicesPage.technologiesTitle[locale]}</h3>
+            <h3 className="text-h3">{servicesPage.technologiesTitle}</h3>
             <TechList className="mt-4" items={service.technologies} />
           </div>
         ) : null}

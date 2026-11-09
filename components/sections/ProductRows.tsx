@@ -1,8 +1,7 @@
 import { ArrowRight } from "lucide-react";
-import { useLocale } from "next-intl";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { productHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import type { Product } from "@/lib/types";
 
 interface ProductRowsProps {
@@ -11,8 +10,6 @@ interface ProductRowsProps {
 
 /** Products as a scannable list of rows, each linking to its page. */
 export function ProductRows({ products }: ProductRowsProps) {
-  const locale = useLocale();
-
   return (
     <ul className="border-b">
       {products.map((product) => (
@@ -23,14 +20,12 @@ export function ProductRows({ products }: ProductRowsProps) {
           >
             <span className="flex flex-col gap-1">
               <span className="flex flex-wrap items-center gap-3">
-                <span className="text-h3 font-semibold" lang="en">
-                  {product.name}
-                </span>
+                <span className="text-h3 font-semibold">{product.name}</span>
                 <StatusBadge status={product.status} />
               </span>
-              <span className="text-sm text-muted-foreground">{product.category[locale]}</span>
+              <span className="text-sm text-muted-foreground">{product.category}</span>
             </span>
-            <span className="text-muted-foreground">{product.summary[locale]}</span>
+            <span className="text-muted-foreground">{product.summary}</span>
             <ArrowRight
               className="hidden size-5 text-primary transition-transform group-hover:translate-x-1 sm:block"
               aria-hidden

@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { BrowserFrame } from "@/components/shared/BrowserFrame";
 import type { GalleryImage } from "@/lib/types";
@@ -9,13 +9,12 @@ interface ProductGalleryProps {
 
 function Shot({ image, portrait }: { image: GalleryImage; portrait: boolean }) {
   const t = useTranslations("product");
-  const locale = useLocale();
   const picture = (
     <Image
       src={image.src}
       width={image.width}
       height={image.height}
-      alt={image.alt[locale]}
+      alt={image.alt}
       sizes={portrait ? "(min-width: 1024px) 280px, 70vw" : "(min-width: 1024px) 420px, 100vw"}
       className="block h-auto w-full"
     />
@@ -31,7 +30,7 @@ function Shot({ image, portrait }: { image: GalleryImage; portrait: boolean }) {
         <BrowserFrame>{picture}</BrowserFrame>
       )}
       <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
-        <span className="font-medium">{image.caption[locale]}</span>
+        <span className="font-medium">{image.caption}</span>
         <a
           href={image.src}
           className="inline-flex min-h-11 items-center text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"

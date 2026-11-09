@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
-import { routing, type Locale } from "@/i18n/routing";
-
-const ogLocale: Record<Locale, string> = { en: "en_US", bn: "bn_BD" };
 
 export interface OgImage {
   url: string;
@@ -19,19 +16,14 @@ export const defaultOgImage: OgImage = {
   alt: site.name,
 };
 
-/**
- * Absolute URL of a page. English has no prefix, other locales do:
- * ("en", "/products") → https://…/products/, ("bn", "/products") → https://…/bn/products/
- */
-export function pageUrl(locale: Locale, path: string): string {
+/** Absolute URL of a page, e.g. "/products" → https://…/products/ */
+export function pageUrl(path: string): string {
   const clean = path === "/" ? "" : path.replace(/\/$/, "");
-  const prefix = locale === routing.defaultLocale ? "" : `/${locale}`;
-  return `${site.url}${prefix}${clean}/`;
+  return `${site.url}${clean}/`;
 }
 
 interface PageMetadataInput {
-  locale: Locale;
-  /** Path without locale, e.g. "/products/gari-becho". */
+  /** e.g. "/products/gari-becho". */
   path: string;
   title: string;
   description: string;
@@ -42,9 +34,8 @@ interface PageMetadataInput {
   article?: { publishedTime: string; authors: string[]; tags: string[] };
 }
 
-/** Title, description, canonical, hreflang alternates, Open Graph and Twitter. */
+/** Title, description, canonical URL, Open Graph and Twitter. */
 export function pageMetadata({
-  locale,
   path,
   title,
   description,
@@ -52,21 +43,15 @@ export function pageMetadata({
   image = defaultOgImage,
   article,
 }: PageMetadataInput): Metadata {
-  const languages = Object.fromEntries(routing.locales.map((l) => [l, pageUrl(l, path)]));
-
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
-    alternates: {
-      canonical: pageUrl(locale, path),
-      languages: { ...languages, "x-default": pageUrl(routing.defaultLocale, path) },
-    },
+    alternates: { canonical: pageUrl(path) },
     openGraph: {
       ...(article ? { type: "article" as const, ...article } : { type: "website" as const }),
       siteName: site.name,
-      locale: ogLocale[locale],
-      alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => ogLocale[l]),
-      url: pageUrl(locale, path),
+      locale: "en_US",
+      url: pageUrl(path),
       title,
       description,
       images: [image],

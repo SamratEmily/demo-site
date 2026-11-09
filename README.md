@@ -1,6 +1,6 @@
 # Beacon Soft Ltd. website
 
-The company website for Beacon Soft Ltd., in English (at the root: `/`, `/about`, …) and Bangla (`/bn`, `/bn/about`, …).
+The company website for Beacon Soft Ltd., in English.
 It is a static site: Next.js builds every page to plain HTML in `out/`, and
 Cloudflare Pages serves it. The only server code is three small Cloudflare Pages
 Functions: the contact form and the content manager login.
@@ -62,28 +62,26 @@ Before every commit: `npm run lint`, `npm run typecheck`, `npm run format:check`
 
 ```
 app/
-  [locale]/            The pages: home, products, services, case-studies,
-                       about, blog, careers, contact. Builds /bn only.
-  (default)/           English at the root (/, /about, …): thin wrappers that
-                       reuse the [locale] pages with the locale set to "en"
-  layout.tsx           Pass-through root layout (<html> is set per language)
+  page.tsx, about/, products/, services/, case-studies/, blog/, careers/,
+  contact/             The pages
+  layout.tsx           Root layout: <html>, header, footer, theme
   sitemap.ts, robots.ts, manifest.ts   Generated at build time
   not-found.tsx        404 page
 components/
   ui/                  shadcn/ui primitives
   sections/            Page sections (HomeHero, ProductRows, ContactForm, …)
-  shared/              Header, footer, logo, language switcher, theme toggle, …
+  shared/              Header, footer, logo, theme toggle, …
 content/               All site text and data (see "How content works")
-messages/              en.json, bn.json: interface labels (buttons, nav, form)
+messages/              en.json: interface labels (buttons, nav, form)
 lib/                   Content loaders with zod checks, types, SEO and JSON-LD
                        helpers, utilities
-i18n/                  next-intl routing and setup
+i18n/                  next-intl setup (loads messages/en.json)
 functions/api/         Cloudflare Pages Functions
   contact.ts           Contact form: checks input and Turnstile, sends with Resend
   auth.ts, callback.ts Content manager login with GitHub
 public/
   _headers             Security headers (CSP etc.) and caching
-  _redirects           Old /en/... links → the same page without /en
+  _redirects           Old /en/... and /bn/... links → the same page without the prefix
   admin/               Content manager (index.html, config.yml)
   images/, og/, icons/, brand/   Images, social share images, app icons
   uploads/             Images uploaded in the content manager
@@ -93,34 +91,28 @@ brand/                 Original brand files (not published)
 
 ### Adding a page
 
-A page needs two files: the page itself in `app/[locale]/<name>/page.tsx` (it serves
-`/bn/<name>/`), and a wrapper in `app/(default)/<name>/page.tsx` that serves the English
-version at `/<name>/`. Copy an existing wrapper such as `app/(default)/about/page.tsx`.
-Add the page to `app/sitemap.ts` too.
+Create `app/<name>/page.tsx` (it serves `/<name>/`), with a `generateMetadata` like the
+other pages, and add the page to `app/sitemap.ts`.
 
 ## How content works
 
 No marketing text lives in components. It's in three places:
 
-1. **`content/`, edited in the content manager.** These files are JSON or Markdown, and
-   each holds both languages:
+1. **`content/`, edited in the content manager.** These files are JSON or Markdown:
    - `settings.json`: site address, company details, contact details, WhatsApp, social
      links.
    - `products/`, `services/`, `team/`, `testimonials/`, `careers/`: one `<slug>.json`
-     per entry, shaped `{ "en": { …all fields }, "bn": { …translated fields } }`.
-     Shared fields such as images, links and order come from `en`.
-   - `blog/` and `case-studies/`: one Markdown file per language, `<slug>.en.mdx` and
-     `<slug>.bn.mdx`.
+     per entry.
+   - `blog/` and `case-studies/`: one Markdown file per entry, `<slug>.mdx`.
 2. **`content/*.ts`, changed in code only:** `site.ts`, `home.ts`, `pages.ts`,
    `values.ts`, `process.ts`, `contact.ts`, `blog-tags.ts` and
-   `navigation.ts`. Text there uses `{ en: "…", bn: "…" }`.
-3. **`messages/en.json` and `messages/bn.json`:** short interface labels such as buttons,
+   `navigation.ts`.
+3. **`messages/en.json`:** short interface labels such as buttons,
    navigation and form errors.
 
 **Content is checked at build time.** The loaders in `lib/` (`settings.ts`,
 `products.ts`, `services.ts`, `blog.ts`, …) check every file with zod: required fields,
-email and phone formats, `https://` links, that images exist, and that English and
-Bangla lists match. A mistake stops `npm run build` with a message naming the file and
+email and phone formats, `https://` links and that images exist. A mistake stops `npm run build` with a message naming the file and
 field, so a broken edit never reaches the live site.
 
 A few more rules:
@@ -129,7 +121,6 @@ A few more rules:
   appears only once a number is set.
 - **Don't invent facts.** Anything not yet confirmed (client names, figures, dates) is a
   visible `[TODO: …]` placeholder, listed in `TODO.md`.
-- **Product and technology names stay in English** on Bangla pages.
 - **Blog drafts:** a post with `draft: true` appears in `npm run dev` only.
 
 When you add a field to a CMS-managed collection, change the loader schema in `lib/` and
@@ -212,10 +203,9 @@ gets a preview address.
 
 ### What Cloudflare does on each deploy
 
-1. Runs `npm run build`. This checks all content, generates every page in both
-   languages, the sitemap, `robots.txt` and the manifest, and writes them to `out/`.
+1. Runs `npm run build`. This checks all content, generates every page, the sitemap, `robots.txt` and the manifest, and writes them to `out/`.
 2. Publishes `out/` with its `_headers` (security headers, caching) and `_redirects`
-   (old `/en/...` links → the same page without `/en`).
+   (old `/en/...` and `/bn/...` links → the same page without the prefix).
 3. Deploys `functions/api/*` as Pages Functions at `/api/contact`, `/api/auth` and
    `/api/callback`.
 

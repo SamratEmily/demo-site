@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { getProduct } from "@/lib/products";
 import { productHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import type { CaseStudyMeta } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -26,13 +26,13 @@ export function CaseStudyFacts({ meta, linkProduct = true, className }: CaseStud
           value: linkProduct ? (
             <Link
               href={productHref(product.slug)}
-              lang="en"
+
               className="text-primary underline underline-offset-4 hover:no-underline focus-visible:ring-3 focus-visible:ring-ring focus-visible:outline-none"
             >
               {product.name}
             </Link>
           ) : (
-            <span lang="en">{product.name}</span>
+            <span>{product.name}</span>
           ),
         }
       : null,

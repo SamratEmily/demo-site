@@ -1,34 +1,20 @@
 {
-  "en": {
-    "order": 60,
-    "icon": "server",
-    "title": "Deployment and hosting setup",
-    "summary": "Servers, Docker, automated deployments and backups set up so releases are repeatable and your site stays online.",
-    "description": "We set up the servers your software runs on and the steps that put new versions live, so a release is one predictable step instead of a late-night manual job. Backups run on a schedule, and you get a short document explaining how everything is set up.",
-    "included": [
-      "Server setup on AWS or your existing hosting",
-      "Docker containers for consistent environments",
-      "Automated deployments from your code repository",
-      "SSL certificates and basic security hardening",
-      "Scheduled backups and a setup document"
-    ],
-    "technologies": [
-      "Docker",
-      "Nginx",
-      "AWS",
-      "GitHub Actions"
-    ]
-  },
-  "bn": {
-    "title": "ডিপ্লয়মেন্ট ও হোস্টিং সেটআপ",
-    "summary": "সার্ভার, Docker, অটোমেটেড ডিপ্লয়মেন্ট ও ব্যাকআপ সেটআপ, যাতে প্রতিটি রিলিজ নির্ভরযোগ্য হয় এবং সাইট সবসময় চালু থাকে।",
-    "description": "আপনার সফটওয়্যার যে সার্ভারে চলে এবং নতুন ভার্সন লাইভ করার ধাপগুলো আমরা সেটআপ করি, যাতে রিলিজ মানে রাত জেগে হাতে কাজ নয়, বরং একটি নির্ভরযোগ্য ধাপ। নির্দিষ্ট সময়ে ব্যাকআপ হয়, আর সবকিছু কীভাবে সেটআপ করা আছে তার একটি ছোট ডকুমেন্ট আপনাকে দেওয়া হয়।",
-    "included": [
-      "AWS বা আপনার বর্তমান হোস্টিংয়ে সার্ভার সেটআপ",
-      "সব জায়গায় একই পরিবেশের জন্য Docker কন্টেইনার",
-      "কোড রিপোজিটরি থেকে অটোমেটেড ডিপ্লয়মেন্ট",
-      "SSL সার্টিফিকেট ও প্রাথমিক নিরাপত্তা ব্যবস্থা",
-      "নির্ধারিত ব্যাকআপ ও সেটআপ ডকুমেন্ট"
-    ]
-  }
+  "order": 60,
+  "icon": "server",
+  "title": "Deployment and hosting setup",
+  "summary": "Servers, Docker, automated deployments and backups set up so releases are repeatable and your site stays online.",
+  "description": "We set up the servers your software runs on and the steps that put new versions live, so a release is one predictable step instead of a late-night manual job. Backups run on a schedule, and you get a short document explaining how everything is set up.",
+  "included": [
+    "Server setup on AWS or your existing hosting",
+    "Docker containers for consistent environments",
+    "Automated deployments from your code repository",
+    "SSL certificates and basic security hardening",
+    "Scheduled backups and a setup document"
+  ],
+  "technologies": [
+    "Docker",
+    "Nginx",
+    "AWS",
+    "GitHub Actions"
+  ]
 }

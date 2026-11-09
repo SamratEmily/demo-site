@@ -1,5 +1,4 @@
 import { site } from "@/content/site";
-import type { Locale } from "@/i18n/routing";
 import { pageUrl } from "./seo";
 import { activeSocialLinks, settings } from "./settings";
 
@@ -13,10 +12,10 @@ export const organizationId = `${site.url}/#organization`;
 
 export const organizationRef = { "@id": organizationId };
 
-/** On every page (app/[locale]/layout.tsx). Contact details come from content/settings.json. */
-export function organizationJsonLd(locale: Locale) {
+/** On every page (app/layout.tsx). Contact details come from content/settings.json. */
+export function organizationJsonLd() {
   const { company, contact } = settings;
-  const address = contact.address[locale];
+  const address = contact.address;
   const contactPoint =
     contact.email || contact.phone
       ? {
@@ -36,7 +35,7 @@ export function organizationJsonLd(locale: Locale) {
     legalName: company.legalName,
     url: site.url,
     logo: `${site.url}/brand/beacon-soft-logo-500.png`,
-    description: site.description[locale],
+    description: site.description,
     ...(company.founded ? { foundingDate: company.founded } : {}),
     ...(contact.email ? { email: contact.email } : {}),
     ...(contact.phone ? { telephone: contact.phone } : {}),
@@ -48,8 +47,8 @@ export function organizationJsonLd(locale: Locale) {
   };
 }
 
-/** Matches the visible breadcrumbs on detail pages. `path` is without the locale. */
-export function breadcrumbJsonLd(locale: Locale, items: { name: string; path: string }[]) {
+/** Matches the visible breadcrumbs on detail pages. */
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -57,7 +56,7 @@ export function breadcrumbJsonLd(locale: Locale, items: { name: string; path: st
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: pageUrl(locale, item.path),
+      item: pageUrl(item.path),
     })),
   };
 }

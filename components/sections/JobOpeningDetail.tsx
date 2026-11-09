@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CheckList } from "@/components/shared/CheckList";
 import { buttonVariants } from "@/components/ui/button";
@@ -22,8 +22,7 @@ const typeKey = {
 /** One open position with its facts, lists and an apply button. */
 export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
   const t = useTranslations("careers");
-  const locale = useLocale();
-  const title = opening.title[locale];
+  const title = opening.title;
   const titleId = `${opening.slug}-title`;
   const lists = [
     { label: t("responsibilities"), items: opening.responsibilities },
@@ -49,18 +48,18 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
           </div>
           <div>
             <dt className="text-muted-foreground">{t("location")}</dt>
-            <dd className="mt-1 font-medium">{opening.location[locale]}</dd>
+            <dd className="mt-1 font-medium">{opening.location}</dd>
           </div>
           {opening.deadline ? (
             <div>
               <dt className="text-muted-foreground">{t("deadline")}</dt>
               <dd className="mt-1 font-medium">
-                <time dateTime={opening.deadline}>{formatDate(opening.deadline, locale)}</time>
+                <time dateTime={opening.deadline}>{formatDate(opening.deadline)}</time>
               </dd>
             </div>
           ) : null}
         </dl>
-        <p className="mt-6 text-lead">{opening.summary[locale]}</p>
+        <p className="mt-6 text-lead">{opening.summary}</p>
         {email ? (
           <a
             href={`mailto:${email}?subject=${subject}`}
@@ -84,7 +83,7 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
         {lists.map((list) => (
           <div key={list.label}>
             <h4 className="text-h3">{list.label}</h4>
-            <CheckList className="mt-4" items={list.items.map((item) => item[locale])} />
+            <CheckList className="mt-4" items={list.items.map((item) => item)} />
           </div>
         ))}
       </div>

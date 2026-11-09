@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { BrandIcon } from "@/components/shared/BrandIcon";
 import type { TeamMember } from "@/lib/types";
@@ -21,14 +21,13 @@ function initials(name: string): string {
  */
 export function TeamList({ members }: TeamListProps) {
   const t = useTranslations("about");
-  const locale = useLocale();
 
   return (
     <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:grid-cols-4">
       {members.map((member) => {
-        const name = member.name[locale];
+        const name = member.name;
         return (
-          <li key={member.name.en}>
+          <li key={member.name}>
             {member.photo ? (
               <Image
                 src={member.photo}
@@ -43,11 +42,11 @@ export function TeamList({ members }: TeamListProps) {
                 aria-hidden
                 className="flex aspect-square w-full items-center justify-center rounded-lg bg-primary/10 text-h2 font-semibold text-primary"
               >
-                {initials(member.name.en)}
+                {initials(member.name)}
               </div>
             )}
             <p className="mt-4 font-semibold">{name}</p>
-            <p className="text-muted-foreground">{member.role[locale]}</p>
+            <p className="text-muted-foreground">{member.role}</p>
             {member.linkedin ? (
               <a
                 href={member.linkedin}

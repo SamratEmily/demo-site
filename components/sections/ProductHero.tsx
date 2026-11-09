@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { BrowserFrame } from "@/components/shared/BrowserFrame";
@@ -18,7 +18,6 @@ interface ProductHeroProps {
 
 export function ProductHero({ product }: ProductHeroProps) {
   const t = useTranslations();
-  const locale = useLocale();
   const shot = product.screenshot;
   const showVisit = product.status === "live" && product.url;
 
@@ -30,21 +29,16 @@ export function ProductHero({ product }: ProductHeroProps) {
       />
       <Container className="py-10 lg:py-16">
         <Breadcrumbs
-          items={[
-            { label: t("product.allProducts"), href: "/products" },
-            { label: product.name, lang: "en" },
-          ]}
+          items={[{ label: t("product.allProducts"), href: "/products" }, { label: product.name }]}
         />
         <div className="mt-6 grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
             <StatusBadge status={product.status} />
-            <h1 id="product-title" className="mt-4 text-h1" lang="en">
+            <h1 id="product-title" className="mt-4 text-h1">
               {product.name}
             </h1>
-            <p className="mt-2 text-lead font-medium text-muted-foreground">
-              {product.category[locale]}
-            </p>
-            <p className="mt-6 max-w-xl text-lead">{product.summary[locale]}</p>
+            <p className="mt-2 text-lead font-medium text-muted-foreground">{product.category}</p>
+            <p className="mt-6 max-w-xl text-lead">{product.summary}</p>
             <div className="mt-8 flex flex-col gap-3 min-[400px]:flex-row">
               <ButtonLink href={demoRequestHref(product.slug)} size="lg">
                 {t("product.requestDemo")}
@@ -67,10 +61,10 @@ export function ProductHero({ product }: ProductHeroProps) {
           {shot ? (
             <BrowserFrame address={product.url ? hostname(product.url) : undefined}>
               <Image
-                src={shot.src[locale]}
+                src={shot.src}
                 width={shot.width}
                 height={shot.height}
-                alt={shot.alt[locale]}
+                alt={shot.alt}
                 preload
                 fetchPriority="high"
                 loading="eager"

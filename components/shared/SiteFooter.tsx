@@ -1,8 +1,8 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { companyNav, productHref } from "@/content/navigation";
 import { site } from "@/content/site";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { products } from "@/lib/products";
 import { activeSocialLinks, settings } from "@/lib/settings";
 import { BrandIcon } from "./BrandIcon";
@@ -36,7 +36,6 @@ interface ContactRow {
 
 function ContactDetails() {
   const t = useTranslations("footer");
-  const locale = useLocale();
   const { email, phone, address, officeHours } = settings.contact;
   const candidates: (ContactRow | "" | false)[] = [
     email && {
@@ -55,8 +54,8 @@ function ContactDetails() {
         </a>
       ),
     },
-    address[locale] && { label: t("address"), value: <span>{address[locale]}</span> },
-    officeHours[locale] && { label: t("officeHours"), value: <span>{officeHours[locale]}</span> },
+    address && { label: t("address"), value: <span>{address}</span> },
+    officeHours && { label: t("officeHours"), value: <span>{officeHours}</span> },
   ];
   // Empty settings fields are skipped, so nothing unfilled reaches visitors.
   const rows = candidates.filter((row): row is ContactRow => Boolean(row));
@@ -85,7 +84,6 @@ function ContactDetails() {
 
 export function SiteFooter() {
   const t = useTranslations();
-  const locale = useLocale();
   const year = new Date().getFullYear();
 
   return (
@@ -93,13 +91,13 @@ export function SiteFooter() {
       <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-24">
         <div>
           <Logo />
-          <p className="mt-4 max-w-xs text-sm text-deep-muted-foreground">{site.tagline[locale]}</p>
+          <p className="mt-4 max-w-xs text-sm text-deep-muted-foreground">{site.tagline}</p>
         </div>
 
         <FooterColumn id="footer-products" title={t("footer.products")}>
           {products.map(({ slug, name }) => (
             <li key={slug}>
-              <Link href={productHref(slug)} className={linkClass} lang="en">
+              <Link href={productHref(slug)} className={linkClass}>
                 {name}
               </Link>
             </li>

@@ -1,8 +1,7 @@
-import { useLocale } from "next-intl";
 import Image from "next/image";
 import { blogTags } from "@/content/blog-tags";
 import { blogPostHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import type { BlogPost } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { PostMeta } from "./PostMeta";
@@ -17,7 +16,6 @@ interface PostListProps {
 
 /** Posts as rows: cover on the left, title, summary and meta on the right. */
 export function PostList({ posts, headingLevel = "h2", compact = false }: PostListProps) {
-  const locale = useLocale();
   const Heading = headingLevel;
 
   return (
@@ -55,7 +53,7 @@ export function PostList({ posts, headingLevel = "h2", compact = false }: PostLi
                 <>
                   <p className="mt-3 max-w-2xl text-muted-foreground">{post.meta.summary}</p>
                   <p className="mt-4 text-sm text-muted-foreground">
-                    {post.meta.tags.map((tag) => blogTags[tag][locale]).join(" · ")}
+                    {post.meta.tags.map((tag) => blogTags[tag]).join(" · ")}
                   </p>
                 </>
               )}

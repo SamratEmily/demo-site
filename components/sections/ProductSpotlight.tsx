@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { BrowserFrame } from "@/components/shared/BrowserFrame";
 import { ButtonLink } from "@/components/shared/ButtonLink";
@@ -11,43 +11,33 @@ import { buttonVariants } from "@/components/ui/button";
 import { home } from "@/content/home";
 import { productHref } from "@/content/navigation";
 import { spotlightProduct } from "@/lib/products";
-import { routing } from "@/i18n/routing";
 import { hostname } from "@/lib/utils";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 
-/** The same screen in both languages, overlapped: shows the bilingual UI at a glance. */
-function BilingualScreens() {
-  const locale = useLocale();
-  const shot = spotlightProduct.screenshot;
-  if (!shot) return null;
-  // Current language in front.
-  const [back, front] = [...routing.locales].sort((a) => (a === locale ? 1 : -1));
+/**
+ * A second look at the product: its first gallery screenshot (the hero
+ * already shows the main one), or the main screenshot if there is no gallery.
+ */
+function SpotlightScreen() {
+  const image = spotlightProduct.gallery?.[0] ?? spotlightProduct.screenshot;
+  if (!image) return null;
 
   return (
-    <div className="relative pr-[10%] pb-[14%]">
-      {[back, front].map((lang, i) => (
-        <BrowserFrame
-          key={lang}
-          className={i === 1 ? "absolute right-0 bottom-0 w-[90%]" : "opacity-90"}
-        >
-          <Image
-            src={shot.src[lang]}
-            width={shot.width}
-            height={shot.height}
-            alt={shot.alt[lang]}
-            lang={lang}
-            sizes="(min-width: 1024px) 560px, 90vw"
-            className="block h-auto w-full"
-          />
-        </BrowserFrame>
-      ))}
-    </div>
+    <BrowserFrame>
+      <Image
+        src={image.src}
+        width={image.width}
+        height={image.height}
+        alt={image.alt}
+        sizes="(min-width: 1024px) 560px, 90vw"
+        className="block h-auto w-full"
+      />
+    </BrowserFrame>
   );
 }
 
 export function ProductSpotlight() {
   const t = useTranslations();
-  const locale = useLocale();
   const product = spotlightProduct;
 
   return (
@@ -56,21 +46,19 @@ export function ProductSpotlight() {
       tone="deep"
       className="relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-brand-cyan/60 before:to-transparent"
     >
-      <SectionHeading id="spotlight-title" title={home.spotlight.title[locale]} />
+      <SectionHeading id="spotlight-title" title={home.spotlight.title} />
 
       <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-h2" lang="en">
-              {product.name}
-            </h3>
+            <h3 className="text-h2">{product.name}</h3>
             <StatusBadge status={product.status} />
           </div>
-          <p className="mt-1 text-muted-foreground">{product.category[locale]}</p>
-          <p className="mt-6 text-lead">{product.summary[locale]}</p>
+          <p className="mt-1 text-muted-foreground">{product.category}</p>
+          <p className="mt-6 text-lead">{product.summary}</p>
           <p className="mt-4 flex items-center gap-2 text-muted-foreground">
             <ContentIcon name="languages" className="size-5 shrink-0" />
-            {home.spotlight.languagesNote[locale]}
+            {home.spotlight.languagesNote}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -97,7 +85,7 @@ export function ProductSpotlight() {
           </div>
         </div>
 
-        <BilingualScreens />
+        <SpotlightScreen />
       </div>
 
       {product.features.length > 0 ? (

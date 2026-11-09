@@ -109,7 +109,7 @@
   /* "Soft" in the wordmark: stripe blue on light (4.7:1), sky blue on dark. */
   --wordmark-accent: var(--brand-stripe);
 
-  /* Inter only; /bn adds Hind Siliguri below (html:lang(bn)). */
+  /* Inter for all text. */
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --radius: 0.625rem;
@@ -224,25 +224,4 @@
       scroll-behavior: auto !important;
     }
   }
-}
-
-/* Bangla font, only on /bn pages: Inter keeps Latin text (product and
-   technology names), Bangla glyphs fall through to Hind Siliguri.
-   .font-bangla opts in a Bangla block on a page that isn't /bn (the 404). */
-html:lang(bn),
-.font-bangla {
-  --font-body: var(--font-inter), var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-fira-code), var(--font-hind-siliguri), ui-monospace, monospace;
-  font-family: var(--font-body);
-}
-
-/* Bangla typography. Unlayered so it beats Tailwind utilities: Bangla vowel
-   signs need taller lines and no negative letter-spacing. */
-:lang(bn) body {
-  font-size: 1.0625rem;
-  line-height: 1.75;
-}
-:lang(bn) :is(h1, h2, h3, h4) {
-  letter-spacing: 0;
-  line-height: 1.35;
 }

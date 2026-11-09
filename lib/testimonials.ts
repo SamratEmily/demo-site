@@ -8,7 +8,7 @@ import type { Testimonial } from "./types";
  * Real quotes only, with the client's written permission to publish. The
  * Home page hides the section while there are none.
  */
-const english = z.object({
+const schema = z.object({
   order,
   quote: text(600),
   name: text(80),
@@ -16,18 +16,9 @@ const english = z.object({
   company: text(120),
 });
 
-const bangla = z.object({ quote: text(600), role: text(80) });
-
-function toTestimonial({ file, ...raw }: JsonEntry) {
-  const en = parseContent(english, raw.en, `${file} (English)`);
-  const bn = parseContent(bangla, raw.bn, `${file} (Bangla)`);
-  const testimonial: Testimonial = {
-    quote: { en: en.quote, bn: bn.quote },
-    name: en.name,
-    role: { en: en.role, bn: bn.role },
-    company: en.company,
-  };
-  return { order: en.order, key: en.name, value: testimonial };
+function toTestimonial({ file, data }: JsonEntry) {
+  const { order, ...testimonial } = parseContent(schema, data, file);
+  return { order, key: testimonial.name, value: testimonial satisfies Testimonial };
 }
 
 export const testimonials: Testimonial[] = inOrder(

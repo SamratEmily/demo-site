@@ -1,9 +1,6 @@
 {
-  "en": {
-    "order": 115,
-    "name": "Samrat Emily",
-    "role": "CTO, Software Engineer",
-    "photo": "/uploads/13-a-pp.jpg"
-  },
-  "bn": {}
+  "order": 115,
+  "name": "Samrat Emily",
+  "role": "CTO, Software Engineer",
+  "photo": "/uploads/13-a-pp.jpg"
 }

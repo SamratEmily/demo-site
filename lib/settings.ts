@@ -7,14 +7,13 @@ import { socialPlatforms, type Settings } from "./types";
  * Loads content/settings.json (edited in the CMS as "Site settings") and
  * checks it at build time, so a mistake fails `npm run build` instead of
  * breaking the live site. Empty values mean "not set yet" and are hidden.
- * "en" holds every field; "bn" holds the Bangla address, hours and greeting.
  */
 const mapEmbed = {
   regex: /^https:\/\/www\.google\.com\/maps\/embed\?\S+$/,
   message: "must be a Google Maps embed link (https://www.google.com/maps/embed?…)",
 };
 
-const english = z.object({
+const schema = z.object({
   site: z.object({
     url: z
       .string("must be text")
@@ -53,37 +52,7 @@ const english = z.object({
     .transform((value) => value ?? []),
 });
 
-const bangla = z.object({
-  contact: z
-    .object({ address: blankable(300), officeHours: blankable(200) })
-    .nullish()
-    .transform((value) => value ?? { address: "", officeHours: "" }),
-  whatsapp: z
-    .object({ greeting: blankable(200) })
-    .nullish()
-    .transform((value) => value ?? { greeting: "" }),
-});
-
-function parse(data: { en: unknown; bn?: unknown }): Settings {
-  const en = parseContent(english, data.en, "settings.json (English)");
-  const bn = parseContent(bangla, data.bn ?? {}, "settings.json (Bangla)");
-  return {
-    site: en.site,
-    company: en.company,
-    contact: {
-      ...en.contact,
-      address: { en: en.contact.address, bn: bn.contact.address },
-      officeHours: { en: en.contact.officeHours, bn: bn.contact.officeHours },
-    },
-    whatsapp: {
-      number: en.whatsapp.number,
-      greeting: { en: en.whatsapp.greeting, bn: bn.whatsapp.greeting },
-    },
-    social: en.social,
-  };
-}
-
-export const settings: Settings = parse(raw);
+export const settings: Settings = parseContent(schema, raw, "settings.json");
 
 /** wa.me link with a pre-filled greeting, or null when no number is set. */
 export function whatsappLink(greeting: string): string | null {

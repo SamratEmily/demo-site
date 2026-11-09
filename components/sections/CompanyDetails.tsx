@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/shared/ButtonLink";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -20,7 +20,6 @@ const linkClass =
 /** Company facts from content/settings.json. Empty values, and an empty section, are left out. */
 export function CompanyDetails({ title }: CompanyDetailsProps) {
   const t = useTranslations();
-  const locale = useLocale();
   const { company, contact } = settings;
 
   const candidates: (DetailRow | false)[] = [
@@ -43,10 +42,10 @@ export function CompanyDetails({ title }: CompanyDetailsProps) {
         </a>
       ),
     },
-    !!contact.address[locale] && { label: t("footer.address"), value: contact.address[locale] },
-    !!contact.officeHours[locale] && {
+    !!contact.address && { label: t("footer.address"), value: contact.address },
+    !!contact.officeHours && {
       label: t("footer.officeHours"),
-      value: contact.officeHours[locale],
+      value: contact.officeHours,
     },
   ];
   const rows = candidates.filter((row): row is DetailRow => row !== false);

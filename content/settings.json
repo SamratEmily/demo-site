@@ -1,47 +1,36 @@
 {
-  "en": {
-    "site": {
-      "url": "https://beaconsoft.com.bd"
-    },
-    "company": {
-      "legalName": "Beacon Soft Ltd.",
-      "founded": "2026",
-      "registration": ""
-    },
-    "contact": {
-      "email": "beaconsoftltd@gmail.com",
-      "careersEmail": "beaconsoftltd@gmail.com",
-      "phone": "+8801973249268",
-      "address": "Mirpur",
-      "officeHours": "",
-      "mapEmbedUrl": ""
-    },
-    "whatsapp": {
-      "number": "",
-      "greeting": "Hello Beacon Soft, I'd like to talk about a project."
-    },
-    "social": [
-      {
-        "platform": "github",
-        "url": ""
-      },
-      {
-        "platform": "linkedin",
-        "url": ""
-      },
-      {
-        "platform": "facebook",
-        "url": ""
-      }
-    ]
+  "site": {
+    "url": "https://beaconsoft.com.bd"
   },
-  "bn": {
-    "contact": {
-      "address": "",
-      "officeHours": ""
+  "company": {
+    "legalName": "Beacon Soft Ltd.",
+    "founded": "2026",
+    "registration": ""
+  },
+  "contact": {
+    "email": "beaconsoftltd@gmail.com",
+    "careersEmail": "beaconsoftltd@gmail.com",
+    "phone": "+8801973249268",
+    "address": "Mirpur",
+    "officeHours": "",
+    "mapEmbedUrl": ""
+  },
+  "whatsapp": {
+    "number": "",
+    "greeting": "Hello Beacon Soft, I'd like to talk about a project."
+  },
+  "social": [
+    {
+      "platform": "github",
+      "url": ""
     },
-    "whatsapp": {
-      "greeting": "হ্যালো Beacon Soft, একটি প্রজেক্ট নিয়ে কথা বলতে চাই।"
+    {
+      "platform": "linkedin",
+      "url": ""
+    },
+    {
+      "platform": "facebook",
+      "url": ""
     }
-  }
+  ]
 }

@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
-import { routing } from "@/i18n/routing";
 
 export const dynamic = "force-static";
 
@@ -15,8 +14,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: site.name,
     short_name: "Beacon Soft",
-    description: site.description.en,
-    lang: routing.defaultLocale,
+    description: site.description,
+    lang: "en",
     start_url: "/",
     scope: "/",
     display: "browser",

@@ -11,7 +11,6 @@ and every published change can be undone.
 - [One-time setup](#one-time-setup) (developer or account owner)
 - [Logging in](#logging-in)
 - [Editing and publishing](#editing-and-publishing)
-- [English and Bangla](#english-and-bangla)
 - [Images](#images)
 - [When a change doesn't appear](#when-a-change-doesnt-appear)
 - [Rolling back a change](#rolling-back-a-change)
@@ -27,7 +26,7 @@ You edit in /admin  →  Save: a draft (a pull request on GitHub)
 ```
 
 Before anything is deployed, the build checks all content: required fields, email and
-phone formats, image files, and that English and Bangla match. If something is wrong, the
+phone formats and image files. If something is wrong, the
 build stops and **the live site stays as it was**. See
 [When a change doesn't appear](#when-a-change-doesnt-appear).
 
@@ -145,7 +144,7 @@ The live site updates about 2–3 minutes later.
 ### Add or remove entries
 
 - **New entry:** open the collection and press **New** (e.g. **New Blog post**). The
-  page address is made from the English name or title when you first save it, and
+  page address is made from the name or title when you first save it, and
   doesn't change afterwards.
 - **Delete:** open the entry and press **Delete**. Like other changes, the deletion goes
   live when published.
@@ -164,24 +163,6 @@ The live site updates about 2–3 minutes later.
 - Never type passwords, API keys or other secrets into any field: everything here is
   saved to GitHub.
 
-## English and Bangla
-
-The editor shows **English on the left and Bangla on the right**. Use **Writing in EN /
-BN** at the top to switch a pane, and **Fill in from another locale** to copy text across
-as a starting point for translation.
-
-- Fill in **both** languages for every text field. Names, links, icons, images, dates and
-  technology names are entered once, in English, and used for both languages.
-- **Lists** (features, steps, questions, "what's included", etc.) need the same number of
-  items, in the same order, in both languages. Add the item in English first, then add
-  its translation at the same position in Bangla.
-- Product names and technology names stay in English on Bangla pages.
-- **Exceptions, open positions and team members:** only English is required. Any Bangla
-  field or list you leave empty shows the English text on the Bangla page, so you can
-  publish first and translate later.
-- For blog posts and case studies, each language is saved as its own file. Both are
-  required.
-
 ## Images
 
 - Upload images with the image field (**Choose an image**). They are saved to
@@ -191,7 +172,6 @@ as a starting point for translation.
 - Give each image a short file name in English, e.g. `gari-becho-invoice.webp`.
 - Write an **image description** saying what the image shows, for people who can't see
   it. Leave it empty only for purely decorative images (allowed for blog covers).
-- The Bangla screenshot of a product must be the same size as the English one.
 - Images inside blog post text aren't supported yet; use the cover image.
 
 ## When a change doesn't appear
@@ -205,12 +185,7 @@ problem and stopped. The live site keeps showing the last good version.
    for example:
 
    ```
-   content/products/gari-becho.json: "features" has 9 item(s) in English but 8 in Bangla.
-   Add or remove items so both languages have the same list, in the same order.
-   ```
-
-   ```
-   content/settings.json (English) has problems:
+   content/settings.json has problems:
      - "contact.phone" must be an international number like +8801XXXXXXXXX (no spaces or dashes)
    ```
 
@@ -245,10 +220,8 @@ without the change.
   When you add or change a field, change the loader schema and `config.yml` together.
   Select options in `config.yml` (icons, statuses, employment types, blog tags) must
   match `lib/types.ts` and `content/blog-tags.ts`.
-- **Storage:** JSON collections keep both languages in one file,
-  `{ "en": { …all fields }, "bn": { …translated fields } }`. Blog posts and case studies
-  use one file per language (`<slug>.en.mdx`, `<slug>.bn.mdx`). Shared fields (dates,
-  tags, images, links) are read from English. Bodies are rendered as Markdown, not MDX,
+- **Storage:** one JSON file per entry (`<slug>.json`); blog posts and case studies are
+  `<slug>.mdx` with frontmatter. Bodies are rendered as Markdown, not MDX,
   so CMS text can't run code at build time.
 - **Prettier** ignores CMS-written content (`.prettierignore`); zod checks it instead.
 - **Login flow:** `functions/api/auth.ts` → GitHub → `functions/api/callback.ts`, shared

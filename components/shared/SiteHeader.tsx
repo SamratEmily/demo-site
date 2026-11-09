@@ -1,10 +1,9 @@
 import { useTranslations } from "next-intl";
 import { quoteHref } from "@/content/navigation";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { ButtonLink } from "./ButtonLink";
 import { Container } from "./Container";
 import { HeaderShell } from "./HeaderShell";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { MainNav } from "./MainNav";
 import { MobileNav } from "./MobileNav";
@@ -29,7 +28,6 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-2">
-          <LanguageSwitcher className="hidden lg:inline-flex" />
           <div className="hidden lg:block">
             <ThemeToggle />
           </div>

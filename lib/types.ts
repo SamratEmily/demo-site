@@ -1,15 +1,9 @@
-/** Text that exists in both site languages. */
-export interface Localized<T = string> {
-  en: T;
-  bn: T;
-}
-
 export interface SiteConfig {
   name: string;
   /** Canonical origin, no trailing slash. Used for SEO URLs. */
   url: string;
-  tagline: Localized;
-  description: Localized;
+  tagline: string;
+  description: string;
 }
 
 export const socialPlatforms = ["github", "linkedin", "facebook"] as const;
@@ -37,15 +31,15 @@ export interface Settings {
     careersEmail: string;
     /** International format, e.g. +8801XXXXXXXXX */
     phone: string;
-    address: Localized;
-    officeHours: Localized;
+    address: string;
+    officeHours: string;
     /** Google Maps embed URL (Share → Embed a map → src). Empty hides the map. */
     mapEmbedUrl: string;
   };
   whatsapp: {
     /** International format, digits only or with +; empty hides the button. */
     number: string;
-    greeting: Localized;
+    greeting: string;
   };
   social: SocialLink[];
 }
@@ -88,29 +82,29 @@ export type ContentIconName = (typeof contentIcons)[number];
 export interface Service {
   slug: string;
   icon: ContentIconName;
-  title: Localized;
+  title: string;
   /** One sentence, used on the Home page. */
-  summary: Localized;
+  summary: string;
   /** A short paragraph, used on the Services page. */
-  description: Localized;
+  description: string;
   /** What the client gets. */
-  included: Localized[];
-  /** Typical technologies; names stay in English. */
+  included: string[];
+  /** Typical technologies. */
   technologies: string[];
 }
 
 export interface Feature {
   icon: ContentIconName;
-  title: Localized;
-  description: Localized;
+  title: string;
+  description: string;
 }
 
 export interface Screenshot {
-  /** Path under /public, one per language (the UI language shown in the image). */
-  src: Localized;
+  /** Path under /public. */
+  src: string;
   width: number;
   height: number;
-  alt: Localized;
+  alt: string;
 }
 
 export interface GalleryImage {
@@ -118,26 +112,24 @@ export interface GalleryImage {
   src: string;
   width: number;
   height: number;
-  alt: Localized;
-  caption: Localized;
-  /** Language of the UI shown in the screenshot. */
-  uiLang: "en" | "bn";
+  alt: string;
+  caption: string;
 }
 
 export interface ProcessStep {
-  title: Localized;
-  description: Localized;
+  title: string;
+  description: string;
 }
 
 export interface FaqItem {
-  question: Localized;
-  answer: Localized;
+  question: string;
+  answer: string;
 }
 
 /** A measured outcome. Only add results you can back up. */
 export interface ProductResult {
-  value: Localized;
-  label: Localized;
+  value: string;
+  label: string;
 }
 
 export const productStatuses = ["live", "in-development"] as const;
@@ -149,23 +141,22 @@ export type ProductStatus = (typeof productStatuses)[number];
  */
 export interface Product {
   slug: string;
-  /** Product names stay in English on Bangla pages (CLAUDE.md §6). */
   name: string;
   status: ProductStatus;
   icon: ContentIconName;
-  category: Localized;
-  summary: Localized;
+  category: string;
+  summary: string;
   /** Public product website, if any. Shown only when status is `live`. */
   url?: string;
-  problem?: Localized;
+  problem?: string;
   howItWorks?: ProcessStep[];
   features: Feature[];
-  /** Main screenshot, one per UI language. */
+  /** Main screenshot. */
   screenshot?: Screenshot;
   gallery?: GalleryImage[];
   /** Video URL; loaded only when the visitor presses play. */
-  video?: { src: string; durationSeconds: number; description?: Localized };
-  audience?: Localized[];
+  video?: { src: string; durationSeconds: number; description?: string };
+  audience?: string[];
   technologies?: string[];
   results?: ProductResult[];
   faq?: FaqItem[];
@@ -173,25 +164,25 @@ export interface Product {
 
 /** Only add testimonials you have written permission to publish. */
 export interface Testimonial {
-  quote: Localized;
+  quote: string;
   name: string;
-  role: Localized;
+  role: string;
   company: string;
 }
 
 export interface SectionCopy {
-  title: Localized;
-  intro?: Localized;
+  title: string;
+  intro?: string;
 }
 
 export interface HomeContent {
   hero: {
-    title: Localized;
-    intro: Localized;
-    caption: Localized;
+    title: string;
+    intro: string;
+    caption: string;
   };
   services: SectionCopy;
-  spotlight: SectionCopy & { languagesNote: Localized };
+  spotlight: SectionCopy & { languagesNote: string };
   products: SectionCopy;
   process: SectionCopy;
   aiDevelopment: SectionCopy & { points: CompanyValue[] };
@@ -209,20 +200,20 @@ export interface NavItem {
 /** A principle we work by (About page). */
 export interface CompanyValue {
   icon: ContentIconName;
-  title: Localized;
-  description: Localized;
+  title: string;
+  description: string;
 }
 
 /** Only add real people who agreed to be listed. */
 export interface TeamMember {
-  name: Localized;
-  role: Localized;
+  name: string;
+  role: string;
   /** Path under /public; square, at least 320×320. Optional. */
   photo?: string;
   linkedin?: string;
 }
 
-/** Frontmatter of content/case-studies/<slug>.<locale>.mdx */
+/** Frontmatter of content/case-studies/<slug>.mdx */
 export interface CaseStudyMeta {
   title: string;
   /** One or two sentences for the index page and meta description. */
@@ -245,7 +236,7 @@ export interface CaseStudy {
   body: string;
 }
 
-/** Frontmatter of content/blog/<slug>.<locale>.mdx */
+/** Frontmatter of content/blog/<slug>.mdx */
 export interface BlogPostMeta {
   title: string;
   /** One or two sentences for the index, meta description and social previews. */
@@ -280,13 +271,13 @@ export type EmploymentType = (typeof employmentTypes)[number];
 /** An open position on the Careers page. Remove it once it is filled. */
 export interface JobOpening {
   slug: string;
-  title: Localized;
+  title: string;
   type: EmploymentType;
-  location: Localized;
-  summary: Localized;
-  responsibilities: Localized[];
-  requirements: Localized[];
-  niceToHave?: Localized[];
+  location: string;
+  summary: string;
+  responsibilities: string[];
+  requirements: string[];
+  niceToHave?: string[];
   /** Last day to apply, YYYY-MM-DD. Optional. */
   deadline?: string;
 }

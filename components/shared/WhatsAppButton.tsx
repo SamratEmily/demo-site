@@ -1,12 +1,11 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { settings, whatsappLink } from "@/lib/settings";
 import { BrandIcon } from "./BrandIcon";
 
 /** Floating WhatsApp chat link. Renders nothing until a number is set in settings.json. */
 export function WhatsAppButton() {
   const t = useTranslations();
-  const locale = useLocale();
-  const href = whatsappLink(settings.whatsapp.greeting[locale]);
+  const href = whatsappLink(settings.whatsapp.greeting);
   if (!href) return null;
 
   return (

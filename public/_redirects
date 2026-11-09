@@ -1,3 +1,5 @@
-# English is served at the root; old /en/ links go to the same page without it.
+# The site is English only, at the root. Old /en/ and /bn/ links go to the same page without the prefix.
 /en      /         301
 /en/*    /:splat   301
+/bn      /         301
+/bn/*    /:splat   301

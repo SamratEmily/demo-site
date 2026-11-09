@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, type BaseSyntheticEvent } from "react";
 import { useForm } from "react-hook-form";
 import { describedBy, FormField } from "@/components/shared/FormField";
@@ -71,7 +71,6 @@ export function ContactForm({
   fallbackEmail,
 }: ContactFormProps) {
   const t = useTranslations("contact");
-  const locale = useLocale();
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [token, setToken] = useState<string | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
@@ -157,7 +156,6 @@ export function ContactForm({
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           ...data,
-          locale,
           turnstileToken: token,
           website: website instanceof HTMLInputElement ? website.value : "",
         }),
@@ -309,12 +307,7 @@ export function ContactForm({
 
       <div className="flex flex-col gap-4 sm:col-span-2">
         {siteKey ? (
-          <Turnstile
-            siteKey={siteKey}
-            locale={locale}
-            onToken={setToken}
-            resetKey={turnstileReset}
-          />
+          <Turnstile siteKey={siteKey} onToken={setToken} resetKey={turnstileReset} />
         ) : (
           <p className="text-sm text-muted-foreground">{t("submitErrors.notConfigured")}</p>
         )}

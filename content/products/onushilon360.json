@@ -1,55 +1,30 @@
 {
-  "en": {
-    "order": 50,
-    "name": "Onushilon360",
-    "status": "in-development",
-    "icon": "school",
-    "category": "University admission preparation",
-    "summary": "A university admission website where students find admission information and prepare with practice questions and model tests.",
-    "problem": "Admission information is scattered across many websites and notices, and students struggle to find reliable practice material in one place.",
-    "features": [
-      {
-        "icon": "file-text",
-        "title": "Admission information",
-        "description": "Dates, requirements and notices for each university in one place."
-      },
-      {
-        "icon": "clipboard",
-        "title": "Practice questions and model tests",
-        "description": "Practise by subject and take timed model tests."
-      },
-      {
-        "icon": "chart",
-        "title": "Results and progress",
-        "description": "See scores over time and the topics that need more work."
-      }
-    ],
-    "audience": [
-      "HSC students preparing for university admission",
-      "Admission coaching centres"
-    ]
-  },
-  "bn": {
-    "category": "বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি",
-    "summary": "বিশ্ববিদ্যালয় ভর্তির ওয়েবসাইট, যেখানে শিক্ষার্থীরা ভর্তির তথ্য পায় এবং অনুশীলনী প্রশ্ন ও মডেল টেস্টে প্রস্তুতি নেয়।",
-    "problem": "ভর্তির তথ্য অনেক ওয়েবসাইট ও নোটিশে ছড়িয়ে থাকে, আর নির্ভরযোগ্য অনুশীলনের উপকরণ এক জায়গায় পাওয়া কঠিন।",
-    "features": [
-      {
-        "title": "ভর্তির তথ্য",
-        "description": "প্রতিটি বিশ্ববিদ্যালয়ের তারিখ, যোগ্যতা ও নোটিশ এক জায়গায়।"
-      },
-      {
-        "title": "অনুশীলনী প্রশ্ন ও মডেল টেস্ট",
-        "description": "বিষয়ভিত্তিক অনুশীলন করুন এবং সময় ধরে মডেল টেস্ট দিন।"
-      },
-      {
-        "title": "ফলাফল ও অগ্রগতি",
-        "description": "সময়ের সাথে স্কোর এবং কোন বিষয়ে আরও অনুশীলন দরকার তা দেখুন।"
-      }
-    ],
-    "audience": [
-      "বিশ্ববিদ্যালয় ভর্তির প্রস্তুতি নেওয়া এইচএসসি শিক্ষার্থী",
-      "ভর্তি কোচিং সেন্টার"
-    ]
-  }
+  "order": 50,
+  "name": "Onushilon360",
+  "status": "in-development",
+  "icon": "school",
+  "category": "University admission preparation",
+  "summary": "A university admission website where students find admission information and prepare with practice questions and model tests.",
+  "problem": "Admission information is scattered across many websites and notices, and students struggle to find reliable practice material in one place.",
+  "features": [
+    {
+      "icon": "file-text",
+      "title": "Admission information",
+      "description": "Dates, requirements and notices for each university in one place."
+    },
+    {
+      "icon": "clipboard",
+      "title": "Practice questions and model tests",
+      "description": "Practise by subject and take timed model tests."
+    },
+    {
+      "icon": "chart",
+      "title": "Results and progress",
+      "description": "See scores over time and the topics that need more work."
+    }
+  ],
+  "audience": [
+    "HSC students preparing for university admission",
+    "Admission coaching centres"
+  ]
 }

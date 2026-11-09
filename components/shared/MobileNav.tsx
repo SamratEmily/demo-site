@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { quoteHref } from "@/content/navigation";
 import { ButtonLink } from "./ButtonLink";
-import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MainNav } from "./MainNav";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -46,12 +45,6 @@ export function MobileNav() {
           <MainNav layout="stack" onNavigate={close} />
 
           <dl className="flex flex-col gap-4">
-            <div className="flex items-center justify-between gap-4">
-              <dt className="text-sm text-muted-foreground">{t("language")}</dt>
-              <dd>
-                <LanguageSwitcher labels="full" />
-              </dd>
-            </div>
             <div className="flex items-center justify-between gap-4">
               <dt className="text-sm text-muted-foreground">{t("theme")}</dt>
               <dd>

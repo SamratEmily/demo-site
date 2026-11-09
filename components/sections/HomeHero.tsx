@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { BrowserFrame } from "@/components/shared/BrowserFrame";
 import { ButtonLink } from "@/components/shared/ButtonLink";
@@ -22,7 +22,6 @@ function BeaconBeam() {
 
 export function HomeHero() {
   const t = useTranslations();
-  const locale = useLocale();
   const product = spotlightProduct;
   const shot = product.screenshot;
 
@@ -32,9 +31,9 @@ export function HomeHero() {
       <Container className="grid items-center gap-12 py-16 lg:grid-cols-[1.1fr_1fr] lg:gap-12 lg:py-24">
         <div>
           <h1 id="hero-title" className="text-display">
-            {home.hero.title[locale]}
+            {home.hero.title}
           </h1>
-          <p className="mt-6 max-w-xl text-lead text-muted-foreground">{home.hero.intro[locale]}</p>
+          <p className="mt-6 max-w-xl text-lead text-muted-foreground">{home.hero.intro}</p>
           <div className="mt-8 flex flex-col gap-3 min-[400px]:flex-row">
             <ButtonLink href={quoteHref} size="lg">
               {t("header.getQuote")}
@@ -52,10 +51,10 @@ export function HomeHero() {
                 <DemoVideo
                   videoSrc={product.video.src}
                   poster={{
-                    src: shot.src[locale],
+                    src: shot.src,
                     width: shot.width,
                     height: shot.height,
-                    alt: shot.alt[locale],
+                    alt: shot.alt,
                   }}
                   playLabel={t("home.playDemo", {
                     name: product.name,
@@ -67,10 +66,10 @@ export function HomeHero() {
                 />
               ) : (
                 <Image
-                  src={shot.src[locale]}
+                  src={shot.src}
                   width={shot.width}
                   height={shot.height}
-                  alt={shot.alt[locale]}
+                  alt={shot.alt}
                   preload
                   fetchPriority="high"
                   loading="eager"
@@ -81,7 +80,7 @@ export function HomeHero() {
             </BrowserFrame>
             <figcaption className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
               <StatusBadge status={product.status} />
-              <span>{home.hero.caption[locale]}</span>
+              <span>{home.hero.caption}</span>
             </figcaption>
           </figure>
         ) : null}

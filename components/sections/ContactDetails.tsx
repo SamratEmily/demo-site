@@ -1,5 +1,5 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { BrandIcon } from "@/components/shared/BrandIcon";
 import { settings, whatsappLink } from "@/lib/settings";
@@ -18,9 +18,8 @@ const iconClass = "mt-0.5 size-5 shrink-0 text-primary";
 /** Contact details from content/settings.json. Returns null when none are set. */
 export function ContactDetails() {
   const t = useTranslations();
-  const locale = useLocale();
   const { email, phone, address, officeHours, mapEmbedUrl } = settings.contact;
-  const whatsapp = whatsappLink(settings.whatsapp.greeting[locale]);
+  const whatsapp = whatsappLink(settings.whatsapp.greeting);
 
   const candidates: (DetailRow | false)[] = [
     !!email && {
@@ -54,17 +53,17 @@ export function ContactDetails() {
         </a>
       ),
     },
-    !!address[locale] && {
+    !!address && {
       key: "address",
       icon: <MapPin className={iconClass} aria-hidden />,
       label: t("footer.address"),
-      value: <address className="not-italic">{address[locale]}</address>,
+      value: <address className="not-italic">{address}</address>,
     },
-    !!officeHours[locale] && {
+    !!officeHours && {
       key: "hours",
       icon: <Clock className={iconClass} aria-hidden />,
       label: t("footer.officeHours"),
-      value: officeHours[locale],
+      value: officeHours,
     },
   ];
   const rows = candidates.filter((row): row is DetailRow => row !== false);
