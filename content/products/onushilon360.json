@@ -9,22 +9,22 @@
     {
       "icon": "calendar-clock",
       "title": "Timed mock exams",
-      "description": "Take timed mock exams with multiple-choice and written questions."
+      "description": "Take timed exams with multiple-choice and written questions. Answers autosave during the exam, and staff can review written submissions after it ends."
     },
     {
       "icon": "clipboard",
-      "title": "Past admission questions and practice",
-      "description": "Practise with past admission question banks, model tests, and practice exercises."
+      "title": "Past papers and question practice",
+      "description": "Browse past admission papers, practise individual questions, bookmark questions to revisit, and check explanations for multiple-choice answers."
     },
     {
       "icon": "chart",
       "title": "Results and progress tracking",
-      "description": "Review student results, track progress, and see exam leaderboards."
+      "description": "Review scores, see progress by subject, and compare results on exam leaderboards."
     },
     {
       "icon": "panels-top-left",
-      "title": "Staff dashboard",
-      "description": "Create and schedule exams, grade written answers, and manage students."
+      "title": "Exam and question bank management",
+      "description": "Staff can build and schedule exams, organise question banks, grade written answers, and review student results."
     }
   ],
   "audience": [
@@ -32,5 +32,9 @@
     "Coaching centres and education providers"
   ],
   "tagline": "Online university admission test preparation platform",
-  "description": "Onushilon360 helps students prepare for university admission tests in Bangladesh. Students can take timed mock exams, practise with past admission questions, and track their progress. Coaching centres and education providers can use the platform to manage question banks, schedule exams, grade written answers, and review student results from a staff dashboard."
+  "description": "Onushilon360 helps students prepare for university admission tests in Bangladesh. Students can take timed mock exams, practise with past admission questions, and track their progress. Coaching centres and education providers can use the platform to manage question banks, schedule exams, grade written answers, and review student results from a staff dashboard.",
+  "heroImage": {
+    "src": "/images/products/onushilon360/hero.webp",
+    "alt": "Student working through a university admission mock exam at a study desk"
+  }
 }

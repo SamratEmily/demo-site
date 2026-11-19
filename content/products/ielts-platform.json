@@ -4,27 +4,42 @@
   "status": "live",
   "icon": "graduation-cap",
   "category": "Online IELTS preparation",
-  "summary": "Lets students practise IELTS reading, listening, writing and speaking online, and lets teachers manage tests and follow each student's progress.",
+  "summary": "An IELTS preparation platform with timed full mock tests, practice for all four skills, AI feedback for Writing and Speaking, and tools for managing tests and students.",
   "problem": "IELTS coaching centres often run mock tests on paper, which takes hours to mark and makes it hard to see where each student needs more practice.",
   "features": [
     {
-      "icon": "clipboard",
-      "title": "Practice tests",
-      "description": "Reading, listening, writing and speaking practice in the real test format."
+      "icon": "calendar-clock",
+      "title": "Timed full mock tests",
+      "description": "Take full mock tests or practise Reading, Listening, Writing, and Speaking individually."
+    },
+    {
+      "icon": "file-text",
+      "title": "Writing and speaking practice",
+      "description": "Write essays with a live word count and record spoken responses to IELTS-style prompts."
     },
     {
       "icon": "chart",
-      "title": "Progress tracking",
-      "description": "Scores and progress for each student, by module."
+      "title": "Estimated band scores and feedback",
+      "description": "Review results and progress by skill. AI evaluation provides feedback and estimated band scores for writing and speaking practice."
     },
     {
-      "icon": "users",
-      "title": "Teacher tools",
-      "description": "Create tests, review answers and give feedback in one place."
+      "icon": "panels-top-left",
+      "title": "Test authoring and administration",
+      "description": "Create tests and question sets, manage answer keys and media, and review student activity and assessment analytics."
+    },
+    {
+      "icon": "clipboard",
+      "title": "Coupons and redemption reports",
+      "description": "Set up coupons and review redemptions from the admin portal."
     }
   ],
   "audience": [
     "IELTS coaching centres",
     "Students preparing for IELTS on their own"
-  ]
+  ],
+  "description": "Students can practise Reading, Listening, Writing, and Speaking separately or take a timed full mock test. The student portal tracks results by skill and provides AI feedback and estimated band scores for writing and speaking practice. Staff can build tests, manage question sets and media, review student activity, and track coupon redemptions.",
+  "heroImage": {
+    "src": "/images/products/ielts-platform/hero.webp",
+    "alt": "Learner wearing headphones and practising English aloud at a laptop"
+  }
 }

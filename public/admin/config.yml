@@ -350,6 +350,21 @@ collections:
             widget: text
             required: false
             hint: Describe what the screenshot shows, for people who can't see it. Required when there is an image.
+      - name: heroImage
+        label: Editorial hero image
+        widget: object
+        required: false
+        hint: Shown at the top of the product page when supplied. Use WebP under 200 KB, about 1440 px wide.
+        fields:
+          - name: src
+            label: Image
+            widget: image
+            required: false
+          - name: alt
+            label: Image description
+            widget: text
+            required: false
+            hint: Required when there is an image.
       - name: gallery
         label: Screenshot gallery
         label_singular: screenshot

@@ -44,6 +44,7 @@ const schema = z.object({
     .array(z.object({ icon, title: text(80), description: text(400) }), "must be a list")
     .min(1, "needs at least one feature"),
   screenshot: optionalObject({ src: imagePath, alt: text(400) }),
+  heroImage: optionalObject({ src: imagePath, alt: text(400) }),
   gallery: list(z.object({ src: imagePath, caption: text(120), alt: text(400) })),
   video: optionalObject({
     src: httpsUrl,
@@ -57,11 +58,12 @@ const schema = z.object({
 });
 
 function toProduct({ slug, file, data }: JsonEntry) {
-  const { order, screenshot, gallery, ...fields } = parseContent(schema, data, file);
+  const { order, screenshot, heroImage, gallery, ...fields } = parseContent(schema, data, file);
   const product: Product = {
     slug,
     ...fields,
     screenshot: screenshot && { ...screenshot, ...imageSizeOf(screenshot.src, file) },
+    heroImage: heroImage && { ...heroImage, ...imageSizeOf(heroImage.src, file) },
     gallery: gallery.map((image) => ({ ...image, ...imageSizeOf(image.src, file) })),
   };
   return { order, key: fields.name, value: product };

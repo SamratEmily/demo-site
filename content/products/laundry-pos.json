@@ -4,27 +4,47 @@
   "status": "live",
   "icon": "washing-machine",
   "category": "Point of sale for laundries",
-  "summary": "Takes laundry orders at the counter, prints receipts and tags, tracks each order until delivery and records payments.",
+  "summary": "A multi-shop laundry POS for counter orders, numbered receipts, scannable bag tags, customer tracking, payments, and reporting.",
   "problem": "Handwritten slips get lost, clothes get mixed up, and it's hard to tell which orders are ready, which are late and who still has to pay.",
   "features": [
     {
-      "icon": "printer",
-      "title": "Orders, receipts and tags",
-      "description": "Take an order in a few taps and print a receipt and item tags."
+      "icon": "clipboard",
+      "title": "Counter orders and pricing",
+      "description": "Take laundry and dry-cleaning orders, charge by the piece or kilogram, and apply configurable urgent-service surcharges."
     },
     {
-      "icon": "clipboard",
-      "title": "Order status",
-      "description": "Follow each order from received to washed, ready and delivered."
+      "icon": "printer",
+      "title": "Receipts and scannable bag tags",
+      "description": "Print per-shop numbered receipts and barcode bag tags. Scan a tag at the counter to find the matching order."
+    },
+    {
+      "icon": "package",
+      "title": "Order status and delivery",
+      "description": "Mark orders ready or handed over, assign riders, and share a tracking link so customers can check their order status."
     },
     {
       "icon": "wallet",
-      "title": "Payments and dues",
-      "description": "Record payments and see which customers still owe money."
+      "title": "Payments and balances",
+      "description": "Record cash, Bangla QR, and cash-on-delivery payments, track outstanding balances, and log refunds."
+    },
+    {
+      "icon": "chart",
+      "title": "Shop reports and hotel statements",
+      "description": "Review daily activity, export filtered orders as PDFs, and prepare monthly statements for hotel accounts."
+    },
+    {
+      "icon": "languages",
+      "title": "Bangla and English workspace",
+      "description": "Use the counter and order desk in Bangla or English. Each shop has its own catalog, settings, and receipt numbering."
     }
   ],
   "audience": [
     "Laundry and dry-cleaning shops",
-    "Businesses with more than one collection point"
-  ]
+    "Multi-shop operators and laundries serving hotel accounts"
+  ],
+  "description": "Take orders for washing, ironing, and dry cleaning, print receipts and bag tags, and track each order from intake to handover. Staff can record payments, follow up on balances, and manage rider dispatch. The workspace supports Bangla and English, with shop-specific pricing, settings, and reporting.",
+  "heroImage": {
+    "src": "/images/products/laundry-pos/hero.webp",
+    "alt": "Laundry employee taking an order at a tablet register next to a receipt printer and tagged garments"
+  }
 }

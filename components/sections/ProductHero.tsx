@@ -18,8 +18,20 @@ interface ProductHeroProps {
 
 export function ProductHero({ product }: ProductHeroProps) {
   const t = useTranslations();
-  const shot = product.screenshot;
+  const heroImage = product.heroImage ?? product.screenshot;
   const showVisit = product.status === "live" && product.url;
+
+  const picture = heroImage && (
+    <Image
+      src={heroImage.src}
+      width={heroImage.width}
+      height={heroImage.height}
+      alt={heroImage.alt}
+      preload
+      sizes="(min-width: 1024px) 600px, 100vw"
+      className="block h-auto w-full"
+    />
+  );
 
   return (
     <section aria-labelledby="product-title" className="relative isolate overflow-hidden">
@@ -60,19 +72,11 @@ export function ProductHero({ product }: ProductHeroProps) {
             </div>
           </div>
 
-          {shot ? (
+          {product.heroImage ? (
+            <div className="overflow-hidden rounded-2xl border">{picture}</div>
+          ) : product.screenshot ? (
             <BrowserFrame address={product.url ? hostname(product.url) : undefined}>
-              <Image
-                src={shot.src}
-                width={shot.width}
-                height={shot.height}
-                alt={shot.alt}
-                preload
-                fetchPriority="high"
-                loading="eager"
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className="block h-auto w-full"
-              />
+              {picture}
             </BrowserFrame>
           ) : (
             <ProductArt icon={product.icon} />

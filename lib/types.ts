@@ -99,7 +99,7 @@ export interface Feature {
   description: string;
 }
 
-export interface Screenshot {
+export interface ProductImage {
   /** Path under /public. */
   src: string;
   width: number;
@@ -159,7 +159,9 @@ export interface Product {
   howItWorks?: ProcessStep[];
   features: Feature[];
   /** Main screenshot. */
-  screenshot?: Screenshot;
+  screenshot?: ProductImage;
+  /** Editorial image for the product hero. */
+  heroImage?: ProductImage;
   gallery?: GalleryImage[];
   /** Video URL; loaded only when the visitor presses play. */
   video?: { src: string; durationSeconds: number; description?: string };
