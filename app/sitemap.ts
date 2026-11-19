@@ -8,7 +8,7 @@ import {
 } from "@/content/navigation";
 import { getPosts, usedTags } from "@/lib/blog";
 import { caseStudySlugs } from "@/lib/case-studies";
-import { products } from "@/lib/products";
+import { availableProducts } from "@/lib/products";
 import { pageUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...pages.flatMap((path) => entries(path)),
-    ...products.flatMap((p) => entries(productHref(p.slug))),
+    ...availableProducts.flatMap((p) => entries(productHref(p.slug))),
     ...caseStudySlugs.flatMap((slug) => entries(caseStudyHref(slug))),
     ...entries(blogHref, posts[0]?.meta.date),
     ...posts.flatMap((post) => entries(blogPostHref(post.slug), post.meta.date)),

@@ -1,30 +1,36 @@
 {
-  "order": 50,
+  "order": 30,
   "name": "Onushilon360",
-  "status": "in-development",
+  "status": "live",
   "icon": "school",
-  "category": "University admission preparation",
-  "summary": "A university admission website where students find admission information and prepare with practice questions and model tests.",
-  "problem": "Admission information is scattered across many websites and notices, and students struggle to find reliable practice material in one place.",
+  "category": "Education Technology",
+  "summary": "Onushilon360 is a university admission preparation platform for Bangladesh, offering timed mock exams, past-paper practice, and student progress tracking, with exam management tools for education providers.",
   "features": [
     {
-      "icon": "file-text",
-      "title": "Admission information",
-      "description": "Dates, requirements and notices for each university in one place."
+      "icon": "calendar-clock",
+      "title": "Timed mock exams",
+      "description": "Take timed mock exams with multiple-choice and written questions."
     },
     {
       "icon": "clipboard",
-      "title": "Practice questions and model tests",
-      "description": "Practise by subject and take timed model tests."
+      "title": "Past admission questions and practice",
+      "description": "Practise with past admission question banks, model tests, and practice exercises."
     },
     {
       "icon": "chart",
-      "title": "Results and progress",
-      "description": "See scores over time and the topics that need more work."
+      "title": "Results and progress tracking",
+      "description": "Review student results, track progress, and see exam leaderboards."
+    },
+    {
+      "icon": "panels-top-left",
+      "title": "Staff dashboard",
+      "description": "Create and schedule exams, grade written answers, and manage students."
     }
   ],
   "audience": [
-    "HSC students preparing for university admission",
-    "Admission coaching centres"
-  ]
+    "Students preparing for university admission tests in Bangladesh",
+    "Coaching centres and education providers"
+  ],
+  "tagline": "Online university admission test preparation platform",
+  "description": "Onushilon360 helps students prepare for university admission tests in Bangladesh. Students can take timed mock exams, practise with past admission questions, and track their progress. Coaching centres and education providers can use the platform to manage question banks, schedule exams, grade written answers, and review student results from a staff dashboard."
 }

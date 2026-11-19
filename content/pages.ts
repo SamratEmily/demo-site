@@ -6,19 +6,14 @@ interface PageCopy {
 }
 
 export const productsPage: PageCopy & {
-  liveTitle: string;
-  inDevelopmentTitle: string;
-  inDevelopmentIntro: string;
+  availableTitle: string;
 } = {
   title: "Our products",
   intro:
-    "Ready-made software we build and maintain for businesses with common needs. Each one can be adjusted to how your business works.",
+    "Explore our software products. We offer demos, setup, customization, and ongoing support for each product.",
   metaDescription:
-    "Software products by Beacon Soft: Gari Becho vehicle shop management, plus inventory, IELTS, laundry POS and university admission software.",
-  liveTitle: "Available now",
-  inDevelopmentTitle: "In development",
-  inDevelopmentIntro:
-    "These products are being built. Request a demo to tell us what you need, and we'll keep you updated.",
+    "Explore Beacon Soft’s products and services for vehicle shops, real estate developers, university admission preparation, IELTS preparation, and laundry point of sale.",
+  availableTitle: "Available products",
 };
 
 export const servicesPage: PageCopy & {
@@ -69,7 +64,7 @@ export const aboutPage: PageCopy & {
   // [TODO: add the founding year and how the company started]
   story: [
     "Many businesses in Bangladesh still run on notebooks, spreadsheets and phone calls. We started Beacon Soft to build software that fits how these businesses actually work, in the language their staff use every day.",
-    "Our first live product, Gari Becho, replaced the paper records of vehicle shops with one system for stock, sales, installments and investors, in Bangla and English. We are now building products for inventory, IELTS preparation, laundries and university admission, alongside custom projects for clients.",
+    "Our first live product, Gari Becho, replaced the paper records of vehicle shops with one system for stock, sales, installments and investors, in Bangla and English. We also offer Real Estate CRM, Onushilon360 for university admission preparation, IELTS Platform, and Laundry POS System, alongside custom projects for clients.",
   ],
   missionTitle: "Our mission",
   mission:

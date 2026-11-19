@@ -70,7 +70,7 @@
   "product": {
     "breadcrumb": "Breadcrumb",
     "allProducts": "Products",
-    "statusLive": "Live",
+    "statusLive": "Available",
     "statusInDevelopment": "In development",
     "requestDemo": "Request a demo",
     "visit": "Visit {domain}",

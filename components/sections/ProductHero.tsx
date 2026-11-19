@@ -37,8 +37,10 @@ export function ProductHero({ product }: ProductHeroProps) {
             <h1 id="product-title" className="mt-4 text-h1">
               {product.heroTitle ?? product.name}
             </h1>
-            <p className="mt-2 text-lead font-medium text-muted-foreground">{product.category}</p>
-            <p className="mt-6 max-w-xl text-lead">{product.summary}</p>
+            <p className="mt-2 text-lead font-medium text-muted-foreground">
+              {product.tagline ?? product.category}
+            </p>
+            <p className="mt-6 max-w-xl text-lead">{product.description ?? product.summary}</p>
             <div className="mt-8 flex flex-col gap-3 min-[400px]:flex-row">
               <ButtonLink href={demoRequestHref(product.slug)} size="lg">
                 {t("product.requestDemo")}

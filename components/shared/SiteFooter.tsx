@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { companyNav, productHref } from "@/content/navigation";
 import { site } from "@/content/site";
 import Link from "next/link";
-import { products } from "@/lib/products";
+import { availableProducts } from "@/lib/products";
 import { activeSocialLinks, settings } from "@/lib/settings";
 import { BrandIcon } from "./BrandIcon";
 import { Container } from "./Container";
@@ -95,7 +95,7 @@ export function SiteFooter() {
         </div>
 
         <FooterColumn id="footer-products" title={t("footer.products")}>
-          {products.map(({ slug, name }) => (
+          {availableProducts.map(({ slug, name }) => (
             <li key={slug}>
               <Link href={productHref(slug)} className={linkClass}>
                 {name}

@@ -49,7 +49,7 @@ function productJsonLd(product: Product) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: product.name,
-    description: product.summary,
+    description: product.description ?? product.summary,
     applicationCategory: "BusinessApplication",
     applicationSubCategory: product.category,
     operatingSystem: "Web browser",

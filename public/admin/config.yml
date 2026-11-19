@@ -213,7 +213,7 @@ collections:
         options:
           - { label: Live, value: live }
           - { label: In development, value: in-development }
-        hint: Only live products show the website link and the demo request button.
+        hint: Live products appear in the public catalog and show a website link when a URL is provided.
       - name: icon
         label: Icon
         widget: select
@@ -263,8 +263,17 @@ collections:
         label: Summary
         widget: text
         hint: One or two sentences on what the product does, for lists and search results. Up to 400 characters.
+      - name: description
+        label: Product page description
+        widget: text
+        required: false
+        hint: Longer product overview for the detail page. Leave blank to use the summary.
       - name: heroTitle
         label: Hero heading
+        widget: string
+        required: false
+      - name: tagline
+        label: Product tagline
         widget: string
         required: false
       - name: metaDescription

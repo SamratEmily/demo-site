@@ -32,6 +32,8 @@ const schema = z.object({
   category: text(80),
   summary: text(400),
   heroTitle: optionalText(120),
+  tagline: optionalText(120),
+  description: optionalText(800),
   metaDescription: optionalText(200),
   localization: optionalText(400),
   demoTitle: optionalText(120),
@@ -70,8 +72,11 @@ export const products: Product[] = inOrder(readJsonEntries("products").map(toPro
 
 if (products.length === 0) throw new Error("content/products: add at least one product.");
 
-/** The first live product is featured on the Home page. */
-export const spotlightProduct = products.find((p) => p.status === "live") ?? products[0];
+/** Products available for demos and services, in catalog order. */
+export const availableProducts = products.filter((product) => product.status === "live");
+
+/** The first available product is featured on the Home page. */
+export const spotlightProduct = availableProducts[0] ?? products[0];
 
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

@@ -1,7 +1,7 @@
 {
-  "order": 40,
+  "order": 50,
   "name": "Laundry POS System",
-  "status": "in-development",
+  "status": "live",
   "icon": "washing-machine",
   "category": "Point of sale for laundries",
   "summary": "Takes laundry orders at the counter, prints receipts and tags, tracks each order until delivery and records payments.",

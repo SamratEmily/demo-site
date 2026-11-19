@@ -147,6 +147,8 @@ export interface Product {
   category: string;
   summary: string;
   heroTitle?: string;
+  tagline?: string;
+  description?: string;
   metaDescription?: string;
   localization?: string;
   demoTitle?: string;

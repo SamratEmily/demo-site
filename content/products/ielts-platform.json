@@ -1,7 +1,7 @@
 {
-  "order": 30,
+  "order": 40,
   "name": "IELTS Platform",
-  "status": "in-development",
+  "status": "live",
   "icon": "graduation-cap",
   "category": "Online IELTS preparation",
   "summary": "Lets students practise IELTS reading, listening, writing and speaking online, and lets teachers manage tests and follow each student's progress.",
