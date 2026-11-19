@@ -36,5 +36,22 @@
   "heroImage": {
     "src": "/images/products/onushilon360/hero.webp",
     "alt": "Student working through a university admission mock exam at a study desk"
-  }
+  },
+  "gallery": [
+    {
+      "src": "/images/products/onushilon360/dashboard.webp",
+      "caption": "Student dashboard",
+      "alt": "Student dashboard showing upcoming exams, practice shortcuts, a leaderboard, and a study streak."
+    },
+    {
+      "src": "/images/products/onushilon360/exam.webp",
+      "caption": "Timed mock exam",
+      "alt": "Timed sample admission exam with multiple-choice questions, a selected answer, a countdown, and the submit button."
+    },
+    {
+      "src": "/images/products/onushilon360/practice.webp",
+      "caption": "Quick practice with instant feedback",
+      "alt": "Quick practice question in Bangla with the correct answer highlighted and an explanation below."
+    }
+  ]
 }
