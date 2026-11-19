@@ -52,6 +52,11 @@
       "src": "/images/products/onushilon360/practice.webp",
       "caption": "Quick practice with instant feedback",
       "alt": "Quick practice question in Bangla with the correct answer highlighted and an explanation below."
+    },
+    {
+      "src": "/images/products/onushilon360/question-bank.webp",
+      "caption": "Past-paper question bank",
+      "alt": "Onushilon360 question bank with searchable past papers grouped by university or education board."
     }
   ]
 }
