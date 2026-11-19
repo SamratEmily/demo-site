@@ -46,5 +46,27 @@
   "heroImage": {
     "src": "/images/products/laundry-pos/hero.webp",
     "alt": "Laundry employee taking an order at a tablet register next to a receipt printer and tagged garments"
-  }
+  },
+  "gallery": [
+    {
+      "src": "/images/products/laundry-pos/counter.webp",
+      "caption": "Counter and order intake",
+      "alt": "Laundry counter with a bilingual garment catalog, service prices, and a three-item order with intake details."
+    },
+    {
+      "src": "/images/products/laundry-pos/receipt-payment.webp",
+      "caption": "Receipts, bag tags, and payments",
+      "alt": "Order confirmation showing receipt and bag-tag printing, a partial payment, and the remaining balance."
+    },
+    {
+      "src": "/images/products/laundry-pos/order-desk.webp",
+      "caption": "Order lookup and handover",
+      "alt": "Order desk showing a bag-tag search result, an order marked ready, and a button to confirm handover."
+    },
+    {
+      "src": "/images/products/laundry-pos/daily-closing.webp",
+      "caption": "Daily closing and hotel statements",
+      "alt": "Daily closing report showing cash and Bangla QR collections and outstanding balances, with hotel statement controls below."
+    }
+  ]
 }
