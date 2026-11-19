@@ -41,5 +41,21 @@
   ],
   "localization": "Available in Bangla and English, with amounts displayed in BDT using lakh and crore formatting.",
   "demoTitle": "See how Real Estate CRM fits your sales process",
-  "demoDescription": "Walk through a sample enquiry, from the first follow-up and site visit to booking approval, installment tracking, and a verified payment receipt."
+  "demoDescription": "Walk through a sample enquiry, from the first follow-up and site visit to booking approval, installment tracking, and a verified payment receipt.",
+  "screenshot": {
+    "src": "/images/products/crm-real-state/dashboard.webp",
+    "alt": "Real Estate CRM dashboard with sales activity and follow-up metrics for a demo property developer"
+  },
+  "gallery": [
+    {
+      "src": "/images/products/crm-real-state/leads.webp",
+      "caption": "Lead management",
+      "alt": "CRM lead list with enquiry sources, sales stages, and assigned team members"
+    },
+    {
+      "src": "/images/products/crm-real-state/bookings.webp",
+      "caption": "Booking management",
+      "alt": "CRM booking list with property units, booking amounts, and approval statuses"
+    }
+  ]
 }
