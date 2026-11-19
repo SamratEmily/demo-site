@@ -41,5 +41,27 @@
   "heroImage": {
     "src": "/images/products/ielts-platform/hero.webp",
     "alt": "Learner wearing headphones and practising English aloud at a laptop"
-  }
+  },
+  "gallery": [
+    {
+      "src": "/images/products/ielts-platform/student-dashboard.webp",
+      "caption": "Student dashboard",
+      "alt": "IELTS student dashboard showing an estimated overall band, target band, exam countdown, and score trend."
+    },
+    {
+      "src": "/images/products/ielts-platform/reading-practice.webp",
+      "caption": "Reading practice library",
+      "alt": "Reading practice catalogue with sample passages and filters for test version, difficulty, and progress."
+    },
+    {
+      "src": "/images/products/ielts-platform/timed-test.webp",
+      "caption": "Timed Reading test",
+      "alt": "Timed IELTS Reading practice screen with the passage on the left, answers on the right, and a countdown and submit button."
+    },
+    {
+      "src": "/images/products/ielts-platform/test-results.webp",
+      "caption": "Band estimate and answer review",
+      "alt": "Reading test results showing an estimated band, a score breakdown, and the correct answer beside a wrong response."
+    }
+  ]
 }
