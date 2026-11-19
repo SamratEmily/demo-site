@@ -31,6 +31,11 @@ const schema = z.object({
   url: optionalHttpsUrl,
   category: text(80),
   summary: text(400),
+  heroTitle: optionalText(120),
+  metaDescription: optionalText(200),
+  localization: optionalText(400),
+  demoTitle: optionalText(120),
+  demoDescription: optionalText(400),
   problem: optionalText(1500),
   howItWorks: list(step),
   features: z

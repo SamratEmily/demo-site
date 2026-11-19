@@ -35,7 +35,7 @@ export function ProductHero({ product }: ProductHeroProps) {
           <div>
             <StatusBadge status={product.status} />
             <h1 id="product-title" className="mt-4 text-h1">
-              {product.name}
+              {product.heroTitle ?? product.name}
             </h1>
             <p className="mt-2 text-lead font-medium text-muted-foreground">{product.category}</p>
             <p className="mt-6 max-w-xl text-lead">{product.summary}</p>

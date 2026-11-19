@@ -146,6 +146,11 @@ export interface Product {
   icon: ContentIconName;
   category: string;
   summary: string;
+  heroTitle?: string;
+  metaDescription?: string;
+  localization?: string;
+  demoTitle?: string;
+  demoDescription?: string;
   /** Public product website, if any. Shown only when status is `live`. */
   url?: string;
   problem?: string;

@@ -263,6 +263,26 @@ collections:
         label: Summary
         widget: text
         hint: One or two sentences on what the product does, for lists and search results. Up to 400 characters.
+      - name: heroTitle
+        label: Hero heading
+        widget: string
+        required: false
+      - name: metaDescription
+        label: Meta description
+        widget: string
+        required: false
+      - name: localization
+        label: Localization line
+        widget: text
+        required: false
+      - name: demoTitle
+        label: Demo heading
+        widget: string
+        required: false
+      - name: demoDescription
+        label: Demo description
+        widget: text
+        required: false
       - name: problem
         label: The problem it solves
         widget: text

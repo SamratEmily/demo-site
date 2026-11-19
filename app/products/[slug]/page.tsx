@@ -39,7 +39,7 @@ export async function generateMetadata({
   return pageMetadata({
     path: `/products/${slug}`,
     title: `${product.name}: ${product.category}`,
-    description: product.summary,
+    description: product.metaDescription ?? product.summary,
     image: productOgImage(product),
   });
 }
@@ -101,7 +101,14 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     sections.push({
       id: "features",
       title: t("product.features"),
-      content: <FeatureList features={product.features} />,
+      content: (
+        <>
+          <FeatureList features={product.features} />
+          {product.localization && (
+            <p className="mt-6 text-muted-foreground">{product.localization}</p>
+          )}
+        </>
+      ),
     });
   }
   if (product.gallery?.length) {
@@ -227,11 +234,12 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       })}
       <CtaPanel
         id="product-cta-title"
-        title={t("product.ctaTitle", { name: product.name })}
+        title={product.demoTitle ?? t("product.ctaTitle", { name: product.name })}
         body={
-          product.status === "live"
+          product.demoDescription ??
+          (product.status === "live"
             ? t("product.ctaBody")
-            : t("product.ctaBodyInDevelopment", { name: product.name })
+            : t("product.ctaBodyInDevelopment", { name: product.name }))
         }
         action={{ href: demoRequestHref(product.slug), label: t("product.requestDemo") }}
       />

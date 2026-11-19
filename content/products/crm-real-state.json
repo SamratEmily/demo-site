@@ -1,15 +1,45 @@
 {
   "order": 100,
   "status": "in-development",
-  "name": "CRM - Real State",
+  "name": "Real Estate CRM",
   "icon": "handshake",
   "category": "Customer Relationship Management",
-  "summary": "It makes easy to have relationship with real state clients",
+  "heroTitle": "Real Estate CRM for Property Developers in Bangladesh",
+  "summary": "Manage property enquiries, site visits, bookings, and installment collections in one workspace. Give Sales, Marketing, Customer Service, and Accounts a shared view of each customer from first enquiry through post-sale support.",
+  "metaDescription": "Real estate CRM for property developers in Bangladesh. Manage leads, site visits, unit inventory, booking approvals, installments, and customer service.",
   "features": [
     {
+      "icon": "users",
+      "title": "Lead capture and assignment",
+      "description": "Bring enquiries in from website forms, Meta Lead Ads, CSV, and Excel. Flag duplicate phone numbers and route leads to the right sales team."
+    },
+    {
+      "icon": "calendar-clock",
+      "title": "Follow-ups and site visits",
+      "description": "Schedule follow-ups and property visits, log calls and notes, and see which enquiries need attention."
+    },
+    {
+      "icon": "file-check",
+      "title": "Property inventory and booking approvals",
+      "description": "See which units are available, on hold, booked, or sold. Route bookings to a sales manager for approval and hand approved sales over to Customer Service."
+    },
+    {
+      "icon": "receipt",
+      "title": "Installments, payments, and receipts",
+      "description": "Create installment schedules, track overdue balances, and issue receipts after Accounts verifies a payment. Record cash, cheque, bank transfers, bKash, Nagad, and Rocket payments."
+    },
+    {
       "icon": "handshake",
-      "title": "[TODO: feature name]",
-      "description": "[TODO: what this feature does for the user]"
+      "title": "Customer service",
+      "description": "Assign customers to service executives and manage customer documents, support tickets, and payment follow-ups from one record."
+    },
+    {
+      "icon": "chart",
+      "title": "Sales and collections reports",
+      "description": "Track lead sources, campaign performance, sales activity, and collections with role-based access to reports and exports."
     }
-  ]
+  ],
+  "localization": "Available in Bangla and English, with amounts displayed in BDT using lakh and crore formatting.",
+  "demoTitle": "See how Real Estate CRM fits your sales process",
+  "demoDescription": "Walk through a sample enquiry, from the first follow-up and site visit to booking approval, installment tracking, and a verified payment receipt."
 }
