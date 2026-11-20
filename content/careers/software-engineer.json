@@ -10,9 +10,9 @@
     "Review pull requests and investigate bugs reported by customers."
   ],
   "requirements": [
-    "Experience shipping changes to a web application with a team.",
-    "Comfort working with SQL, HTTP APIs, Git and automated tests.",
-    "Ability to explain trade-offs and write clear implementation notes."
+    "Experience delivering and maintaining features in a production web application.",
+    "Working knowledge of relational databases, HTTP API design, Git, and automated testing.",
+    "Ability to take a scoped feature through implementation and release, review code, and explain technical trade-offs."
   ],
   "niceToHave": ["Experience with Laravel, React or business software."]
 }

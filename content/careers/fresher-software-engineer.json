@@ -1,0 +1,16 @@
+{
+  "order": 90,
+  "type": "full-time",
+  "title": "Fresher Software Engineer",
+  "location": "Pallabi, Dhaka",
+  "summary": "Start your first full-time software engineering role by building small features and fixing bugs with support from more experienced teammates.",
+  "responsibilities": [
+    "Implement and test well-defined changes to web applications.",
+    "Reproduce reported issues, document what you find, and submit changes for review."
+  ],
+  "requirements": [
+    "Working knowledge of one programming language and basic web and SQL concepts.",
+    "Ability to use Git for basic tasks and explain how you debugged a problem.",
+    "A project from coursework, self-study, an internship, or open source that you can walk through. Professional experience is optional."
+  ]
+}

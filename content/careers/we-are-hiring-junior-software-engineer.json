@@ -3,12 +3,16 @@
   "type": "full-time",
   "title": "Junior Software Engineer",
   "location": "Pallabi, Dhaka",
-  "summary": "This role focuses on helping customers use our software and bringing their questions and reported issues back to the development team.",
+  "summary": "Build and maintain business web applications with code review and support from the team. Work on small features and investigate issues that customers report.",
   "responsibilities": [
-    "Help customers with questions about using our software.",
-    "Collect enough detail about reported issues for the development team to investigate."
+    "Implement small features and bug fixes across the interface and API.",
+    "Reproduce customer-reported issues and document what you find.",
+    "Write or update tests and prepare pull requests for review."
   ],
-  "niceToHave": [
-    "Experience helping people use business software or documenting steps to reproduce a reported issue."
-  ]
+  "requirements": [
+    "Hands-on experience building or maintaining a web application through work, an internship, or a substantial project.",
+    "Working knowledge of Git, HTTP APIs, and relational databases.",
+    "Ability to debug a problem, verify a fix, and explain the change to a reviewer."
+  ],
+  "niceToHave": ["Experience with Laravel, React, or customer-facing software support."]
 }

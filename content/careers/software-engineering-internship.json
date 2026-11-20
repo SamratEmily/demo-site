@@ -1,0 +1,16 @@
+{
+  "order": 80,
+  "type": "internship",
+  "title": "Software Engineering Internship",
+  "location": "Pallabi, Dhaka",
+  "summary": "Learn how a software team builds and maintains web applications by working on small, well-scoped tasks with guidance and code review.",
+  "responsibilities": [
+    "Implement small fixes and improvements with guidance from an engineer.",
+    "Test changes, document what you checked, and ask for feedback in code reviews."
+  ],
+  "requirements": [
+    "Basic knowledge of one programming language and familiarity with HTML and CSS.",
+    "A coursework, personal, or practice project you can explain.",
+    "Willingness to learn Git, communicate when blocked, and act on feedback."
+  ]
+}
