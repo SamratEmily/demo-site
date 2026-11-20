@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { CtaPanel } from "@/components/sections/CtaPanel";
+import { GariBechoDueWorkflow } from "@/components/sections/GariBechoDueWorkflow";
 import { ProductFaq } from "@/components/sections/ProductFaq";
 import { ProductGallery } from "@/components/sections/ProductGallery";
 import { ProductHero } from "@/components/sections/ProductHero";
@@ -95,6 +96,15 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           columns={product.howItWorks.length === 4 ? 4 : 3}
         />
       ),
+    });
+  }
+  if (product.slug === "gari-becho") {
+    sections.push({
+      id: "installment-follow-up",
+      title: "Know who to call and what they owe",
+      intro:
+        "When you sell vehicles on installments, the morning starts with two questions: who needs a call, and how much is due? Here’s how to answer both in Gari Becho.",
+      content: <GariBechoDueWorkflow product={product} />,
     });
   }
   if (product.features.length) {
