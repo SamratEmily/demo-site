@@ -533,7 +533,7 @@ collections:
   - name: team
     label: Team
     label_singular: Team member
-    description: Use consenting team members. Mark fictional demo profiles as samples so the website labels them clearly.
+    description: Use consenting team members. Mark fictional demo profiles as samples.
     folder: content/team
     format: json
     extension: json

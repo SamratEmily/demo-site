@@ -113,8 +113,7 @@
     "founded": "Founded",
     "registration": "Registration number",
     "contactUs": "Contact us",
-    "linkedin": "{name} on LinkedIn",
-    "sampleProfile": "Sample profile"
+    "linkedin": "{name} on LinkedIn"
   },
   "blog": {
     "allPosts": "All posts",
