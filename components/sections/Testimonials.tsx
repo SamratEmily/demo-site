@@ -3,7 +3,12 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 import { home } from "@/content/home";
 import { testimonials } from "@/lib/testimonials";
 
-/** Renders nothing until content/testimonials.ts has real entries. */
+/**
+ * Review layouts for when approved customer feedback is available:
+ * Home: [short quote + customer attribution] [short quote + customer attribution]
+ * Product: [workflow screenshot] [quote about that workflow + attribution]
+ * Case study: [before and after] [customer quote beside the documented outcome]
+ */
 export function Testimonials() {
   if (testimonials.length === 0) return null;
 
