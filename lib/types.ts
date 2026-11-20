@@ -227,11 +227,11 @@ export interface CaseStudyMeta {
   title: string;
   /** One or two sentences for the index page and meta description. */
   summary: string;
-  client: string;
+  client?: string;
   industry: string;
   /** Slug of a product in content/products, if the project used one. */
   product?: string;
-  duration: string;
+  duration?: string;
   /** Measured outcomes; only add results you can back up. */
   results: { value: string; label: string }[];
   /** Client quote; leave out until you have written permission. */

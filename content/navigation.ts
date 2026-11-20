@@ -21,6 +21,7 @@ export const companyNav: NavItem[] = [
 export const productHref = (slug: string) => `/products/${slug}` as const;
 
 export const quoteHref = "/contact";
+export const careersHref = "/careers";
 
 /** Contact page with the product preselected (read client-side on /contact). */
 export const demoRequestHref = (slug: string) => ({

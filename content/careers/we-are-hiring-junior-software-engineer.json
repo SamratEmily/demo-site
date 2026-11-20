@@ -1,10 +1,14 @@
 {
   "order": 100,
   "type": "full-time",
-  "title": "We are hiring Junior Software Engineer",
+  "title": "Junior Software Engineer",
   "location": "Pallabi, Dhaka",
+  "summary": "This role focuses on helping customers use our software and bringing their questions and reported issues back to the development team.",
   "responsibilities": [
-    "Manage clients "
+    "Help customers with questions about using our software.",
+    "Collect enough detail about reported issues for the development team to investigate."
   ],
-  "summary": "Need to support our Customer"
+  "niceToHave": [
+    "Experience helping people use business software or documenting steps to reproduce a reported issue."
+  ]
 }

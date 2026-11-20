@@ -37,9 +37,8 @@ export const servicesPage: PageCopy & {
 export const caseStudiesPage: PageCopy & { emptyNote: string } = {
   title: "Case studies",
   intro:
-    "How our software is used by real businesses: the problem they had, what we built and what changed.",
-  metaDescription:
-    "Case studies from Beacon Soft Ltd.: the challenge, our solution and the results for businesses using our software.",
+    "See how our software handles everyday business workflows, from keeping track of stock to following up on payments.",
+  metaDescription: "Explore software case studies and product walkthroughs from Beacon Soft Ltd.",
   emptyNote: "We are writing up our first case studies. In the meantime, ask us for references.",
 };
 

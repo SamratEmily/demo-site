@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState, type BaseSyntheticEvent } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type BaseSyntheticEvent } from "react";
 import { useForm } from "react-hook-form";
 import { describedBy, FormField } from "@/components/shared/FormField";
 import { Turnstile } from "@/components/shared/Turnstile";
@@ -37,7 +37,7 @@ interface ContactFormProps {
   fallbackEmail: string;
 }
 
-type SubmitError = ContactErrorCode | "network" | "turnstile" | "notConfigured";
+type SubmitError = ContactErrorCode | "network" | "turnstile";
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
@@ -64,7 +64,30 @@ function responseError(body: unknown): ContactErrorCode {
   return "server";
 }
 
-export function ContactForm({
+// Keep fields out of the static HTML until React can handle submission.
+const subscribeToHydration = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
+
+export function ContactForm(props: ContactFormProps) {
+  const t = useTranslations("contact");
+  const hydrated = useSyncExternalStore(subscribeToHydration, clientReady, serverReady);
+
+  if (!siteKey || !hydrated) {
+    return (
+      <section aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title" className="text-h2">
+          {t("formTitle")}
+        </h2>
+        <p className="mt-4 text-lead">{t("directContact")}</p>
+      </section>
+    );
+  }
+
+  return <InteractiveContactForm {...props} />;
+}
+
+function InteractiveContactForm({
   interestGroups,
   interestExtra,
   budgetOptions,
@@ -146,10 +169,10 @@ export function ContactForm({
   async function onSubmit(data: ContactData, event?: BaseSyntheticEvent) {
     const form = event?.target instanceof HTMLFormElement ? event.target : null;
     const website = form?.elements.namedItem("website");
-    if (!siteKey) return setStatus({ kind: "error", code: "notConfigured" });
     if (!token) return setStatus({ kind: "error", code: "turnstile" });
 
     setStatus({ kind: "submitting" });
+    setToken(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -161,7 +184,7 @@ export function ContactForm({
         }),
       });
       const body: unknown = await res.json().catch(() => null);
-      if (res.ok) {
+      if (res.ok && typeof body === "object" && body !== null && "ok" in body && body.ok === true) {
         setStatus({ kind: "success", name: data.name, email: data.email });
         reset(defaultValues);
       } else {
@@ -198,6 +221,8 @@ export function ContactForm({
 
   return (
     <form
+      method="post"
+      action="/api/contact"
       noValidate
       onSubmit={handleSubmit(onSubmit)}
       aria-labelledby="contact-form-title"
@@ -306,11 +331,7 @@ export function ContactForm({
       </div>
 
       <div className="flex flex-col gap-4 sm:col-span-2">
-        {siteKey ? (
-          <Turnstile siteKey={siteKey} onToken={setToken} resetKey={turnstileReset} />
-        ) : (
-          <p className="text-sm text-muted-foreground">{t("submitErrors.notConfigured")}</p>
-        )}
+        <Turnstile siteKey={siteKey} onToken={setToken} resetKey={turnstileReset} />
 
         {status.kind === "error" ? (
           <div

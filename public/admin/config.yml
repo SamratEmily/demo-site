@@ -790,7 +790,7 @@ collections:
       - name: title
         label: Title
         widget: string
-        hint: What changed for the client, in sentence case. The English title becomes the address.
+        hint: Use a descriptive title in sentence case. The English title becomes the address.
       - name: summary
         label: Summary
         widget: text
@@ -798,6 +798,7 @@ collections:
       - name: client
         label: Client
         widget: string
+        required: false
         hint: The client's name, or a description such as "A vehicle shop in Dhaka" if they prefer not to be named.
       - name: industry
         label: Industry
@@ -815,6 +816,7 @@ collections:
       - name: duration
         label: Project duration
         widget: string
+        required: false
         hint: E.g. "3 months".
       - name: results
         label: Results

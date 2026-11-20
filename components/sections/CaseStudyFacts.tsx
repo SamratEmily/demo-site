@@ -18,7 +18,7 @@ export function CaseStudyFacts({ meta, linkProduct = true, className }: CaseStud
   const product = meta.product ? getProduct(meta.product) : undefined;
 
   const facts = [
-    { label: t("client"), value: meta.client },
+    meta.client ? { label: t("client"), value: meta.client } : null,
     { label: t("industry"), value: meta.industry },
     product
       ? {
@@ -36,7 +36,7 @@ export function CaseStudyFacts({ meta, linkProduct = true, className }: CaseStud
           ),
         }
       : null,
-    { label: t("duration"), value: meta.duration },
+    meta.duration ? { label: t("duration"), value: meta.duration } : null,
   ].filter((fact) => fact !== null);
 
   return (

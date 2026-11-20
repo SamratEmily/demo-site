@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { list, optionalObject, parseContent, text } from "./content-schema";
+import { list, optionalObject, optionalText, parseContent, text } from "./content-schema";
 import { readMdx } from "./mdx-files";
 import { getProduct } from "./products";
 import type { CaseStudy } from "./types";
@@ -20,10 +20,10 @@ const product = z
 const schema = z.object({
   title: text(120),
   summary: text(300),
-  client: text(120),
+  client: optionalText(120),
   industry: text(80),
   product,
-  duration: text(80),
+  duration: optionalText(80),
   results: list(z.object({ value: text(40), label: text(160) })),
   quote: optionalObject({ text: text(600), name: text(80), role: text(80) }),
 });

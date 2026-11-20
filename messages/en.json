@@ -104,7 +104,7 @@
     "results": "Key results",
     "quote": "What the client says",
     "allCaseStudies": "Case studies",
-    "read": "Read the case study",
+    "read": "Read more",
     "ctaTitle": "Have a similar problem?",
     "ctaBody": "Tell us how your business works today. We'll show you what we would build and what it would take."
   },
@@ -133,6 +133,8 @@
     "ctaBody": "Tell us what you're working on. We'll reply with practical advice, even if you don't hire us."
   },
   "careers": {
+    "hiringTitle": "Join our team",
+    "hiringOpenings": "{count, plural, one {# open position} other {# open positions}}",
     "fullTime": "Full-time",
     "partTime": "Part-time",
     "contract": "Contract",
@@ -157,6 +159,7 @@
   },
   "contact": {
     "formTitle": "Send us a message",
+    "directContact": "You can also reach us by email or phone using the contact details on this page.",
     "required": "Required",
     "optional": "optional",
     "name": "Your name",
@@ -191,8 +194,7 @@
       "turnstile": "Complete the check above the button, then send again.",
       "server": "Your message wasn't sent because of a problem on our side. Try again in a few minutes.",
       "serverEmail": "Your message wasn't sent because of a problem on our side. Try again in a few minutes, or email us at {email}.",
-      "network": "Your message wasn't sent because the connection failed. Check your internet connection and send again.",
-      "notConfigured": "The form can't send messages right now. Use the contact details on this page instead."
+      "network": "Your message wasn't sent because the connection failed. Check your internet connection and send again."
     },
     "detailsTitle": "Other ways to reach us",
     "whatsapp": "WhatsApp",

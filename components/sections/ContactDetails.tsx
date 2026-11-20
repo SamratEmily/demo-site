@@ -77,12 +77,15 @@ export function ContactDetails() {
       {rows.length > 0 ? (
         <dl className="mt-6 flex flex-col">
           {rows.map((row) => (
-            <div key={row.key} className="flex gap-4 border-t py-4">
-              {row.icon}
-              <div className="min-w-0">
-                <dt className="text-sm text-muted-foreground">{row.label}</dt>
-                <dd className="mt-1">{row.value}</dd>
-              </div>
+            <div
+              key={row.key}
+              className="grid grid-cols-[1.25rem_minmax(0,1fr)] gap-x-4 border-t py-4"
+            >
+              <dt className="col-span-2 grid grid-cols-subgrid text-sm text-muted-foreground">
+                {row.icon}
+                <span>{row.label}</span>
+              </dt>
+              <dd className="col-start-2 mt-1">{row.value}</dd>
             </div>
           ))}
         </dl>
