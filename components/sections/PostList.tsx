@@ -14,7 +14,7 @@ interface PostListProps {
   compact?: boolean;
 }
 
-/** Posts as rows: cover on the left, title, summary and meta on the right. */
+/** Post rows share a left text edge, with optional covers on the right on wider screens. */
 export function PostList({ posts, headingLevel = "h2", compact = false }: PostListProps) {
   const Heading = headingLevel;
 
@@ -24,8 +24,10 @@ export function PostList({ posts, headingLevel = "h2", compact = false }: PostLi
         <li key={post.slug} className="border-t">
           <article
             className={cn(
-              "group relative grid gap-6 py-8",
-              !compact && "sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] sm:gap-8",
+              "group relative grid items-start gap-6 py-8",
+              !compact &&
+                post.meta.cover &&
+                "sm:grid-cols-[minmax(0,1fr)_minmax(0,16rem)] sm:gap-8",
             )}
           >
             {post.meta.cover ? (
@@ -36,10 +38,13 @@ export function PostList({ posts, headingLevel = "h2", compact = false }: PostLi
                 alt=""
                 loading="lazy"
                 sizes="(min-width: 640px) 256px, 100vw"
-                className="aspect-video w-full rounded-lg bg-surface-muted object-cover"
+                className={cn(
+                  "aspect-video w-full rounded-lg bg-surface-muted object-cover",
+                  !compact && "sm:order-last",
+                )}
               />
             ) : null}
-            <div>
+            <div className={cn(!compact && "max-w-3xl")}>
               <PostMeta post={post} showAuthor={false} />
               <Heading className={cn("mt-2", compact ? "text-h3" : "text-h2")}>
                 <Link
