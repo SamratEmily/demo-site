@@ -50,16 +50,8 @@ export default async function CareersPage() {
             {t("openPositions")}
           </h2>
           {openings.map((opening) => (
-            <JobOpeningDetail key={opening.slug} opening={opening} email={careersEmail} />
+            <JobOpeningDetail key={opening.slug} opening={opening} />
           ))}
-          {careersEmail ? (
-            <div className="max-w-2xl border-t pt-8">
-              <h3 className="text-h3">{t("howToApply")}</h3>
-              <p className="mt-3 text-muted-foreground">
-                {t("howToApplyBody", { email: careersEmail })}
-              </p>
-            </div>
-          ) : null}
         </Section>
       ) : (
         <SendCv email={careersEmail} />

@@ -166,6 +166,19 @@ Local runtime secrets go in `.dev.vars` (from `.dev.vars.example`), which
 `npm run preview:functions` reads. Turnstile has test keys that always pass; they're
 listed in both example files.
 
+### Job application delivery
+
+Apply links open a form for the selected role. The application and PDF résumé
+are sent to the careers inbox through Resend as **Hiring Beacon**. On Cloudflare Pages and Netlify,
+set `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` for the serverless function.
+The application uses the address in `CONTACT_FROM_EMAIL` with the Hiring Beacon display name.
+The address must use a domain verified in Resend. Set `CAREERS_TO_EMAIL` only
+to override the Careers email in `content/settings.json`.
+
+The submission endpoint is `/api/apply` on both hosts. A static-only preview can
+display the form. To test delivery, run a hosting runtime with the function and
+its environment variables configured.
+
 ## Deploying on Cloudflare Pages
 
 The site deploys from GitHub (`Beacon-Soft-Ltd/beacon-softltd-website`). Every push to

@@ -146,16 +146,13 @@
     "requirements": "What you need",
     "niceToHave": "Nice to have",
     "apply": "Apply for {title}",
-    "applySubject": "Application: {title}",
     "openPositions": "Open positions",
     "noOpenings": "No open positions right now",
     "sendCv": "Send us your CV",
     "cvSubject": "CV for future openings",
     "cvBody": "We don't have an opening that fits right now, but we're always glad to hear from good developers, designers and testers. Email your CV and we'll get in touch when a role comes up.",
     "cvBodyNoEmail": "We don't have an opening that fits right now, but we're always glad to hear from good developers, designers and testers. Send us a message and tell us about yourself.",
-    "contactPage": "Send us a message",
-    "howToApply": "How to apply",
-    "howToApplyBody": "Email your CV to {email} with the job title in the subject line. We reply to every application."
+    "contactPage": "Send us a message"
   },
   "contact": {
     "formTitle": "Send us a message",

@@ -24,6 +24,10 @@ TURNSTILE_SECRET=1x0000000000000000000000000000000AA
 # (onboarding@resend.dev), which only delivers to your own Resend account email.
 CONTACT_FROM_EMAIL=
 
+# Optional override for application delivery. Defaults to the Careers email in
+# content/settings.json. Applications require RESEND_API_KEY and CONTACT_FROM_EMAIL.
+# CAREERS_TO_EMAIL=careers@example.com
+
 # Content manager login (functions/api/auth.ts, callback.ts). Not needed locally:
 # use `npm run cms:local` instead (docs/ADMIN.md). In production, set
 # GITHUB_CLIENT_ID (text) and GITHUB_CLIENT_SECRET (secret) in Cloudflare.

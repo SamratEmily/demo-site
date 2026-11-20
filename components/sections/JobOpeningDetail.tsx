@@ -1,15 +1,12 @@
-import { Mail } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ButtonLink } from "@/components/shared/ButtonLink";
 import { CheckList } from "@/components/shared/CheckList";
-import { buttonVariants } from "@/components/ui/button";
 import type { EmploymentType, JobOpening } from "@/lib/types";
-import { cn, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 interface JobOpeningDetailProps {
   opening: JobOpening;
-  /** Where applications go; without one, the button opens the contact page. */
-  email: string;
 }
 
 const typeKey = {
@@ -20,7 +17,7 @@ const typeKey = {
 } as const satisfies Record<EmploymentType, string>;
 
 /** One open position with its facts, lists and an apply button. */
-export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
+export function JobOpeningDetail({ opening }: JobOpeningDetailProps) {
   const t = useTranslations("careers");
   const title = opening.title;
   const titleId = `${opening.slug}-title`;
@@ -29,7 +26,6 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
     { label: t("requirements"), items: opening.requirements },
     { label: t("niceToHave"), items: opening.niceToHave ?? [] },
   ].filter((list) => list.items.length > 0);
-  const subject = encodeURIComponent(t("applySubject", { title }));
 
   return (
     <section
@@ -60,24 +56,14 @@ export function JobOpeningDetail({ opening, email }: JobOpeningDetailProps) {
           ) : null}
         </dl>
         <p className="mt-6 text-lead">{opening.summary}</p>
-        {email ? (
-          <a
-            href={`mailto:${email}?subject=${subject}`}
-            // cn() so whitespace-normal replaces the button's whitespace-nowrap:
-            // the label includes the job title and must wrap on phones.
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "mt-8 h-auto min-h-12 py-2 text-left whitespace-normal",
-            )}
-          >
-            <Mail className="size-5" aria-hidden />
-            {t("apply", { title })}
-          </a>
-        ) : (
-          <ButtonLink href="/contact" size="lg" className="mt-8">
-            {t("contactPage")}
-          </ButtonLink>
-        )}
+        <ButtonLink
+          href={`/careers/apply/${opening.slug}/`}
+          size="lg"
+          className="mt-8 h-auto min-h-12 py-2 text-left whitespace-normal"
+        >
+          <FileText className="size-5" aria-hidden />
+          {t("apply", { title })}
+        </ButtonLink>
       </div>
       <div className="flex flex-col gap-8">
         {lists.map((list) => (
