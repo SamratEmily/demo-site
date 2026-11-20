@@ -47,10 +47,11 @@ export function TeamList({ members }: TeamListProps) {
                 {initials(member.name)}
               </div>
             )}
-            <p className="mt-4 font-semibold">{member.sample ? member.role : name}</p>
-            <p className="text-muted-foreground">
-              {member.sample ? t("sampleProfile") : member.role}
-            </p>
+            <p className="mt-4 font-semibold">{name}</p>
+            <p className="text-muted-foreground">{member.role}</p>
+            {member.sample ? (
+              <p className="mt-1 text-sm text-muted-foreground">{t("sampleProfile")}</p>
+            ) : null}
             {member.linkedin ? (
               <a
                 href={member.linkedin}
