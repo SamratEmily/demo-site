@@ -1,0 +1,18 @@
+{
+  "order": 110,
+  "type": "full-time",
+  "title": "Software Engineer",
+  "location": "Pallabi, Dhaka",
+  "summary": "Build and maintain web applications that people use for daily business work. You'll take features from a written brief through implementation, testing and release.",
+  "responsibilities": [
+    "Build web features across the interface, API and database.",
+    "Write tests for changes to workflows such as approvals, permissions and reporting.",
+    "Review pull requests and investigate bugs reported by customers."
+  ],
+  "requirements": [
+    "Experience shipping changes to a web application with a team.",
+    "Comfort working with SQL, HTTP APIs, Git and automated tests.",
+    "Ability to explain trade-offs and write clear implementation notes."
+  ],
+  "niceToHave": ["Experience with Laravel, React or business software."]
+}

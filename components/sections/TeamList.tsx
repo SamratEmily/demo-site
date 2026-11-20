@@ -1,7 +1,9 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { BrandIcon } from "@/components/shared/BrandIcon";
+import { openings } from "@/lib/careers";
 import type { TeamMember } from "@/lib/types";
+import { HiringCard } from "./HiringCard";
 
 interface TeamListProps {
   members: TeamMember[];
@@ -31,11 +33,11 @@ export function TeamList({ members }: TeamListProps) {
             {member.photo ? (
               <Image
                 src={member.photo}
-                width={320}
-                height={320}
+                width={480}
+                height={480}
                 alt=""
                 loading="lazy"
-                className="aspect-square w-full rounded-lg bg-surface-muted object-cover"
+                className="aspect-square w-full rounded-lg border bg-surface-muted object-cover object-center"
               />
             ) : (
               <div
@@ -45,8 +47,10 @@ export function TeamList({ members }: TeamListProps) {
                 {initials(member.name)}
               </div>
             )}
-            <p className="mt-4 font-semibold">{name}</p>
-            <p className="text-muted-foreground">{member.role}</p>
+            <p className="mt-4 font-semibold">{member.sample ? member.role : name}</p>
+            <p className="text-muted-foreground">
+              {member.sample ? t("sampleProfile") : member.role}
+            </p>
             {member.linkedin ? (
               <a
                 href={member.linkedin}
@@ -61,6 +65,11 @@ export function TeamList({ members }: TeamListProps) {
           </li>
         );
       })}
+      {openings.length > 0 ? (
+        <li>
+          <HiringCard openings={openings.length} />
+        </li>
+      ) : null}
     </ul>
   );
 }

@@ -25,7 +25,24 @@ export default async function CareersPage() {
 
   return (
     <>
-      <PageHeader id="careers-title" title={careersPage.title} intro={careersPage.intro} />
+      <PageHeader id="careers-title" title={careersPage.title} intro={careersPage.intro}>
+        {openings.length > 1 ? (
+          <nav aria-label={t("openPositions")} className="mt-8">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+              {openings.map(({ slug, title }) => (
+                <li key={slug}>
+                  <a
+                    href={`#${slug}`}
+                    className="font-medium text-primary underline underline-offset-4"
+                  >
+                    {title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
+      </PageHeader>
 
       {openings.length > 0 ? (
         <Section labelledBy="openings-title" className="pt-0 lg:pt-0">

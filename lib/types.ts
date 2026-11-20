@@ -213,10 +213,11 @@ export interface CompanyValue {
   description: string;
 }
 
-/** Only add real people who agreed to be listed. */
+/** A public team member or a visibly labeled sample profile. */
 export interface TeamMember {
   name: string;
   role: string;
+  sample?: boolean;
   /** Path under /public; square, at least 320×320. Optional. */
   photo?: string;
   linkedin?: string;

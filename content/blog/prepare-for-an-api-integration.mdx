@@ -1,0 +1,28 @@
+---
+title: "What to prepare before connecting two business systems"
+summary: "Use a sample record, a clear source of truth and a plan for failures to scope an API integration."
+date: "2026-11-20"
+author: "Beacon Soft team"
+tags: ["software-planning", "custom-software"]
+draft: false
+---
+
+Connecting an online store to an accounting tool sounds straightforward until an order is edited after payment or the same event arrives twice. Agreeing on a few rules upfront makes it easier to estimate the work and test the result.
+
+## Pick the records that need to move
+
+Write down which events matter and where each record should go. A store might send completed orders and refunds to accounting, while accounting owns invoice numbers and payment reconciliation. Assign an owner for each field that can change in both systems.
+
+## Work through an example
+
+Take a representative order and map the fields on each side. Include taxes, discounts, currency and customer identifiers where they apply. Work through a refund and a partial shipment too. Ask what should happen if a required field is missing, or if a product has been renamed since the original order.
+
+## Make failures visible
+
+Services time out, and events can arrive again or out of order. Give each transaction a stable reference so a retry does not create a duplicate. Decide who sees failed transactions, how they can correct one and when a retry should stop. An operator should be able to tell whether a record was sent, accepted or needs attention.
+
+## Check the first reporting cycle
+
+Test with sample data before sending real transactions. After release, compare totals and investigate a few orders end to end. Agree who owns the integration once it is running and who will respond if either system changes its API.
+
+Explore our [API and integration services](/services/#api-development) if you're planning a connection.

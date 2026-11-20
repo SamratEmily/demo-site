@@ -533,7 +533,7 @@ collections:
   - name: team
     label: Team
     label_singular: Team member
-    description: Only real people who agreed to appear on the site. "Our team" on the About page is hidden while this is empty.
+    description: Use consenting team members. Mark fictional demo profiles as samples so the website labels them clearly.
     folder: content/team
     format: json
     extension: json
@@ -562,6 +562,12 @@ collections:
         label: Role
         widget: string
         hint: E.g. "Lead developer".
+      - name: sample
+        label: Sample profile
+        widget: boolean
+        required: false
+        default: false
+        hint: Enable for a fictional demo profile.
       - name: photo
         label: Photo
         widget: image

@@ -1,0 +1,18 @@
+{
+  "order": 120,
+  "type": "full-time",
+  "title": "Senior Software Engineer",
+  "location": "Pallabi, Dhaka",
+  "summary": "Lead technical delivery for business web applications. You'll help turn client needs into a workable scope, guide engineers through difficult decisions and make sure the software can be maintained after launch.",
+  "responsibilities": [
+    "Design data models, integrations and permission boundaries for new features.",
+    "Break projects into reviewable releases and plan how to migrate existing data.",
+    "Mentor engineers through design discussions, code reviews and production troubleshooting."
+  ],
+  "requirements": [
+    "Experience owning a production web application through design, release and support.",
+    "Ability to reason about database changes, failure recovery and operational trade-offs.",
+    "Experience guiding other engineers and communicating decisions to non-technical colleagues."
+  ],
+  "niceToHave": ["Experience with integrations, data migrations or multi-tenant products."]
+}
