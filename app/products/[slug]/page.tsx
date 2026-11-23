@@ -97,30 +97,6 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       ),
     });
   }
-  if (product.slug === "gari-becho" && product.screenshot) {
-    sections.push({
-      id: "vehicle-management-video",
-      title: "See vehicle management in action",
-      content: (
-        <div className="mx-auto max-w-4xl">
-          <BrowserFrame address={product.url ? hostname(product.url) : undefined}>
-            <DemoVideo
-              embedSrc="https://www.youtube-nocookie.com/embed/KlfOmI-H7qk?autoplay=1&playsinline=1"
-              poster={product.screenshot}
-              playLabel="Play Gari Becho vehicle management walkthrough"
-              videoLabel="Gari Becho vehicle management walkthrough"
-            />
-          </BrowserFrame>
-          <a
-            href="https://www.youtube.com/watch?v=KlfOmI-H7qk"
-            className="mt-4 inline-block text-primary underline underline-offset-4"
-          >
-            Watch on YouTube
-          </a>
-        </div>
-      ),
-    });
-  }
   if (product.features.length) {
     sections.push({
       id: "features",
@@ -143,32 +119,42 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     });
   }
   if (product.video && product.screenshot) {
+    const isGariBecho = product.slug === "gari-becho";
+    const videoProps = isGariBecho
+      ? {
+          embedSrc: "https://www.youtube-nocookie.com/embed/KlfOmI-H7qk?autoplay=1&playsinline=1",
+          playLabel: "Play Gari Becho vehicle management walkthrough",
+          videoLabel: "Gari Becho vehicle management walkthrough",
+        }
+      : {
+          videoSrc: product.video.src,
+          playLabel: t("home.playDemo", {
+            name: product.name,
+            seconds: product.video.durationSeconds,
+          }),
+          videoLabel: t("home.videoLabel", { name: product.name }),
+          fallbackLabel: t("home.videoFallback"),
+        };
+
     sections.push({
       id: "demo",
       title: t("product.demoVideo"),
-      intro: product.video.description,
+      intro: isGariBecho ? undefined : product.video.description,
       deep: true,
       content: (
-        <BrowserFrame
-          address={product.url ? hostname(product.url) : undefined}
-          className="mx-auto max-w-4xl"
-        >
-          <DemoVideo
-            videoSrc={product.video.src}
-            poster={{
-              src: product.screenshot.src,
-              width: product.screenshot.width,
-              height: product.screenshot.height,
-              alt: product.screenshot.alt,
-            }}
-            playLabel={t("home.playDemo", {
-              name: product.name,
-              seconds: product.video.durationSeconds,
-            })}
-            videoLabel={t("home.videoLabel", { name: product.name })}
-            fallbackLabel={t("home.videoFallback")}
-          />
-        </BrowserFrame>
+        <div className="mx-auto max-w-4xl">
+          <BrowserFrame address={product.url ? hostname(product.url) : undefined}>
+            <DemoVideo {...videoProps} poster={product.screenshot} />
+          </BrowserFrame>
+          {isGariBecho && (
+            <a
+              href="https://www.youtube.com/watch?v=KlfOmI-H7qk"
+              className="mt-4 inline-block text-brand-cyan-hover underline underline-offset-4"
+            >
+              Watch on YouTube
+            </a>
+          )}
+        </div>
       ),
     });
   }
