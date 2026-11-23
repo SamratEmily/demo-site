@@ -4,22 +4,23 @@ import { Play } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-interface DemoVideoProps {
-  videoSrc: string;
+type DemoVideoProps = {
   poster: { src: string; width: number; height: number; alt: string };
   playLabel: string;
   videoLabel: string;
-  fallbackLabel: string;
   /** Preload the poster (use for above-the-fold placement only). */
   preload?: boolean;
-}
+} & (
+  | { videoSrc: string; fallbackLabel: string; embedSrc?: never }
+  | { embedSrc: string; videoSrc?: never; fallbackLabel?: never }
+);
 
 /**
- * Shows a real screenshot with a play button. The video file is only
- * requested after the visitor presses play (CLAUDE.md §10).
+ * Shows a real screenshot and loads the player only after the visitor presses play.
  */
 export function DemoVideo({
   videoSrc,
+  embedSrc,
   poster,
   playLabel,
   videoLabel,
@@ -29,10 +30,25 @@ export function DemoVideo({
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // The play button disappears, so hand keyboard focus to the video.
+  const embedRef = useRef<HTMLIFrameElement>(null);
+
+  // The play button disappears, so hand keyboard focus to the player.
   useEffect(() => {
-    if (playing) videoRef.current?.focus();
+    if (playing) (videoRef.current ?? embedRef.current)?.focus();
   }, [playing]);
+
+  if (playing && embedSrc) {
+    return (
+      <iframe
+        ref={embedRef}
+        src={embedSrc}
+        title={videoLabel}
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+        className="block aspect-video w-full bg-black"
+      />
+    );
+  }
 
   if (playing) {
     return (

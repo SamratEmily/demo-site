@@ -97,19 +97,20 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
       ),
     });
   }
-  if (product.slug === "gari-becho") {
+  if (product.slug === "gari-becho" && product.screenshot) {
     sections.push({
       id: "vehicle-management-video",
       title: "See vehicle management in action",
       content: (
         <div className="mx-auto max-w-4xl">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/KlfOmI-H7qk"
-            title="Vehicle Management | Gari Becho | Beacon Soft Ltd"
-            loading="lazy"
-            allowFullScreen
-            className="aspect-video w-full rounded-2xl border"
-          />
+          <BrowserFrame address={product.url ? hostname(product.url) : undefined}>
+            <DemoVideo
+              embedSrc="https://www.youtube-nocookie.com/embed/KlfOmI-H7qk?autoplay=1&playsinline=1"
+              poster={product.screenshot}
+              playLabel="Play Gari Becho vehicle management walkthrough"
+              videoLabel="Gari Becho vehicle management walkthrough"
+            />
+          </BrowserFrame>
           <a
             href="https://www.youtube.com/watch?v=KlfOmI-H7qk"
             className="mt-4 inline-block text-primary underline underline-offset-4"
